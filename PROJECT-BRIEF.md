@@ -4,11 +4,11 @@
 
 ### Locations for things
 
-- Site: {link to cohort live site}
-- Repo: {link to cohort repo}
-- Clone URL: `{clone URL}`
-- Issue list: {link to cohort repo issues}
-- Database: {link to cohort firebase database}
+- Site: [Production Site](https://tcl-19-smart-shopping-list.netlify.app/)
+- Repo: [github.com/the-collab-lab/tcl-19-smart-shopping-list](https://github.com/the-collab-lab/tcl-19-smart-shopping-list)
+- Clone URL: `https://github.com/the-collab-lab/tcl-19-smart-shopping-list.git`
+- Issue list: [github.com/the-collab-lab/tcl-19-smart-shopping-list/projects/1](https://github.com/the-collab-lab/tcl-19-smart-shopping-list/projects/1)
+- Database: [console.firebase.google.com/u/0/project/tcl-19-smart-shopping-list/firestore](https://console.firebase.google.com/u/0/project/tcl-19-smart-shopping-list/firestore)
 
 ### Project cadence & duration
 
@@ -18,42 +18,42 @@ Each week, the team of 4 developers will split into 2 pairs of 2 developers each
 
 Pairings will go as follows:
 
-#### Week 1, {start date - end date}
+#### Week 1, January 3 - 9
 
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Rebecca & Amaka
+2. Joseph & Julia
 
-#### Week 2, {start date - end date}
+#### Week 2, January 10 - 16
 
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Julia & Rebecca
+2. Amaka & Joseph
 
-#### Week 3, {start date - end date}
+#### Week 3, January 17 - 23
 
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Joseph & Rebecca
+2. Amaka & Julia
 
-#### Week 4, {start date - end date}
+#### Week 4, January 24 - 30
 
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Rebecca & Amaka
+2. Joseph & Julia
 
-#### Week 5, {start date - end date}
+#### Week 5, January 31 - February 6
 
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Julia & Rebecca
+2. Amaka & Joseph
 
-#### Week 6, {start date - end date}
+#### Week 6, February 7 - 13
 
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Joseph & Rebecca
+2. Amaka & Julia
 
-#### Week 7, {start date - end date}
+#### Week 7, February 14 - 20
 
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Rebecca & Amaka
+2. Joseph & Julia
 
-#### Week 8, {start date - end date}
+#### Week 8, February 21 - 27
 
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Julia & Rebecca
+2. Amaka & Joseph
