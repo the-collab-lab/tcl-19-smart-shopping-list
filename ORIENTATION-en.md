@@ -29,7 +29,7 @@ There is no one “right” way to pair program, but in general you will meet wi
 
 ## How does it all work?
 
-The project is organized in GitHub as a set of [user stories](https://www.mountaingoatsoftware.com/agile/user-stories), each with a description of the desired functionality as well as [acceptance criteria](https://www.leadingagile.com/2014/09/acceptance-criteria/ 'AC') that describe how you know whether the task or story is complete. You can find the stories on [the project board]({link to the cohort repo project board}) on GitHub. This is referred to as the “backlog” (the collection of stories) and represents the work needed to complete the project.
+The project is organized in GitHub as a set of [user stories](https://www.mountaingoatsoftware.com/agile/user-stories), each with a description of the desired functionality as well as [acceptance criteria](https://www.leadingagile.com/2014/09/acceptance-criteria/ 'AC') that describe how you know whether the task or story is complete. You can find the stories on [the project board](https://github.com/the-collab-lab/tcl-19-smart-shopping-list/projects/1) on GitHub. This is referred to as the “backlog” (the collection of stories) and represents the work needed to complete the project.
 
 A task or story is “done” when the following are all true:
 
@@ -86,7 +86,7 @@ When you and your pair partner have working code that you believe is ready to be
 3. Incorporate feedback from the other pair team into your work until both you and they are satisfied the code is ready to be merged.
 4. Request that one of the mentors review the PR for final approval.
 5. Once approved, merge the PR into `main`. (Your code will be built and deployed to production automatically thanks to [Netlify](https://www.netlify.com/).)
-6. Check your work on the [production site]({link to cohort live site}).
+6. Check your work on the [production site](https://tcl-19-smart-shopping-list.netlify.app/).
 7. Celebrate! 🥳
 
 ## When does everything happen?

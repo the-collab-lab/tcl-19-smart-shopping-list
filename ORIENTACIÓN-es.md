@@ -29,7 +29,7 @@ No hay una sola manera de programar en pares, pero en general te encuentras con 
 
 ## ¿Como funciona todo?
 
-El proyecto está organizado en GitHub como un set de [historias de usuario](https://www.mountaingoatsoftware.com/agile/user-stories), cada una con una descripción de la funcionalidad deseada, y tambien con [los criterios de aceptación](https://www.leadingagile.com/2014/09/acceptance-criteria/) que describen como saber si la tarea o la historia estan listos. Puedes encontrar las historias de usuario en [el board del proyecto] en GitHub. Esta colección de historias de usuario se llama el “backlog” y representa el trabajo necesario para terminar el proyecto.
+El proyecto está organizado en GitHub como un set de [historias de usuario](https://www.mountaingoatsoftware.com/agile/user-stories), cada una con una descripción de la funcionalidad deseada, y tambien con [los criterios de aceptación](https://www.leadingagile.com/2014/09/acceptance-criteria/) que describen como saber si la tarea o la historia estan listos. Puedes encontrar las historias de usuario en [el board del proyecto](https://github.com/the-collab-lab/tcl-19-smart-shopping-list/projects/1) en GitHub. Esta colección de historias de usuario se llama el “backlog” y representa el trabajo necesario para terminar el proyecto.
 
 Una tarea o historia está “lista”/”done” cuando lo siguente está implementado:
 
