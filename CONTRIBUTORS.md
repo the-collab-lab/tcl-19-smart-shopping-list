@@ -6,5 +6,6 @@
 - [Chiamaka Umeh](https://github.com/Amaka202)
 
 ## Mentors
+- [Luka Baramishvili](https://github.com/lukabaramishvili)
 
 ## Code of Conduct Contacts
