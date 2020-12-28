@@ -8,5 +8,6 @@
 ## Mentors
 - [Luka Baramishvili](https://github.com/lukabaramishvili)
 - [Golfo Vasiliou](https://github.com/faysvas)
+- [Alex Morton](http://github.com/alexlsalt)
 
 ## Code of Conduct Contacts
