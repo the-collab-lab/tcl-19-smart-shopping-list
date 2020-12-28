@@ -7,5 +7,6 @@
 
 ## Mentors
 - [Luka Baramishvili](https://github.com/lukabaramishvili)
+- [Golfo Vasiliou](https://github.com/faysvas)
 
 ## Code of Conduct Contacts
