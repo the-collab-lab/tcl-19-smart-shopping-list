@@ -20,4 +20,4 @@
 
 ## Guest Presenters
 
-- [Andrew Hedges]()
+- Andrew Hedges
