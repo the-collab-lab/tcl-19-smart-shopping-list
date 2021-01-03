@@ -17,3 +17,7 @@
 ## Code of Conduct Contacts
 
 - [Stacie Taylor](https://github.com/stacietaylorcima) ✨
+
+## Guest Presenters
+
+- Andrew Hedges
