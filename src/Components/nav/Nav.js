@@ -9,13 +9,13 @@ class Nav extends React.Component {
   render() {
     return (
       <nav>
-        <ul>
-          <li>
+        <ul className="flexed-list">
+          <li className="list">
             <NavLink to="/list" activeClassName="active">
               List
             </NavLink>
           </li>
-          <li>
+          <li className="list">
             <NavLink to="/addItem" activeClassName="active">
               Add Item
             </NavLink>

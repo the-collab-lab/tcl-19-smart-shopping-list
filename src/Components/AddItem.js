@@ -1,11 +1,8 @@
 import React from 'react';
 
 class AddItem extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    return <h1>AddItem</h1>;
+    return <h1>Add Item</h1>;
   }
 }
 

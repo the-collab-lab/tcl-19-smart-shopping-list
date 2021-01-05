@@ -4,7 +4,7 @@ import './App.css';
 import { Switch, Route, Link } from 'react-router-dom';
 import List from './Components/List';
 import AddItem from './Components/AddItem';
-import Nav from './Components/Nav';
+import Nav from './Components/nav/Nav';
 
 function App() {
   return (
