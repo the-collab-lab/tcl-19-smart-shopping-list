@@ -16,6 +16,4 @@ var firebaseConfig = {
 let fb = firebase.initializeApp(firebaseConfig);
 
 export { fb };
-export default firebase //Step 2: I wrote this to use firebase. 
-                        //I am not sure how just fb would have worked. 
-                        //Step 3 -> create item-list.jsx (Why jsX?)
+export default firebase 
