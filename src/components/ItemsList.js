@@ -28,18 +28,18 @@ const ItemsList = () => {
   const items = useItems();
 
   return (
-    <table>
-      <tr>
-        <th> Item </th>
-        <th> Quantity </th>
-      </tr>
-      {items.map((item) => (
-        <tr key={item.id}>
-          <td>{item.item}</td>
-          <td>{item.how_much}</td>
-        </tr>
-      ))}
-    </table>
+    <div>
+      <h2>New List</h2>
+      <ol>
+        {items.map((item) => (
+          <li key={item.id}>
+            <div>
+              {item.item},{item.how_much}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 };
 
