@@ -11,9 +11,9 @@ const FirestoreCollection = () => {
   );
   return (
     <div>
+      {loading === true ? <p> Loading... </p> : null}
+      {error === undefined ? null : <p> An error has occurred! </p>}
       <p>
-        {error && <strong>Error: {JSON.stringify(error)}</strong>}
-        {loading && <span>Collection: Loading...</span>}
         {value && (
           <span>
             Collection:{' '}
