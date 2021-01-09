@@ -1,0 +1,19 @@
+.active {
+  font-weight: bold;
+}
+
+.list {
+  list-style: none;
+  margin-right: 2rem;
+}
+
+.flexed-list {
+  position: fixed;
+  margin: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
