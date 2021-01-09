@@ -1,13 +1,15 @@
 import React from 'react';
-import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import List from './components/List';
 import AddItem from './components/AddItem';
 import Nav from './components/Nav';
+import './styles/App.css';
+import ItemsList from './components/ItemsList';
+import AddItemsToList from './components/AddItemsToList';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Switch>
         <Route path="/list">
           <List />
@@ -16,6 +18,9 @@ function App() {
           <AddItem />
         </Route>
       </Switch>
+      <h1>Shopping List</h1>
+      <ItemsList />
+      <AddItemsToList />
       <Nav />
     </div>
   );

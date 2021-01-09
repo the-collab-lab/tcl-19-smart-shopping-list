@@ -15,3 +15,5 @@
 - [Muhammad Salman](https://github.com/salmanmanekia)
 
 ## Code of Conduct Contacts
+
+- [Stacie Taylor](https://github.com/stacietaylorcima) ✨
