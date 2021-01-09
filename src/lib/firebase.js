@@ -16,3 +16,4 @@ var firebaseConfig = {
 let fb = firebase.initializeApp(firebaseConfig);
 
 export { fb };
+export default firebase 
