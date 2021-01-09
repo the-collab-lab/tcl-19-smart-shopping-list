@@ -1,44 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import firebase from '../lib/firebase';
-
-function useItems() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const unsubscribe = firebase;
-    firebase
-      .firestore()
-      .collection('items')
-      .onSnapshot((snapshot) => {
-        const newItems = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
-        setItems(newItems);
-      });
-
-    return () => unsubscribe();
-  }, []);
-
-  return items;
-}
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 const ItemsList = () => {
-  const items = useItems();
-
+  const [itemsList, loading, error] = useCollectionData(
+    firebase.firestore().collection('items'),
+    {
+      snapshotListenOptions: { includeMetadataChanges: true },
+    },
+  );
+  // useCollectionData extracts firebase.firestore.QuerySnapshot.docs while useCollection
+  // returns firebase.firestore.QuerySnapshot itself.
   return (
     <div>
       <h2>New List</h2>
-      <ol>
-        {items.map((item) => (
-          <li key={item.id}>
-            <div>
-              {item.item},{item.how_much}
-            </div>
-          </li>
-        ))}
-      </ol>
+      {loading === true ? <p> Loading... </p> : null}
+      {error === undefined ? null : <p> An error has occurred... </p>}
+      {itemsList === undefined ? null : (
+        <ol>
+          {itemsList.map((itemObject, index) => (
+            <li key={itemObject.item + index}>
+              <div>
+                {itemObject.item},{itemObject.how_much}
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
     </div>
   );
 };

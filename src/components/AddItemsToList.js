@@ -7,16 +7,16 @@ const AddItemsToList = () => {
 
   function onSubmitItem(e) {
     e.preventDefault();
-    if(itemName === '' || quantity === 0){
-      alert("Please enter item name and quantity...")
-      return
+    if (itemName === '' || parseInt(quantity) === 0) {
+      alert('Please enter item name and quantity...');
+      return;
     }
     firebase
       .firestore()
       .collection('items')
       .add({
         item: itemName,
-        how_much: quantity,
+        how_much: parseInt(quantity),
       })
       .then(() => {
         setItemName('');
@@ -44,11 +44,11 @@ const AddItemsToList = () => {
             type="number"
             value={quantity}
             min={0}
-            onChange={(e) => setQuantity(parseInt(e.currentTarget.value))}
+            onChange={(e) => setQuantity(e.currentTarget.value)}
           />
         </label>
       </div>
-      <button type = "submit">Add Item</button>
+      <button type="submit">Add Item</button>
     </form>
   );
 };
