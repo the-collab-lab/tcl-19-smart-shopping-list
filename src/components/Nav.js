@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../styles/Nav.css';
 
-export default function Nav() {
+const Nav = () => {
   return (
     <nav>
       <ul className="flexed-list">
@@ -19,4 +19,6 @@ export default function Nav() {
       </ul>
     </nav>
   );
-}
+};
+
+export default Nav;

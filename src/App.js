@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import './styles/App.css';
 import ItemsList from './components/ItemsList';
 import AddItemsToList from './components/AddItemsToList';
+import CreateList from './components/CreateList';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <h1>Shopping List</h1>
       <ItemsList />
       <AddItemsToList />
+      <CreateList />
       <Nav />
     </div>
   );
