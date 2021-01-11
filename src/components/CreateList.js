@@ -1,17 +1,14 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import firebase from '../lib/firebase';
 import { NavLink } from 'react-router-dom';
 import getToken from '../lib/tokens';
 
 const CreateList = () => {
-  const newToken = useReducer(getToken, () => {
-    const localData = localStorage.getItem('newToken');
-    return localData ? JSON.parse(localData) : [];
-  });
+  const newToken = getToken();
 
   useEffect(() => {
-    localStorage.setItem('newToken', JSON.stringify(newToken));
-  }, [newToken]);
+    localStorage.setItem('newToken', newToken);
+  });
 
   function onSubmitList() {}
 
