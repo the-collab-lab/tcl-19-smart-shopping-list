@@ -1,11 +1,9 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import List from './components/List';
 import AddItem from './components/AddItem';
 import Nav from './components/Nav';
 import './styles/App.css';
-import ItemsList from './components/ItemsList';
-import AddItemsToList from './components/AddItemsToList';
 import CreateList from './components/CreateList';
 
 function App() {
@@ -19,10 +17,11 @@ function App() {
           <AddItem />
         </Route>
       </Switch>
-      <h1>Shopping List</h1>
-      <ItemsList />
-      <AddItemsToList />
-      <CreateList />
+      {localStorage.getItem('newToken') ? (
+        <Redirect to="/list" />
+      ) : (
+        <CreateList />
+      )}
       <Nav />
     </div>
   );
