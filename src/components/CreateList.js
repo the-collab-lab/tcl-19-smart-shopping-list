@@ -3,14 +3,13 @@ import { NavLink } from 'react-router-dom';
 import getToken from '../lib/tokens';
 
 const CreateList = () => {
-  const newToken = getToken();
-
-  useEffect(() => {
+  const newList = () => {
+    const newToken = getToken();
     localStorage.setItem('newToken', newToken);
-  });
+  };
 
   return (
-    <form>
+    <form onClick={newList}>
       <div>
         <NavLink to="/list">
           <button type="submit">Create List</button>
