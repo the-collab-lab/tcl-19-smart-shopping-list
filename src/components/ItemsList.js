@@ -3,8 +3,8 @@ import firebase from '../lib/firebase';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 const ItemsList = () => {
-  const [itemsList, loading, error] = useCollectionData(
-    firebase.firestore().collection('items'),
+  const [shoppingList, loading, error] = useCollectionData(
+    firebase.firestore().collection('shopping_list'),
     {
       snapshotListenOptions: { includeMetadataChanges: true },
     },
@@ -16,13 +16,11 @@ const ItemsList = () => {
       <h2>New List</h2>
       {loading === true ? <p> Loading... </p> : null}
       {error === undefined ? null : <p> An error has occurred... </p>}
-      {itemsList === undefined ? null : (
+      {shoppingList === undefined ? null : (
         <ol>
-          {itemsList.map((itemObject, index) => (
-            <li key={itemObject.item + index}>
-              <div>
-                {itemObject.item},{itemObject.how_much}
-              </div>
+          {shoppingList.map((shoppingListItemObject) => (
+            <li key={shoppingListItemObject.token}>
+              <div>{shoppingListItemObject.shoppingListItemName}</div>
             </li>
           ))}
         </ol>

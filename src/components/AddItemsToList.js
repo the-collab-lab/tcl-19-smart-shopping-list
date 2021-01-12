@@ -1,53 +1,87 @@
 import React, { useState } from 'react';
 import firebase from '../lib/firebase';
 
-const AddItemsToList = () => {
-  const [itemName, setItemName] = useState('');
-  const [quantity, setQuantity] = useState(0);
+function getFakeRandomToken() {
+  return `${Math.round(Math.random() * 1e15)}`;
+}
 
-  function onSubmitItem(e) {
-    e.preventDefault();
-    if (itemName === '' || parseInt(quantity) === 0) {
-      alert('Please enter item name and quantity...');
+const AddItemsToList = () => {
+  const [shoppingListItemName, setShoppingListItemName] = useState('');
+  const [daysLeftForNextPurchase, setDaysLeftForNextPurchase] = useState(7);
+
+  const shoppingListItemNameHandler = (event) => {
+    setShoppingListItemName(event.target.value);
+  };
+  const daysLeftForNextPurchaseHandler = (event) => {
+    setDaysLeftForNextPurchase(parseInt(event.target.value));
+  };
+  function submitShoppingListItemHandler(event) {
+    event.preventDefault();
+    if (shoppingListItemName === '') {
+      alert('Please enter item name...');
       return;
     }
     firebase
       .firestore()
-      .collection('items')
+      .collection('shopping_list')
       .add({
-        item: itemName,
-        how_much: parseInt(quantity),
+        token: getFakeRandomToken(),
+        shoppingListItemName,
+        daysLeftForNextPurchase,
+        lastPurchasedOn: null,
       })
       .then(() => {
-        setItemName('');
-        setQuantity(0);
+        setShoppingListItemName('');
+        setDaysLeftForNextPurchase(7);
       });
   }
 
   return (
-    <form onSubmit={onSubmitItem}>
-      <h2>Add Items to List</h2>
+    <form onSubmit={submitShoppingListItemHandler}>
+      <h2>Add Item to your shopping List</h2>
       <div>
         <label>
           Name
           <input
             type="text"
-            value={itemName}
-            onChange={(e) => setItemName(e.currentTarget.value)}
+            value={shoppingListItemName}
+            onChange={shoppingListItemNameHandler}
           />
         </label>
       </div>
-      <div>
+      <fieldset>
+        How soon are you likely to buy it again?
         <label>
-          Quantity
+          Soon
           <input
-            type="number"
-            value={quantity}
-            min={0}
-            onChange={(e) => setQuantity(e.currentTarget.value)}
+            type="radio"
+            name="next_purchase"
+            value="7"
+            checked={daysLeftForNextPurchase === 7}
+            onChange={daysLeftForNextPurchaseHandler}
           />
         </label>
-      </div>
+        <label>
+          Kind of soon
+          <input
+            type="radio"
+            name="next_purchase"
+            value="14"
+            checked={daysLeftForNextPurchase === 14}
+            onChange={daysLeftForNextPurchaseHandler}
+          />
+        </label>
+        <label>
+          Not soon
+          <input
+            type="radio"
+            name="next_purchase"
+            value="30"
+            checked={daysLeftForNextPurchase === 30}
+            onChange={daysLeftForNextPurchaseHandler}
+          />
+        </label>
+      </fieldset>
       <button type="submit">Add Item</button>
     </form>
   );
