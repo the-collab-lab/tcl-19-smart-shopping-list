@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import firebase from '../lib/firebase';
+import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
+
+const userToken = localStorage.getItem('token');
+
+const db = firebase.firestore().collection('shopping_list').doc(userToken);
+
+// const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
 
 function getFakeRandomToken() {
-  return `${Math.round(Math.random() * 1e15)}`;
+  return localStorage.getItem('token');
+  // return `${Math.round(Math.random() * 1e15)}`;
 }
 
 const AddItemsToList = () => {
+  const [data] = useCollectionDataOnce(db.where('token', '==', userToken));
   const [shoppingListItemName, setShoppingListItemName] = useState('');
   const [daysLeftForNextPurchase, setDaysLeftForNextPurchase] = useState(7);
 
@@ -21,21 +30,36 @@ const AddItemsToList = () => {
       alert('Please enter item name...');
       return;
     }
-    firebase
-      .firestore()
-      .collection('shopping_list')
-      .add({
-        token: getFakeRandomToken(),
-        shoppingListItemName,
-        daysLeftForNextPurchase,
-        lastPurchasedOn: null,
-      })
-      .then(() => {
-        setShoppingListItemName('');
-        setDaysLeftForNextPurchase(7);
-      });
-  }
 
+    const values = {
+      shoppingListItemName,
+      daysLeftForNextPurchase,
+      lastPurchasedOn: null,
+    };
+
+    if (data !== 'undefined') {
+      db.update({
+        items: [values],
+      })
+        .then(() => {
+          console.log('item saved');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      db.add({
+        token: getFakeRandomToken(),
+        items: [values],
+      })
+        .then(() => {
+          console.log('item saved');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
   return (
     <form onSubmit={submitShoppingListItemHandler}>
       <h2>Add Item to List</h2>

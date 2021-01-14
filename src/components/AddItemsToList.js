@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import firebase from '../lib/firebase';
 
 function getFakeRandomToken() {
-  return `${Math.round(Math.random() * 1e15)}`;
+  return localStorage.getItem('token');
+  // return `${Math.round(Math.random() * 1e15)}`;
 }
 
 const AddItemsToList = () => {
