@@ -4,7 +4,7 @@ import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 
 const userToken = localStorage.getItem('token');
 
-const db = firebase.firestore().collection('shopping_list').doc(userToken);
+const db = firebase.firestore().collection('shopping_list');
 
 // const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
 
@@ -37,10 +37,11 @@ const AddItemsToList = () => {
       lastPurchasedOn: null,
     };
 
-    if (data !== 'undefined') {
-      db.update({
-        items: [values],
-      })
+    if (data !== undefined) {
+      db.doc(userToken)
+        .update({
+          items: [values],
+        })
         .then(() => {
           console.log('item saved');
         })
