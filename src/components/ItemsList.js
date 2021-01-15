@@ -28,7 +28,7 @@ const ItemsList = () => {
     <div>
       <h2>New List</h2>
       <div>
-        <ol>
+        <ul>
           {items.length ? (
             items.map((val, index) => {
               return (
@@ -42,7 +42,7 @@ const ItemsList = () => {
           ) : (
             <p>Loading ...</p>
           )}
-        </ol>
+        </ul>
       </div>
     </div>
   );

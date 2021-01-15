@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import firebase from '../lib/firebase';
 
-const userToken = localStorage.getItem('token');
-
 const db = firebase.firestore().collection('shopping_list');
 
 const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
@@ -19,6 +17,11 @@ const AddItemsToList = () => {
   };
   function submitShoppingListItemHandler(event) {
     event.preventDefault();
+
+    localStorage.setItem('token', 288838881888283);
+
+    const userToken = localStorage.getItem('token');
+
     if (shoppingListItemName === '') {
       alert('Please enter item name...');
       return;
