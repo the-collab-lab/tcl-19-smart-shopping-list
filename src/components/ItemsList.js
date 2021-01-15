@@ -37,8 +37,6 @@ const ItemsList = () => {
                 </li>
               );
             })
-          ) : items.length === 0 ? (
-            <p>No items yet</p>
           ) : (
             <p>Loading ...</p>
           )}
