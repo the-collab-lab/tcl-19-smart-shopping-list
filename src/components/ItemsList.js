@@ -1,30 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from '../lib/firebase';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+
+const userToken = localStorage.getItem('token');
+
+const db = firebase.firestore().collection('shopping_list');
 
 const ItemsList = () => {
-  const [shoppingList, loading, error] = useCollectionData(
-    firebase.firestore().collection('shopping_list'),
-    {
-      snapshotListenOptions: { includeMetadataChanges: true },
-    },
-  );
-  // useCollectionData extracts firebase.firestore.QuerySnapshot.docs while useCollection
-  // returns firebase.firestore.QuerySnapshot itself.
+  const [items, setItems] = useState('');
+
+  useEffect(() => {
+    let mounted = true;
+    db.where('token', '==', userToken)
+      .get()
+      .then((data) => {
+        if (data.docs.length) {
+          let itemsList = data.docs[0]
+            .data()
+            .items.map((element) => element.shoppingListItemName);
+          if (mounted) {
+            setItems(itemsList);
+          }
+        }
+      });
+    return () => (mounted = false);
+  });
   return (
     <div>
       <h2>New List</h2>
-      {loading === true ? <p> Loading... </p> : null}
-      {error === undefined ? null : <p> An error has occurred... </p>}
-      {shoppingList === undefined ? null : (
+      <div>
         <ol>
-          {shoppingList.map((shoppingListItemObject) => (
-            <li key={shoppingListItemObject.token}>
-              <div>{shoppingListItemObject.shoppingListItemName}</div>
-            </li>
-          ))}
+          {items.length ? (
+            items.map((val, index) => {
+              return (
+                <li key={index}>
+                  <p>{val}</p>
+                </li>
+              );
+            })
+          ) : items.length === 0 ? (
+            <p>No items yet</p>
+          ) : (
+            <p>Loading ...</p>
+          )}
         </ol>
-      )}
+      </div>
     </div>
   );
 };

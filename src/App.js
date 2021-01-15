@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import List from './components/List';
-import AddItem from './components/AddItem';
+import ItemsList from './components/ItemsList';
+import AddItems from './components/AddItems';
 import Nav from './components/Nav';
 import './styles/App.css';
 
@@ -10,10 +10,10 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/list">
-          <List />
+          <ItemsList />
         </Route>
         <Route path="/addItem">
-          <AddItem />
+          <AddItems />
         </Route>
       </Switch>
       <Nav />

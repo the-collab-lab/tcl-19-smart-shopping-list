@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
 import firebase from '../lib/firebase';
-import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 
 const userToken = localStorage.getItem('token');
 
 const db = firebase.firestore().collection('shopping_list');
 
-// const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
-
-function getFakeRandomToken() {
-  return localStorage.getItem('token');
-  // return `${Math.round(Math.random() * 1e15)}`;
-}
+const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
 
 const AddItemsToList = () => {
-  const [data] = useCollectionDataOnce(db.where('token', '==', userToken));
   const [shoppingListItemName, setShoppingListItemName] = useState('');
   const [daysLeftForNextPurchase, setDaysLeftForNextPurchase] = useState(7);
 
@@ -37,29 +30,24 @@ const AddItemsToList = () => {
       lastPurchasedOn: null,
     };
 
-    if (data !== undefined) {
-      db.doc(userToken)
-        .update({
-          items: [values],
-        })
-        .then(() => {
-          console.log('item saved');
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      db.add({
-        token: getFakeRandomToken(),
-        items: [values],
-      })
-        .then(() => {
-          console.log('item saved');
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    db.where('token', '==', userToken)
+      .get()
+      .then((data) => {
+        if (data.docs.length) {
+          db.doc(data.docs[0].id).update({
+            items: arrayUnion(values),
+          });
+          setShoppingListItemName('');
+          setDaysLeftForNextPurchase(7);
+        } else {
+          db.add({
+            token: userToken,
+            items: values,
+          });
+          setShoppingListItemName('');
+          setDaysLeftForNextPurchase(7);
+        }
+      });
   }
   return (
     <form onSubmit={submitShoppingListItemHandler}>
