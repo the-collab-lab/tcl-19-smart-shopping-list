@@ -9,13 +9,13 @@ const CreateList = () => {
   };
 
   return (
-    <form onClick={newList}>
-      <div>
-        <NavLink to="/list">
-          <button type="submit">Create List</button>
-        </NavLink>
-      </div>
-    </form>
+    <div>
+      <NavLink to="/list">
+        <button type="submit" onClick={newList}>
+          Create List
+        </button>
+      </NavLink>
+    </div>
   );
 };
 
