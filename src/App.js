@@ -1,28 +1,22 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import List from './components/List';
-import AddItem from './components/AddItem';
-import Nav from './components/Nav';
+import ItemsList from './components/ItemsList';
+import AddItems from './components/AddItems';
 import './styles/App.css';
-import CreateList from './components/CreateList';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className="App">
       <Switch>
         <Route path="/list">
-          <List />
+          <ItemsList />
         </Route>
         <Route path="/addItem">
-          <AddItem />
+          <AddItems />
         </Route>
       </Switch>
-      {localStorage.getItem('newToken') ? (
-        <Redirect to="/list" />
-      ) : (
-        <CreateList />
-      )}
-      <Nav />
+      {localStorage.getItem('newToken') ? <Redirect to="/list" /> : <Home />}
     </div>
   );
 }
