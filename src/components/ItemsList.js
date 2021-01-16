@@ -29,17 +29,14 @@ const ItemsList = () => {
       <h2>New List</h2>
       <div>
         <ul>
-          {items.length ? (
+          {items.length > 0 &&
             items.map((val, index) => {
               return (
                 <li key={index}>
                   <p>{val}</p>
                 </li>
               );
-            })
-          ) : (
-            <p>Loading ...</p>
-          )}
+            })}
         </ul>
       </div>
     </div>
