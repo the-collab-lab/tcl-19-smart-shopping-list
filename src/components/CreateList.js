@@ -4,8 +4,8 @@ import getToken from '../lib/tokens';
 
 const CreateList = () => {
   const newList = () => {
-    const newToken = getToken();
-    localStorage.setItem('newToken', newToken);
+    const token = getToken();
+    localStorage.setItem('token', token);
   };
 
   return (

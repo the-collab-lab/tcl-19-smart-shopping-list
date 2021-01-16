@@ -15,8 +15,15 @@ function App() {
         <Route path="/addItem">
           <AddItems />
         </Route>
+        <Route path="/">
+          <Home />
+        </Route>
       </Switch>
-      {localStorage.getItem('newToken') ? <Redirect to="/list" /> : <Home />}
+      {localStorage.getItem('token') ? (
+        <Redirect to="/list" />
+      ) : (
+        <Redirect to="/" />
+      )}
     </div>
   );
 }
