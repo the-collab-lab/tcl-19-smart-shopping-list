@@ -37,6 +37,7 @@ const AddItemsToList = () => {
       .get()
       .then((data) => {
         if (data.docs.length) {
+          console.log(data.docs);
           db.doc(data.docs[0].id).update({
             items: arrayUnion(values),
           });
