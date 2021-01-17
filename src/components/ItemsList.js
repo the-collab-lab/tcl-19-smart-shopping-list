@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from '../lib/firebase';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import Nav from './Nav';
 
 const ItemsList = () => {
   const [itemsList, loading, error] = useCollectionData(
@@ -13,6 +14,7 @@ const ItemsList = () => {
   // returns firebase.firestore.QuerySnapshot itself.
   return (
     <div>
+      <h1>Shopping List</h1>
       <h2>New List</h2>
       {loading === true ? <p> Loading... </p> : null}
       {error === undefined ? null : <p> An error has occurred... </p>}
@@ -27,6 +29,7 @@ const ItemsList = () => {
           ))}
         </ol>
       )}
+      <Nav />
     </div>
   );
 };
