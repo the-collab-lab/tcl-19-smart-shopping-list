@@ -18,8 +18,6 @@ const AddItemsToList = () => {
   function submitShoppingListItemHandler(event) {
     event.preventDefault();
 
-    localStorage.setItem('token', 288838881888283);
-
     const userToken = localStorage.getItem('token');
 
     if (shoppingListItemName === '') {
@@ -40,16 +38,14 @@ const AddItemsToList = () => {
           db.doc(data.docs[0].id).update({
             items: arrayUnion(values),
           });
-          setShoppingListItemName('');
-          setDaysLeftForNextPurchase(7);
         } else {
           db.add({
             token: userToken,
             items: [values],
           });
-          setShoppingListItemName('');
-          setDaysLeftForNextPurchase(7);
         }
+        setShoppingListItemName('');
+        setDaysLeftForNextPurchase(7);
       });
   }
   return (
