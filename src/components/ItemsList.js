@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from '../lib/firebase';
 
 const userToken = localStorage.getItem('token');
@@ -8,12 +8,10 @@ const db = firebase.firestore().collection('shopping_list');
 const ItemsList = () => {
   const [items, setItems] = useState('');
 
-  !items &&
-    db
-      .where('token', '==', userToken)
+  useEffect(() => {
+    db.where('token', '==', userToken)
       .get()
       .then((data) => {
-        console.log(data.docs);
         if (data.docs.length) {
           let itemsList = data.docs[0]
             .data()
@@ -21,6 +19,7 @@ const ItemsList = () => {
           setItems(itemsList);
         }
       });
+  }, []);
 
   return (
     <div>
