@@ -44,8 +44,14 @@ const AddItemsToList = () => {
           const shoppingListItemExists = items.some(
             (shoppingListItemObject) => {
               return (
-                shoppingListItemObject.shoppingListItemName.toLowerCase() ===
-                shoppingListItemName.toLocaleLowerCase()
+                shoppingListItemObject.shoppingListItemName
+                  .toLowerCase()
+                  .replace(/[^\w\s]|_/g, '')
+                  .replace(/\s+/g, '') ===
+                shoppingListItemName
+                  .toLocaleLowerCase()
+                  .replace(/[^\w\s]|_/g, '')
+                  .replace(/\s+/g, '')
               );
             },
           );
