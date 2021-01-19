@@ -1,9 +1,9 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import ItemsList from './components/ItemsList';
 import AddItems from './components/AddItems';
-import Nav from './components/Nav';
 import './styles/App.css';
+import Home from './components/Home';
 
 function App() {
   return (
@@ -15,8 +15,15 @@ function App() {
         <Route path="/addItem">
           <AddItems />
         </Route>
+        <Route path="/">
+          <Home />
+        </Route>
       </Switch>
-      <Nav />
+      {localStorage.getItem('token') ? (
+        <Redirect to="/list" />
+      ) : (
+        <Redirect to="/" />
+      )}
     </div>
   );
 }

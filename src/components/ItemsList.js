@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import firebase from '../lib/firebase';
+import Nav from './Nav';
 
 const userToken = localStorage.getItem('token');
 
@@ -23,6 +24,7 @@ const ItemsList = () => {
 
   return (
     <div>
+      <h1>Shopping List</h1>
       <h2>New List</h2>
       <div>
         <ul>
@@ -36,6 +38,7 @@ const ItemsList = () => {
             })}
         </ul>
       </div>
+      <Nav />
     </div>
   );
 };
