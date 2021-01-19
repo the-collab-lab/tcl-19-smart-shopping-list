@@ -9,9 +9,13 @@ const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
 const AddItemsToList = () => {
   const [shoppingListItemName, setShoppingListItemName] = useState('');
   const [daysLeftForNextPurchase, setDaysLeftForNextPurchase] = useState(7);
+  const [shoppingListItemNameExists, setShoppingListItemNameExists] = useState(
+    false,
+  );
 
   const shoppingListItemNameHandler = (event) => {
     setShoppingListItemName(event.target.value);
+    setShoppingListItemNameExists(false);
   };
   const daysLeftForNextPurchaseHandler = (event) => {
     setDaysLeftForNextPurchase(parseInt(event.target.value));
@@ -36,6 +40,19 @@ const AddItemsToList = () => {
       .get()
       .then((data) => {
         if (data.docs.length) {
+          const { items } = data.docs[0].data();
+          const shoppingListItemExists = items.some(
+            (shoppingListItemObject) => {
+              return (
+                shoppingListItemObject.shoppingListItemName.toLowerCase() ===
+                shoppingListItemName.toLocaleLowerCase()
+              );
+            },
+          );
+          if (shoppingListItemExists === true) {
+            setShoppingListItemNameExists(true);
+            return;
+          }
           db.doc(data.docs[0].id).update({
             items: arrayUnion(values),
           });
@@ -56,6 +73,12 @@ const AddItemsToList = () => {
       <div>
         <form onSubmit={submitShoppingListItemHandler}>
           <h2>Add Item to List</h2>
+          {shoppingListItemNameExists === true ? (
+            <p>
+              {' '}
+              {`You have ${shoppingListItemName} in your shopping list already`}
+            </p>
+          ) : null}
           <div>
             <label>
               Name
