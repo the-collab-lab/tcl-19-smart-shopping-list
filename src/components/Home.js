@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { NavLink, Redirect, withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import firebase from '../lib/firebase';
 import getToken from '../lib/tokens';
 
 const db = firebase.firestore().collection('shopping_list');
 
-const Home = (props) => {
+const Home = () => {
   const [existingToken, setExistingToken] = useState('');
-  const [existingList, setExistingList] = useState('');
+  const history = useHistory();
 
   const newList = () => {
     const token = getToken();
     localStorage.setItem('token', token);
+    history.push('/list');
   };
 
   const tokenHandler = (event) => {
@@ -20,40 +21,42 @@ const Home = (props) => {
 
   const submitToken = (e) => {
     e.preventDefault();
-    console.log(existingToken);
-    console.log(props);
 
     db.where('token', '==', existingToken)
       .get()
       .then((data) =>
         data.docs.length
           ? (localStorage.setItem('token', existingToken),
-            props.history.push('/list'))
-          : alert('wrong Token'),
+            history.push('/list'))
+          : alert(
+              'Token does not exist! Please try again or create a new list.',
+            ),
       );
-    return;
   };
 
   return (
     <div>
       <div>
         <h1>Welcome to Smart Shopping App</h1>
-        <NavLink to="/list">
-          <button type="submit" onClick={newList}>
-            Create List
-          </button>
-        </NavLink>
+        <button type="submit" onClick={newList}>
+          Create List
+        </button>
       </div>
       <div>
         <h3>Or Join an Existing list</h3>
         <form onSubmit={submitToken}>
-          <label>Enter Token</label>
-          <input type="text" value={existingToken} onChange={tokenHandler} />
-          <button type="submit"> Submit </button>
+          <label htmlFor="token">Enter token</label>
+          <input
+            type="text"
+            id="token"
+            value={existingToken}
+            onChange={tokenHandler}
+          />
+          <button type="submit">Join list</button>
         </form>
       </div>
     </div>
   );
 };
 
-export default withRouter(Home);
+export default Home;
