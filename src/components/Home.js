@@ -28,9 +28,10 @@ const Home = () => {
         data.docs.length
           ? (localStorage.setItem('token', existingToken),
             history.push('/list'))
-          : alert(
+          : (alert(
               'Token does not exist! Please try again or create a new list.',
             ),
+            setExistingToken('')),
       );
   };
 
