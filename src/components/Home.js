@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
 import getToken from '../lib/tokens';
 import '../styles/Home.css';
@@ -20,20 +21,24 @@ const Home = () => {
     setExistingToken(event.target.value);
   };
 
+  const [shoppingList] = useCollectionData(
+    db.where('token', '==', existingToken),
+  );
+
   const submitToken = (e) => {
     e.preventDefault();
 
-    db.where('token', '==', existingToken)
-      .get()
-      .then((data) =>
-        data.docs.length
-          ? (localStorage.setItem('token', existingToken),
-            history.push('/list'))
-          : (alert(
-              'Token does not exist! Please try again or create a new list.',
-            ),
-            setExistingToken('')),
-      );
+    if (existingToken === '') {
+      alert('Please enter a token...');
+      return;
+    }
+
+    if (shoppingList.length) {
+      localStorage.setItem('token', existingToken);
+      history.push('/list');
+    } else {
+      alert('Token does not exist! Please try again or create a new list.');
+    }
   };
 
   return (

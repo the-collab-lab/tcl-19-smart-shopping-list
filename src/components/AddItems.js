@@ -6,9 +6,9 @@ import Nav from './Nav';
 const db = firebase.firestore().collection('shopping_list');
 
 const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
-const userToken = localStorage.getItem('token');
 
 const AddItemsToList = () => {
+  const userToken = localStorage.getItem('token');
   const [shoppingListItemName, setShoppingListItemName] = useState('');
   const [daysLeftForNextPurchase, setDaysLeftForNextPurchase] = useState(7);
 
@@ -31,7 +31,7 @@ const AddItemsToList = () => {
       return;
     }
 
-    const values = {
+    const item = {
       shoppingListItemName,
       daysLeftForNextPurchase,
       lastPurchasedOn: null,
@@ -42,14 +42,14 @@ const AddItemsToList = () => {
 
       db.doc(documentId)
         .update({
-          items: arrayUnion(values),
+          items: arrayUnion(item),
         })
         .then(() => console.log('successfully added'))
         .catch((e) => console.log('error', e));
     } else {
       db.add({
         token: userToken,
-        items: [values],
+        items: [item],
       });
     }
     setShoppingListItemName('');
