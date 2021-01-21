@@ -41,17 +41,16 @@ const AddItemsToList = () => {
       .then((data) => {
         if (data.docs.length) {
           const { items } = data.docs[0].data();
+          const nonWordCharactersAndUnderscores = /[\W_]/g;
           const shoppingListItemExists = items.some(
             (shoppingListItemObject) => {
               return (
                 shoppingListItemObject.shoppingListItemName
                   .toLowerCase()
-                  .replace(/[^\w\s]|_/g, '')
-                  .replace(/\s+/g, '') ===
+                  .replace(nonWordCharactersAndUnderscores, '') ===
                 shoppingListItemName
-                  .toLocaleLowerCase()
-                  .replace(/[^\w\s]|_/g, '')
-                  .replace(/\s+/g, '')
+                  .toLowerCase()
+                  .replace(nonWordCharactersAndUnderscores, '')
               );
             },
           );
@@ -81,7 +80,6 @@ const AddItemsToList = () => {
           <h2>Add Item to List</h2>
           {shoppingListItemNameExists === true ? (
             <p>
-              {' '}
               {`You have ${shoppingListItemName} in your shopping list already`}
             </p>
           ) : null}
