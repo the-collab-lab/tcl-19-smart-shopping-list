@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import firebase from '../lib/firebase';
 import getToken from '../lib/tokens';
+import '../styles/Home.css';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -37,24 +38,27 @@ const Home = () => {
 
   return (
     <div>
-      <div>
-        <h1>Welcome to Smart Shopping App</h1>
-        <button type="submit" onClick={newList}>
-          Create List
-        </button>
-      </div>
-      <div>
-        <h3>Or Join an Existing list</h3>
-        <form onSubmit={submitToken}>
-          <label htmlFor="token">Enter token</label>
-          <input
-            type="text"
-            id="token"
-            value={existingToken}
-            onChange={tokenHandler}
-          />
-          <button type="submit">Join list</button>
-        </form>
+      <div className="home">
+        <div>
+          <h1>Welcome to Smart Shopping App</h1>
+          <button type="submit" onClick={newList}>
+            Create List
+          </button>
+        </div>
+        <div>
+          <p>- or -</p>
+          <p>Join an Existing list by entering the three word token.</p>
+          <form onSubmit={submitToken}>
+            <label htmlFor="token">Enter token</label>
+            <input
+              type="text"
+              id="token"
+              value={existingToken}
+              onChange={tokenHandler}
+            />
+            <button type="submit">Join list</button>
+          </form>
+        </div>
       </div>
     </div>
   );

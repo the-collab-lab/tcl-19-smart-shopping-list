@@ -1,0 +1,15 @@
+.home {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.home button {
+  width: 200px;
+  height: 50px;
+  margin-top: 30px;
+}
+
+.home input {
+  width: 90%;
+}
