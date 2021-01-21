@@ -1,39 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import firebase from '../lib/firebase';
 import Nav from './Nav';
-
-const userToken = localStorage.getItem('token');
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 const db = firebase.firestore().collection('shopping_list');
 
 const ItemsList = () => {
-  const [items, setItems] = useState('');
+  const userToken = localStorage.getItem('token');
 
-  useEffect(() => {
-    db.where('token', '==', userToken)
-      .get()
-      .then((data) => {
-        if (data.docs.length) {
-          let itemsList = data.docs[0]
-            .data()
-            .items.map((element) => element.shoppingListItemName);
-          setItems(itemsList);
-        }
-      });
-  }, []);
+  const [shoppingList, loading, error] = useCollectionData(
+    db.where('token', '==', userToken),
+  );
 
   return (
     <div>
-      <h1>Shopping List</h1>
-      <h2>New List</h2>
+      <h1>Your Shopping List</h1>
       <div>
+        {loading && <p>Loading...</p>}
+        {error && <p>An error has occured...</p>}
+        {shoppingList && shoppingList[0] && !shoppingList[0].items.length && (
+          <p>You haven't created a shopping list yet...</p>
+        )}
         <ul>
-          {items.length > 0 &&
-            items.map((val, index) => {
+          {shoppingList &&
+            shoppingList[0] &&
+            shoppingList[0].items.map((shoppingItemObject, index) => {
               return (
-                <li key={index}>
-                  <p>{val}</p>
-                </li>
+                <li key={index}>{shoppingItemObject.shoppingListItemName}</li>
               );
             })}
         </ul>
