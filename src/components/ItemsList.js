@@ -26,7 +26,9 @@ const ItemsList = () => {
             shoppingList[0] &&
             shoppingList[0].items.map((shoppingItemObject, index) => {
               return (
-                <li key={index}>{shoppingItemObject.shoppingListItemName}</li>
+                <li key={shoppingItemObject.shoppingListItemName + index}>
+                  {shoppingItemObject.shoppingListItemName}
+                </li>
               );
             })}
         </ul>
