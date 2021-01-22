@@ -18,7 +18,7 @@ const ItemsList = () => {
       <div>
         {loading && <p>Loading...</p>}
         {error && <p>An error has occured...</p>}
-        {shoppingList && shoppingList[0] && !shoppingList[0].items.length && (
+        {shoppingList && !shoppingList.length && (
           <p>You haven't created a shopping list yet...</p>
         )}
         <ul>
