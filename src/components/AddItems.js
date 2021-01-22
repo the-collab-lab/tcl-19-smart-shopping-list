@@ -42,21 +42,22 @@ const AddItemsToList = () => {
       .get()
       .then((data) => {
         if (data.docs.length) {
+          const normalizeString = (str) => {
+            const nonWordCharactersAndUnderscores = /[\W_]/g;
+            return str
+              .toLowerCase()
+              .replace(nonWordCharactersAndUnderscores, '');
+          };
           const { items } = data.docs[0].data();
-          const nonWordCharactersAndUnderscores = /[\W_]/g;
           const shoppingListItemExists = items.some(
             (shoppingListItemObject) => {
               return (
-                shoppingListItemObject.shoppingListItemName
-                  .toLowerCase()
-                  .replace(nonWordCharactersAndUnderscores, '') ===
-                shoppingListItemName
-                  .toLowerCase()
-                  .replace(nonWordCharactersAndUnderscores, '')
+                normalizeString(shoppingListItemObject.shoppingListItemName) ===
+                normalizeString(shoppingListItemName)
               );
             },
           );
-          if (shoppingListItemExists === true) {
+          if (shoppingListItemExists) {
             setShoppingListItemNameExists(true);
             return;
           }
@@ -80,7 +81,7 @@ const AddItemsToList = () => {
       <div>
         <form onSubmit={submitShoppingListItemHandler}>
           <h2>Add Item to List</h2>
-          {shoppingListItemNameExists === true ? (
+          {shoppingListItemNameExists ? (
             <p>
               {`You have ${shoppingListItemName} in your shopping list already`}
             </p>
