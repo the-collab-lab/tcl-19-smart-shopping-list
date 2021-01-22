@@ -15,7 +15,9 @@ const AddItemsToList = () => {
 
   const shoppingListItemNameHandler = (event) => {
     setShoppingListItemName(event.target.value);
-    setShoppingListItemNameExists(false);
+    if (shoppingListItemNameExists === true) {
+      setShoppingListItemNameExists(false);
+    }
   };
   const daysLeftForNextPurchaseHandler = (event) => {
     setDaysLeftForNextPurchase(parseInt(event.target.value));
