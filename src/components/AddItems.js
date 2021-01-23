@@ -44,7 +44,7 @@ const AddItemsToList = () => {
         .update({
           items: arrayUnion(item),
         })
-        .then(() => console.log('successfully added'))
+        .then(() => alert('successfully added'))
         .catch((e) => console.log('error', e));
     } else {
       db.add({
