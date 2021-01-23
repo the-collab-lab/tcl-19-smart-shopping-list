@@ -22,6 +22,18 @@ const AddItemsToList = () => {
   const daysLeftForNextPurchaseHandler = (event) => {
     setDaysLeftForNextPurchase(parseInt(event.target.value));
   };
+
+  const normalizeString = (str) => {
+    const nonWordCharactersAndUnderscoresExclSpaces = /[^a-zA-Z\d\s]/g;
+    const multipleSpaces = /\s{2,}/g;
+
+    return str
+      .toLowerCase()
+      .replace(nonWordCharactersAndUnderscoresExclSpaces, '')
+      .replace(multipleSpaces, ' ')
+      .trim();
+  };
+
   function submitShoppingListItemHandler(event) {
     event.preventDefault();
 
@@ -42,12 +54,6 @@ const AddItemsToList = () => {
       .get()
       .then((data) => {
         if (data.docs.length) {
-          const normalizeString = (str) => {
-            const nonWordCharactersAndUnderscores = /[\W_]/g;
-            return str
-              .toLowerCase()
-              .replace(nonWordCharactersAndUnderscores, '');
-          };
           const { items } = data.docs[0].data();
           const shoppingListItemExists = items.some(
             (shoppingListItemObject) => {
@@ -83,7 +89,9 @@ const AddItemsToList = () => {
           <h2>Add Item to List</h2>
           {shoppingListItemNameExists ? (
             <p>
-              {`You have ${shoppingListItemName} in your shopping list already`}
+              {`You have ${normalizeString(
+                shoppingListItemName,
+              )} in your shopping list already`}
             </p>
           ) : null}
           <div>
