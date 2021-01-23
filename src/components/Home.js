@@ -38,6 +38,7 @@ const Home = () => {
       history.push('/list');
     } else {
       alert('Token does not exist! Please try again or create a new list.');
+      setExistingToken(' ');
     }
   };
 
