@@ -24,14 +24,8 @@ const AddItemsToList = () => {
   };
 
   const normalizeString = (str) => {
-    const nonWordCharactersAndUnderscoresExclSpaces = /[^a-zA-Z\d\s]/g;
-    const multipleSpaces = /\s{2,}/g;
-
-    return str
-      .toLowerCase()
-      .replace(nonWordCharactersAndUnderscoresExclSpaces, '')
-      .replace(multipleSpaces, ' ')
-      .trim();
+    const nonWordCharactersAndUnderscores = /[\W_]/g;
+    return str.toLowerCase().replace(nonWordCharactersAndUnderscores, '');
   };
 
   function submitShoppingListItemHandler(event) {
