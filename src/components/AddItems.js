@@ -11,6 +11,9 @@ const AddItemsToList = () => {
   const userToken = localStorage.getItem('token');
   const [shoppingListItemName, setShoppingListItemName] = useState('');
   const [daysLeftForNextPurchase, setDaysLeftForNextPurchase] = useState(7);
+  const [shoppingListItemNameExists, setShoppingListItemNameExists] = useState(
+    false,
+  );
 
   const [shoppingList, loading, error] = useCollectionData(
     db.where('token', '==', userToken),
@@ -19,10 +22,19 @@ const AddItemsToList = () => {
 
   const shoppingListItemNameHandler = (event) => {
     setShoppingListItemName(event.target.value);
+    if (shoppingListItemNameExists === true) {
+      setShoppingListItemNameExists(false);
+    }
   };
   const daysLeftForNextPurchaseHandler = (event) => {
     setDaysLeftForNextPurchase(parseInt(event.target.value));
   };
+
+  const normalizeString = (str) => {
+    const nonWordCharactersAndUnderscores = /[\W_]/g;
+    return str.toLowerCase().replace(nonWordCharactersAndUnderscores, '');
+  };
+
   function submitShoppingListItemHandler(event) {
     event.preventDefault();
 
@@ -38,7 +50,19 @@ const AddItemsToList = () => {
     };
 
     if (shoppingList.length) {
-      const { documentId } = shoppingList[0];
+      const { documentId, items } = shoppingList[0];
+      const shoppingListItemExists = items.some(
+            (shoppingListItemObject) => {
+              return (
+                normalizeString(shoppingListItemObject.shoppingListItemName) ===
+                normalizeString(shoppingListItemName)
+              );
+            },
+          );
+          if (shoppingListItemExists) {
+            setShoppingListItemNameExists(true);
+            return;
+          }
 
       db.doc(documentId)
         .update({
@@ -69,6 +93,13 @@ const AddItemsToList = () => {
       <div>
         <form onSubmit={submitShoppingListItemHandler}>
           <h2>Add Item to List</h2>
+          {shoppingListItemNameExists ? (
+            <p>
+              {`You have ${normalizeString(
+                shoppingListItemName,
+              )} in your shopping list already`}
+            </p>
+          ) : null}
           <div>
             <label>
               Name
