@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
 import Nav from './Nav';
 
@@ -7,8 +8,14 @@ const db = firebase.firestore().collection('shopping_list');
 const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
 
 const AddItemsToList = () => {
+  const userToken = localStorage.getItem('token');
   const [shoppingListItemName, setShoppingListItemName] = useState('');
   const [daysLeftForNextPurchase, setDaysLeftForNextPurchase] = useState(7);
+
+  const [shoppingList, loading, error] = useCollectionData(
+    db.where('token', '==', userToken),
+    { idField: 'documentId' },
+  );
 
   const shoppingListItemNameHandler = (event) => {
     setShoppingListItemName(event.target.value);
@@ -19,38 +26,44 @@ const AddItemsToList = () => {
   function submitShoppingListItemHandler(event) {
     event.preventDefault();
 
-    const userToken = localStorage.getItem('token');
-
     if (shoppingListItemName === '') {
       alert('Please enter item name...');
       return;
     }
 
-    const values = {
+    const item = {
       shoppingListItemName,
       daysLeftForNextPurchase,
       lastPurchasedOn: null,
     };
 
-    db.where('token', '==', userToken)
-      .get()
-      .then((data) => {
-        if (data.docs.length) {
-          db.doc(data.docs[0].id).update({
-            items: arrayUnion(values),
-          });
-          setShoppingListItemName('');
-          setDaysLeftForNextPurchase(7);
-        } else {
-          db.add({
-            token: userToken,
-            items: [values],
-          });
-          setShoppingListItemName('');
-          setDaysLeftForNextPurchase(7);
-        }
+    if (shoppingList.length) {
+      const { documentId } = shoppingList[0];
+
+      db.doc(documentId)
+        .update({
+          items: arrayUnion(item),
+        })
+        .then(() => alert('successfully added'))
+        .catch((e) => console.log('error', e));
+    } else {
+      db.add({
+        token: userToken,
+        items: [item],
       });
+    }
+    setShoppingListItemName('');
+    setDaysLeftForNextPurchase(7);
   }
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>An error occured</p>;
+  }
+
   return (
     <div>
       <div>
