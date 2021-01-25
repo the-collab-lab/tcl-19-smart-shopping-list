@@ -10,8 +10,23 @@ const ItemsList = () => {
 
   const [shoppingList, loading, error] = useCollectionData(
     db.where('token', '==', userToken),
+    { idField: 'documentId' },
   );
-
+  const markItemAsPurchased = (index) => {
+    const { items, documentId } = shoppingList[0];
+    const shoppingListObject = items[index];
+    if (shoppingListObject.lastPurchasedOn !== null) {
+      return;
+    }
+    shoppingListObject.lastPurchasedOn = Date.now();
+    items[index] = shoppingListObject;
+    db.doc(documentId)
+      .update({
+        items: items,
+      })
+      .then(() => console.log('Successfully updated item'))
+      .catch((e) => console.log('error', e));
+  };
   return (
     <div>
       <h1>Your Shopping List</h1>
@@ -27,7 +42,18 @@ const ItemsList = () => {
             shoppingList[0].items.map((shoppingItemObject, index) => {
               return (
                 <li key={shoppingItemObject.shoppingListItemName + index}>
-                  {shoppingItemObject.shoppingListItemName}
+                  <label>
+                    {shoppingItemObject.shoppingListItemName}
+                    <input
+                      type="checkbox"
+                      onChange={() => markItemAsPurchased(index)}
+                      checked={
+                        shoppingItemObject.lastPurchasedOn === null
+                          ? false
+                          : true
+                      }
+                    />
+                  </label>
                 </li>
               );
             })}
