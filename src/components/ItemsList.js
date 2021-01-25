@@ -2,6 +2,8 @@ import React from 'react';
 import firebase from '../lib/firebase';
 import Nav from './Nav';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { Link } from 'react-router-dom';
+import '../styles/ItemsList.css';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -19,7 +21,12 @@ const ItemsList = () => {
         {loading && <p>Loading...</p>}
         {error && <p>An error has occured...</p>}
         {shoppingList && !shoppingList.length && (
-          <p>You haven't created a shopping list yet...</p>
+          <div>
+            <p>You haven't created a shopping list yet...</p>
+            <Link to="/addItem" className="additem">
+              <button>Add Item</button>
+            </Link>
+          </div>
         )}
         <ul>
           {shoppingList &&
