@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from '../lib/firebase';
 import Nav from './Nav';
+import '../styles/ItemsList.css';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 const db = firebase.firestore().collection('shopping_list');
@@ -42,7 +43,7 @@ const ItemsList = () => {
       .catch((e) => console.log('error', e));
   };
   return (
-    <div>
+    <div className="shoppinglist">
       <h1>Your Shopping List</h1>
       <div>
         {loading && <p>Loading...</p>}
@@ -56,19 +57,20 @@ const ItemsList = () => {
             shoppingList[0].items.map((shoppingItemObject, index) => {
               return (
                 <li key={shoppingItemObject.shoppingListItemName + index}>
-                  <label>
+                  <input
+                    type="checkbox"
+                    id="list"
+                    onChange={() => markItemAsPurchased(index)}
+                    checked={
+                      shoppingItemObject.lastPurchasedOn === null
+                        ? false
+                        : wasItemPurchasedWithinLastOneDay(
+                            shoppingItemObject.lastPurchasedOn,
+                          )
+                    }
+                  />
+                  <label htmlFor="list">
                     {shoppingItemObject.shoppingListItemName}
-                    <input
-                      type="checkbox"
-                      onChange={() => markItemAsPurchased(index)}
-                      checked={
-                        shoppingItemObject.lastPurchasedOn === null
-                          ? false
-                          : wasItemPurchasedWithinLastOneDay(
-                              shoppingItemObject.lastPurchasedOn,
-                            )
-                      }
-                    />
                   </label>
                 </li>
               );
