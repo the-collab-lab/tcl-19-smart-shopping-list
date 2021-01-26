@@ -17,11 +17,7 @@ const ItemsList = () => {
     db.where('token', '==', userToken),
     { idField: 'documentId' },
   );
-  /*
-   This uses the client's local time. If there is a time zone difference,
-   it is likely to cause issues because a user can invite another person
-   to join the shopping list.
-  */
+
   const markItemAsPurchased = (index) => {
     const { items, documentId } = shoppingList[0];
     const shoppingListObject = items[index];
