@@ -45,9 +45,9 @@ const ItemsList = () => {
   return (
     <div className="shoppinglist">
       <h1>Your Shopping List</h1>
+      {loading && <p>Loading...</p>}
+      {error && <p>An error has occured...</p>}
       <form>
-        {loading && <p>Loading...</p>}
-        {error && <p>An error has occured...</p>}
         {shoppingList && !shoppingList.length && (
           <p>You haven't created a shopping list yet...</p>
         )}
