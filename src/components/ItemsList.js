@@ -23,7 +23,7 @@ const ItemsList = () => {
         {shoppingList && !shoppingList.length && (
           <div>
             <p>You haven't created a shopping list yet...</p>
-            <Link to="/addItem" className="additem">
+            <Link to="/addItem" className="add-item">
               <button>Add Item</button>
             </Link>
           </div>
