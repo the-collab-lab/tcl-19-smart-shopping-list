@@ -45,7 +45,7 @@ const ItemsList = () => {
   return (
     <div className="shoppinglist">
       <h1>Your Shopping List</h1>
-      <div>
+      <form>
         {loading && <p>Loading...</p>}
         {error && <p>An error has occured...</p>}
         {shoppingList && !shoppingList.length && (
@@ -57,26 +57,25 @@ const ItemsList = () => {
             shoppingList[0].items.map((shoppingItemObject, index) => {
               return (
                 <li key={shoppingItemObject.shoppingListItemName + index}>
-                  <input
-                    type="checkbox"
-                    id="list"
-                    onChange={() => markItemAsPurchased(index)}
-                    checked={
-                      shoppingItemObject.lastPurchasedOn === null
-                        ? false
-                        : wasItemPurchasedWithinLastOneDay(
-                            shoppingItemObject.lastPurchasedOn,
-                          )
-                    }
-                  />
-                  <label htmlFor="list">
+                  <label>
+                    <input
+                      type="checkbox"
+                      onChange={() => markItemAsPurchased(index)}
+                      checked={
+                        shoppingItemObject.lastPurchasedOn === null
+                          ? false
+                          : wasItemPurchasedWithinLastOneDay(
+                              shoppingItemObject.lastPurchasedOn,
+                            )
+                      }
+                    />
                     {shoppingItemObject.shoppingListItemName}
                   </label>
                 </li>
               );
             })}
         </ul>
-      </div>
+      </form>
       <Nav />
     </div>
   );
