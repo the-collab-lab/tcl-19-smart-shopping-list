@@ -33,11 +33,6 @@ const ItemsList = () => {
     db.doc(documentId)
       .update({
         items: items,
-        /*
-        Research whether it is possible to update a single item within items array
-        by inserting it at a particular index instead of updating entire array of 
-        items
-        */
       })
       .then(() => console.log('Successfully updated item'))
       .catch((e) => console.log('error', e));
@@ -47,28 +42,29 @@ const ItemsList = () => {
       <h1>Your Shopping List</h1>
       {loading && <p>Loading...</p>}
       {error && <p>An error has occured...</p>}
+      {shoppingList && !shoppingList.length && (
+        <p>You haven't created a shopping list yet...</p>
+      )}
       <form>
-        {shoppingList && !shoppingList.length && (
-          <p>You haven't created a shopping list yet...</p>
-        )}
         <ul>
           {shoppingList &&
             shoppingList[0] &&
             shoppingList[0].items.map((shoppingItemObject, index) => {
               return (
                 <li key={shoppingItemObject.shoppingListItemName + index}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      onChange={() => markItemAsPurchased(index)}
-                      checked={
-                        shoppingItemObject.lastPurchasedOn === null
-                          ? false
-                          : wasItemPurchasedWithinLastOneDay(
-                              shoppingItemObject.lastPurchasedOn,
-                            )
-                      }
-                    />
+                  <input
+                    type="checkbox"
+                    id={shoppingItemObject.shoppingListItemName}
+                    onChange={() => markItemAsPurchased(index)}
+                    checked={
+                      shoppingItemObject.lastPurchasedOn === null
+                        ? false
+                        : wasItemPurchasedWithinLastOneDay(
+                            shoppingItemObject.lastPurchasedOn,
+                          )
+                    }
+                  />
+                  <label htmlFor={shoppingItemObject.shoppingListItemName}>
                     {shoppingItemObject.shoppingListItemName}
                   </label>
                 </li>
