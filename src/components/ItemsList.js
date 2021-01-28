@@ -7,6 +7,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 const db = firebase.firestore().collection('shopping_list');
 
 const wasItemPurchasedWithinLastOneDay = (lastPurchasedOn) => {
+  if (lastPurchasedOn === null) return false;
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
   return Date.now() - lastPurchasedOn <= oneDayInMilliseconds;
 };
@@ -21,15 +22,13 @@ const ItemsList = () => {
 
   const markItemAsPurchased = (index) => {
     const { items, documentId } = shoppingList[0];
-    const shoppingListObject = items[index];
 
-    if (shoppingListObject.lastPurchasedOn === null) {
-      shoppingListObject.lastPurchasedOn = Date.now();
+    if (items[index].lastPurchasedOn === null) {
+      items[index].lastPurchasedOn = Date.now();
     } else {
-      shoppingListObject.lastPurchasedOn = null;
+      items[index].lastPurchasedOn = null;
     }
 
-    items[index] = shoppingListObject;
     db.doc(documentId)
       .update({
         items: items,
@@ -56,13 +55,9 @@ const ItemsList = () => {
                     type="checkbox"
                     id={shoppingItemObject.shoppingListItemName}
                     onChange={() => markItemAsPurchased(index)}
-                    checked={
-                      shoppingItemObject.lastPurchasedOn === null
-                        ? false
-                        : wasItemPurchasedWithinLastOneDay(
-                            shoppingItemObject.lastPurchasedOn,
-                          )
-                    }
+                    checked={wasItemPurchasedWithinLastOneDay(
+                      shoppingItemObject.lastPurchasedOn,
+                    )}
                   />
                   <label htmlFor={shoppingItemObject.shoppingListItemName}>
                     {shoppingItemObject.shoppingListItemName}
