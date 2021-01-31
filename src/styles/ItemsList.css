@@ -1,3 +1,4 @@
+
 .items-list ul {
   margin: 0;
   padding: 0;
@@ -7,4 +8,10 @@
 input[type='checkbox']:checked + label {
   opacity: 0.5;
   text-decoration: line-through;
+}
+.add-item button {
+  cursor: pointer;
+  width: 100px;
+  height: 25px;
+  margin-top: 30px;
 }

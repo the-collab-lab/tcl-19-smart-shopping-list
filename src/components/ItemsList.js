@@ -3,6 +3,8 @@ import firebase from '../lib/firebase';
 import Nav from './Nav';
 import '../styles/ItemsList.css';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useHistory } from 'react-router-dom';
+import '../styles/ItemsList.css';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -14,11 +16,13 @@ const wasItemPurchasedWithinLastOneDay = (lastPurchasedOn) => {
 
 const ItemsList = () => {
   const userToken = localStorage.getItem('token');
+  const history = useHistory();
 
   const [shoppingList, loading, error] = useCollectionData(
     db.where('token', '==', userToken),
     { idField: 'documentId' },
   );
+
 
   const markItemAsPurchased = (index) => {
     const { items, documentId } = shoppingList[0];
@@ -34,14 +38,25 @@ const ItemsList = () => {
       .then(() => console.log('Successfully updated item'))
       .catch((e) => console.log('error', e));
   };
+
+  const handleRedirect = () => {
+    history.push('/additem');
+  };
+
+
   return (
     <div className="items-list">
       <h1>Your Shopping List</h1>
       {loading && <p>Loading...</p>}
       {error && <p>An error has occured...</p>}
       {shoppingList && !shoppingList.length && (
-        <p>You haven't created a shopping list yet...</p>
-      )}
+            <div className="add-item">
+              <p>You haven't created a shopping list yet...</p>
+              <button type="submit" onClick={handleRedirect}>
+                Add First Item
+              </button>
+            </div>
+          )}
       <form>
         <ul>
           {shoppingList &&
