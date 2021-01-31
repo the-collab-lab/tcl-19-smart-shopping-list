@@ -23,11 +23,9 @@ const ItemsList = () => {
   const markItemAsPurchased = (index) => {
     const { items, documentId } = shoppingList[0];
 
-    if (items[index].lastPurchasedOn === null) {
-      items[index].lastPurchasedOn = Date.now();
-    } else {
-      items[index].lastPurchasedOn = null;
-    }
+    items[index].lastPurchasedOn = items[index].lastPurchasedOn
+      ? null
+      : Date.now();
 
     db.doc(documentId)
       .update({
