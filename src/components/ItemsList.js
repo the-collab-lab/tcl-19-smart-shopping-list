@@ -35,7 +35,7 @@ const ItemsList = () => {
       .catch((e) => console.log('error', e));
   };
   return (
-    <div className="shoppinglist">
+    <div className="items-list">
       <h1>Your Shopping List</h1>
       {loading && <p>Loading...</p>}
       {error && <p>An error has occured...</p>}
