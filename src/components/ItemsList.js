@@ -29,7 +29,7 @@ const ItemsList = () => {
           <div className="add-item">
             <p>You haven't created a shopping list yet...</p>
             <button type="submit" onClick={handleRedirect}>
-              Add Item
+              Add First Item
             </button>
           </div>
         )}
