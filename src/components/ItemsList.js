@@ -2,15 +2,22 @@ import React from 'react';
 import firebase from '../lib/firebase';
 import Nav from './Nav';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useHistory } from 'react-router-dom';
+import '../styles/ItemsList.css';
 
 const db = firebase.firestore().collection('shopping_list');
 
 const ItemsList = () => {
   const userToken = localStorage.getItem('token');
+  const history = useHistory();
 
   const [shoppingList, loading, error] = useCollectionData(
     db.where('token', '==', userToken),
   );
+
+  const handleRedirect = () => {
+    history.push('/additem');
+  };
 
   return (
     <div>
@@ -19,7 +26,12 @@ const ItemsList = () => {
         {loading && <p>Loading...</p>}
         {error && <p>An error has occured...</p>}
         {shoppingList && !shoppingList.length && (
-          <p>You haven't created a shopping list yet...</p>
+          <div className="add-item">
+            <p>You haven't created a shopping list yet...</p>
+            <button type="submit" onClick={handleRedirect}>
+              Add First Item
+            </button>
+          </div>
         )}
         <ul>
           {shoppingList &&
