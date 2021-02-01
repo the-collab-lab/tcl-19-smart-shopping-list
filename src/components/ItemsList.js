@@ -4,6 +4,7 @@ import Nav from './Nav';
 import '../styles/ItemsList.css';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router-dom';
+import calculateEstimate from '../lib/estimates';
 import '../styles/ItemsList.css';
 
 const db = firebase.firestore().collection('shopping_list');
@@ -23,13 +24,18 @@ const ItemsList = () => {
     { idField: 'documentId' },
   );
 
-
   const markItemAsPurchased = (index) => {
     const { items, documentId } = shoppingList[0];
 
-    items[index].lastPurchasedOn = items[index].lastPurchasedOn
-      ? null
-      : Date.now();
+    items[index].numberOfPurchases++;
+
+    console.log(items[index].numberOfPurchases);
+
+    if (items[index].lastPurchasedOn) {
+      items[index].lastPurchasedOn = null;
+    } else {
+      items[index].lastPurchasedOn = Date.now();
+    }
 
     db.doc(documentId)
       .update({
@@ -43,20 +49,19 @@ const ItemsList = () => {
     history.push('/additem');
   };
 
-
   return (
     <div className="items-list">
       <h1>Your Shopping List</h1>
       {loading && <p>Loading...</p>}
       {error && <p>An error has occured...</p>}
       {shoppingList && !shoppingList.length && (
-            <div className="add-item">
-              <p>You haven't created a shopping list yet...</p>
-              <button type="submit" onClick={handleRedirect}>
-                Add First Item
-              </button>
-            </div>
-          )}
+        <div className="add-item">
+          <p>You haven't created a shopping list yet...</p>
+          <button type="submit" onClick={handleRedirect}>
+            Add First Item
+          </button>
+        </div>
+      )}
       <form>
         <ul>
           {shoppingList &&
