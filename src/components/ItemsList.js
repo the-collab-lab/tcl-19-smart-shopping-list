@@ -66,8 +66,8 @@ const ItemsList = () => {
           lastPurchasedOn value for the previous purchase, there is no value to
           revert to. It doesn't make sense to revert to null either because a
           previous purchase has been made.
+          */
           return;
-        */
         }
       } else {
         shoppingItemObject.numberOfPurchases++;
