@@ -47,6 +47,8 @@ const ItemsList = () => {
     history.push('/additem');
   };
 
+  const clearText = () => setSearchTerm('');
+
   return (
     <div className="items-list">
       <h1>Your Shopping List</h1>
@@ -60,14 +62,17 @@ const ItemsList = () => {
           </button>
         </div>
       )}
-      <form>
+      <form onReset={clearText} className="search-list">
         {shoppingList && shoppingList[0] ? (
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchTerm}
-            onChange={handleChange}
-          />
+          <div>
+            <input
+              type="text"
+              placeholder="Search list.."
+              value={searchTerm}
+              onChange={handleChange}
+            />
+            <input type="reset" value="X" />
+          </div>
         ) : null}
         <ul>
           {shoppingList &&
