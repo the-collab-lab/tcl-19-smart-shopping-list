@@ -42,27 +42,35 @@ const AddItemsToList = () => {
       alert('Please enter item name...');
       return;
     }
-
+    /*
+    lastPurchasedOn has been renamed to purchaseDates and it is
+    an array keeping track of purchase dates instead of storing  
+    the latest purchase date in lastPurchasedOn. With lastPurchasedOn,
+    marking an item purchased the second time overwrites the value of 
+    the first lastPurchasedOn. It is therefore impossible to recover
+    previous purchase date if a user marks an item purchased by mistake 
+    and would love to clear the checkmark. This too eliminates the need 
+    for having numberOfPurchases variable since it has the advantage of
+    tracking the number of purchases implicitely.
+    */
     const item = {
       shoppingListItemName,
-      daysLeftForNextPurchase,
-      lastPurchasedOn: null,
+      daysLeftForNextPurchase: [daysLeftForNextPurchase],
+      purchaseDates: [],
     };
 
     if (shoppingList.length) {
       const { documentId, items } = shoppingList[0];
-      const shoppingListItemExists = items.some(
-            (shoppingListItemObject) => {
-              return (
-                normalizeString(shoppingListItemObject.shoppingListItemName) ===
-                normalizeString(shoppingListItemName)
-              );
-            },
-          );
-          if (shoppingListItemExists) {
-            setShoppingListItemNameExists(true);
-            return;
-          }
+      const shoppingListItemExists = items.some((shoppingListItemObject) => {
+        return (
+          normalizeString(shoppingListItemObject.shoppingListItemName) ===
+          normalizeString(shoppingListItemName)
+        );
+      });
+      if (shoppingListItemExists) {
+        setShoppingListItemNameExists(true);
+        return;
+      }
 
       db.doc(documentId)
         .update({
