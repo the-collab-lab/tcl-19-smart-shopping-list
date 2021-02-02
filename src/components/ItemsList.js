@@ -48,7 +48,9 @@ const ItemsList = () => {
     purchase was made within the last one day. The same can also 
     be achieved by using the checked status of the checkbox but
     that would require passing event object to markItemAsPurchased.
-
+    
+    It is possible to optimise this code to store the latest 3 purchase
+    dates instead of storing dates for all purchases.
 
     */
 
