@@ -32,7 +32,7 @@ const ItemsList = () => {
     { idField: 'documentId' },
   );
 
-  const markItemAsPurchased = (index, event) => {
+  const markItemAsPurchased = (index) => {
     const { items, documentId } = shoppingList[0];
     const { lastPurchasedOn } = items[index];
     const shoppingItemObject = items[index];
@@ -61,11 +61,13 @@ const ItemsList = () => {
           shoppingItemObject.numberOfPurchases--;
           shoppingItemObject.lastPurchasedOn = null;
         } else {
-          // If we are dealing with subsequent purchases we have already lost the
-          // lastPurchasedOn value for the previous purchase, there is no value to
-          // revert to. It doesn't make sense to revert to null either because a
-          // previous purchase has been made.
+          /*
+          If we are dealing with subsequent purchases. we have already lost the
+          lastPurchasedOn value for the previous purchase, there is no value to
+          revert to. It doesn't make sense to revert to null either because a
+          previous purchase has been made.
           return;
+        */
         }
       } else {
         shoppingItemObject.numberOfPurchases++;
