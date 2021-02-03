@@ -49,8 +49,11 @@ const ItemsList = () => {
     be achieved by using the checked status of the checkbox but
     that would require passing event object to markItemAsPurchased.
     
-    It is possible to optimise this code to store the latest 3 purchase
-    dates instead of storing dates for all purchases.
+    We have optimized this code to store the latest 2 purchase
+    dates instead of storing dates for all purchases. The same applies
+    to daysLeftForNextPurchase. It is worth pointing out that 
+    daysLeftForNextPurchase will have a value when adding an item
+    to the shopping list, selected from "Soon", "Not soon", "Kind of soon"
 
     */
 
@@ -72,16 +75,19 @@ const ItemsList = () => {
       } else {
         const dateTodayInMilliseconds = Date.now();
         shoppingItemObject.numberOfPurchases++;
-        const daysLeftForNextPurchase = calculateEstimate(
+        const lastEstimate =
           shoppingItemObject.daysLeftForNextPurchase[
             shoppingItemObject.daysLeftForNextPurchase.length - 1
+          ];
+        const latestInterval = getDaysBetweenCurrentAndPreviousPurchase(
+          shoppingItemObject.purchaseDates[
+            shoppingItemObject.purchaseDates.length - 1
           ],
-          getDaysBetweenCurrentAndPreviousPurchase(
-            shoppingItemObject.purchaseDates[
-              shoppingItemObject.purchaseDates.length - 1
-            ],
-            dateTodayInMilliseconds,
-          ),
+          dateTodayInMilliseconds,
+        );
+        const daysLeftForNextPurchase = calculateEstimate(
+          lastEstimate,
+          latestInterval,
           shoppingItemObject.numberOfPurchases,
         );
         shoppingItemObject.purchaseDates.push(dateTodayInMilliseconds);
