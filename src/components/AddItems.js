@@ -60,6 +60,7 @@ const AddItemsToList = () => {
       shoppingListItemName,
       daysLeftForNextPurchase: [daysLeftForNextPurchase],
       purchaseDates: [],
+      numberOfPurchases: 0,
     };
 
     if (shoppingList.length) {

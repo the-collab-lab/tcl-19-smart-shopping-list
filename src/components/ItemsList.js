@@ -8,7 +8,6 @@ import { useHistory } from 'react-router-dom';
 import '../styles/ItemsList.css';
 
 const db = firebase.firestore().collection('shopping_list');
-
 const wasItemPurchasedWithinLastOneDay = (purchaseDates) => {
   if (!purchaseDates.length) return false;
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
@@ -57,27 +56,22 @@ const ItemsList = () => {
 
     if (!shoppingItemObject.purchaseDates.length) {
       shoppingItemObject.purchaseDates.push(Date.now());
+      shoppingItemObject.numberOfPurchases++;
       shoppingItemObject.daysLeftForNextPurchase[0] = calculateEstimate(
         undefined,
         shoppingItemObject.daysLeftForNextPurchase[0],
-        shoppingItemObject.purchaseDates.length,
+        shoppingItemObject.numberOfPurchases,
       );
     } else {
-      if (shoppingItemObject.purchaseDates.length > 3) {
-        shoppingItemObject.purchaseDates = shoppingItemObject.purchaseDates.slice(
-          -3,
-        );
-        shoppingItemObject.daysLeftForNextPurchase = shoppingItemObject.daysLeftForNextPurchase.slice(
-          -3,
-        );
-      }
       if (wasItemPurchasedWithinLastOneDay(shoppingItemObject.purchaseDates)) {
         shoppingItemObject.purchaseDates.pop();
+        shoppingItemObject.numberOfPurchases--;
         if (shoppingItemObject.purchaseDates.length) {
           shoppingItemObject.daysLeftForNextPurchase.pop();
         }
       } else {
         const dateTodayInMilliseconds = Date.now();
+        shoppingItemObject.numberOfPurchases++;
         const daysLeftForNextPurchase = calculateEstimate(
           shoppingItemObject.daysLeftForNextPurchase[
             shoppingItemObject.daysLeftForNextPurchase.length - 1
@@ -88,13 +82,22 @@ const ItemsList = () => {
             ],
             dateTodayInMilliseconds,
           ),
-          shoppingItemObject.purchaseDates.length + 1,
+          shoppingItemObject.numberOfPurchases,
         );
         shoppingItemObject.purchaseDates.push(dateTodayInMilliseconds);
         shoppingItemObject.daysLeftForNextPurchase.push(
           daysLeftForNextPurchase,
         );
       }
+    }
+
+    if (shoppingItemObject.purchaseDates.length > 2) {
+      shoppingItemObject.purchaseDates = shoppingItemObject.purchaseDates.slice(
+        -2,
+      );
+      shoppingItemObject.daysLeftForNextPurchase = shoppingItemObject.daysLeftForNextPurchase.slice(
+        -2,
+      );
     }
 
     db.doc(documentId)
