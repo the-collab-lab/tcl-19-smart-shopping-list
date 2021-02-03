@@ -3,16 +3,25 @@ import firebase from '../lib/firebase';
 import Nav from './Nav';
 import '../styles/ItemsList.css';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import calculateEstimate from '../lib/estimates';
 import { useHistory } from 'react-router-dom';
 import calculateEstimate from '../lib/estimates';
 import '../styles/ItemsList.css';
 
 const db = firebase.firestore().collection('shopping_list');
-
-const wasItemPurchasedWithinLastOneDay = (lastPurchasedOn) => {
-  if (lastPurchasedOn === null) return false;
+const wasItemPurchasedWithinLastOneDay = (purchaseDates) => {
+  if (!purchaseDates.length) return false;
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
-  return Date.now() - lastPurchasedOn <= oneDayInMilliseconds;
+  const { length } = purchaseDates;
+  return Date.now() - purchaseDates[length - 1] <= oneDayInMilliseconds;
+};
+
+const getDaysBetweenCurrentAndPreviousPurchase = (
+  previousPurchaseDate,
+  currentPurchaseDate = Date.now(),
+) => {
+  const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+  return (currentPurchaseDate - previousPurchaseDate) / oneDayInMilliseconds;
 };
 
 const ItemsList = () => {
@@ -26,15 +35,70 @@ const ItemsList = () => {
 
   const markItemAsPurchased = (index) => {
     const { items, documentId } = shoppingList[0];
+    const shoppingItemObject = items[index];
 
-    items[index].numberOfPurchases++;
+    /*
+    If purchaseDates array is empty, first purchase is being
+    recorded. If it is not empty, either the user is unchecking
+    an item which has been marked purchased or recording another 
+    purchase for the same item. The former is handled in the if 
+    clause while the latter in the else clause.
 
-    console.log(items[index].numberOfPurchases);
+    To determine whether a user is clearing check mark after 
+    marking an item purchased by mistake, we check if the latest
+    purchase was made within the last one day. The same can also 
+    be achieved by using the checked status of the checkbox but
+    that would require passing event object to markItemAsPurchased.
+    
+    It is possible to optimise this code to store the latest 3 purchase
+    dates instead of storing dates for all purchases.
 
-    if (items[index].lastPurchasedOn) {
-      items[index].lastPurchasedOn = null;
+    */
+
+    if (!shoppingItemObject.purchaseDates.length) {
+      shoppingItemObject.purchaseDates.push(Date.now());
+      shoppingItemObject.numberOfPurchases++;
+      shoppingItemObject.daysLeftForNextPurchase[0] = calculateEstimate(
+        undefined,
+        shoppingItemObject.daysLeftForNextPurchase[0],
+        shoppingItemObject.numberOfPurchases,
+      );
     } else {
-      items[index].lastPurchasedOn = Date.now();
+      if (wasItemPurchasedWithinLastOneDay(shoppingItemObject.purchaseDates)) {
+        shoppingItemObject.purchaseDates.pop();
+        shoppingItemObject.numberOfPurchases--;
+        if (shoppingItemObject.purchaseDates.length) {
+          shoppingItemObject.daysLeftForNextPurchase.pop();
+        }
+      } else {
+        const dateTodayInMilliseconds = Date.now();
+        shoppingItemObject.numberOfPurchases++;
+        const daysLeftForNextPurchase = calculateEstimate(
+          shoppingItemObject.daysLeftForNextPurchase[
+            shoppingItemObject.daysLeftForNextPurchase.length - 1
+          ],
+          getDaysBetweenCurrentAndPreviousPurchase(
+            shoppingItemObject.purchaseDates[
+              shoppingItemObject.purchaseDates.length - 1
+            ],
+            dateTodayInMilliseconds,
+          ),
+          shoppingItemObject.numberOfPurchases,
+        );
+        shoppingItemObject.purchaseDates.push(dateTodayInMilliseconds);
+        shoppingItemObject.daysLeftForNextPurchase.push(
+          daysLeftForNextPurchase,
+        );
+      }
+    }
+
+    if (shoppingItemObject.purchaseDates.length > 2) {
+      shoppingItemObject.purchaseDates = shoppingItemObject.purchaseDates.slice(
+        -2,
+      );
+      shoppingItemObject.daysLeftForNextPurchase = shoppingItemObject.daysLeftForNextPurchase.slice(
+        -2,
+      );
     }
 
     db.doc(documentId)
@@ -74,7 +138,7 @@ const ItemsList = () => {
                     id={shoppingItemObject.shoppingListItemName}
                     onChange={() => markItemAsPurchased(index)}
                     checked={wasItemPurchasedWithinLastOneDay(
-                      shoppingItemObject.lastPurchasedOn,
+                      shoppingItemObject.purchaseDates,
                     )}
                   />
                   <label htmlFor={shoppingItemObject.shoppingListItemName}>

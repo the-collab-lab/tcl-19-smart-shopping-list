@@ -42,11 +42,24 @@ const AddItemsToList = () => {
       alert('Please enter item name...');
       return;
     }
+    /*
+    lastPurchasedOn has been renamed to purchaseDates and it is
+    an array keeping track of purchase dates instead of storing  
+    the latest purchase date in lastPurchasedOn before the refactor. 
+    With lastPurchasedOn, marking an item purchased the second time 
+    overwrites the value of the first lastPurchasedOn. It is therefore
+    impossible to recover previous purchase date if a user marks an
+    item purchased by mistake and would love to clear the checkmark. 
+    Havin an array to keep track of the purchase dates also eliminates
+    the need for having numberOfPurchases variable since it has the 
+    advantage of tracking the number of purchases implicitely. The same 
+    explanation applies to daysLeftForNextPurchase refactor.
 
+    */
     const item = {
       shoppingListItemName,
-      daysLeftForNextPurchase,
-      lastPurchasedOn: null,
+      daysLeftForNextPurchase: [daysLeftForNextPurchase],
+      purchaseDates: [],
       numberOfPurchases: 0,
     };
 
