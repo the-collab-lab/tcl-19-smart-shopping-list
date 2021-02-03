@@ -5,7 +5,6 @@ import '../styles/ItemsList.css';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import calculateEstimate from '../lib/estimates';
 import { useHistory } from 'react-router-dom';
-import calculateEstimate from '../lib/estimates';
 import '../styles/ItemsList.css';
 
 const db = firebase.firestore().collection('shopping_list');
