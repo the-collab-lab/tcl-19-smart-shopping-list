@@ -36,6 +36,7 @@ const ItemsList = () => {
   const markItemAsPurchased = (index) => {
     const { items, documentId } = shoppingList[0];
     const shoppingItemObject = items[index];
+
     /*
     If purchaseDates array is empty, first purchase is being
     recorded. If it is not empty, either the user is unchecking
@@ -62,6 +63,14 @@ const ItemsList = () => {
         shoppingItemObject.purchaseDates.length,
       );
     } else {
+      if (shoppingItemObject.purchaseDates.length > 3) {
+        shoppingItemObject.purchaseDates = shoppingItemObject.purchaseDates.slice(
+          -3,
+        );
+        shoppingItemObject.daysLeftForNextPurchase = shoppingItemObject.daysLeftForNextPurchase.slice(
+          -3,
+        );
+      }
       if (wasItemPurchasedWithinLastOneDay(shoppingItemObject.purchaseDates)) {
         shoppingItemObject.purchaseDates.pop();
         if (shoppingItemObject.purchaseDates.length) {
