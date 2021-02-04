@@ -47,7 +47,10 @@ const ItemsList = () => {
     history.push('/additem');
   };
 
-  const clearText = () => setSearchTerm('');
+  const clearText = (event) => {
+    event.preventDefault();
+    setSearchTerm('');
+  };
 
   return (
     <div className="items-list">
