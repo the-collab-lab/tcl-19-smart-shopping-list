@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import firebase from '../lib/firebase';
 import Nav from './Nav';
 import '../styles/ItemsList.css';
@@ -15,7 +15,7 @@ const wasItemPurchasedWithinLastOneDay = (lastPurchasedOn) => {
 };
 
 const ItemsList = () => {
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
