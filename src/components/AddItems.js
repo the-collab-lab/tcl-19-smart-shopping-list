@@ -42,7 +42,6 @@ const AddItemsToList = () => {
       alert('Please enter item name...');
       return;
     }
-
     const item = {
       shoppingListItemName,
       daysLeftForNextPurchase,
