@@ -44,12 +44,15 @@ const ItemsList = () => {
     history.push('/additem');
   };
 
+  const listHasAtLeastOneItem = shoppingList && shoppingList[0];
+  const listHasNoItems = shoppingList && !shoppingList.length;
+
   return (
     <div className="items-list">
       <h1>Your Shopping List</h1>
       {loading && <p>Loading...</p>}
       {error && <p>An error has occured...</p>}
-      {shoppingList && !shoppingList.length && (
+      {listHasNoItems && (
         <div className="add-item">
           <p>You haven't created a shopping list yet...</p>
           <button type="submit" onClick={handleRedirect}>
@@ -57,14 +60,11 @@ const ItemsList = () => {
           </button>
         </div>
       )}
-      <div className="search-list">
-        {shoppingList && shoppingList[0] ? (
+      {listHasAtLeastOneItem ? (
+        <div className="search-list">
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        ) : null}
-        <ul>
-          {shoppingList &&
-            shoppingList[0] &&
-            shoppingList[0].items
+          <ul>
+            {shoppingList[0].items
               .filter((shoppingItemObject) =>
                 shoppingItemObject.shoppingListItemName
                   .toLowerCase()
@@ -90,8 +90,9 @@ const ItemsList = () => {
                   </li>
                 );
               })}
-        </ul>
-      </div>
+          </ul>
+        </div>
+      ) : null}
       <Nav />
     </div>
   );
