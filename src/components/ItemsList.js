@@ -46,29 +46,7 @@ const ItemsList = () => {
       );
     } else {
       if (wasItemPurchasedWithinLastOneDay(lastPurchasedOn)) {
-        /*
-        This code is evaluated if a user marks an item as purchased and 
-        the user wants to reverse that decision. It is only possible to revert
-        if a user has only recorded their first purchase. In this case, we
-        revert the value of lastPurchasedOn to null, decrement 
-        numberOfPurchases by 1 and maintain the value of daysLeftForNextPurchase,
-        
-        It is not possible to revert if purchase count exceeds 1 because once we 
-        make subsequent purchases the value of lastPurchasedOn is overwritten therefore
-        it is not possible to revert to the previous purchase in the DB.
-        */
-        if (shoppingItemObject.numberOfPurchases === 1) {
-          shoppingItemObject.numberOfPurchases--;
-          shoppingItemObject.lastPurchasedOn = null;
-        } else {
-          /*
-          If we are dealing with subsequent purchases. we have already lost the
-          lastPurchasedOn value for the previous purchase, there is no value to
-          revert to. It doesn't make sense to revert to null either because a
-          previous purchase has been made.
-          */
-          return;
-        }
+        return;
       } else {
         shoppingItemObject.numberOfPurchases++;
         const { daysLeftForNextPurchase } = shoppingItemObject;
