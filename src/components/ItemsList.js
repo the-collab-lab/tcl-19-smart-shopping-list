@@ -5,6 +5,7 @@ import '../styles/ItemsList.css';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router-dom';
 import '../styles/ItemsList.css';
+import SearchBar from './SearchBar';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -15,13 +16,9 @@ const wasItemPurchasedWithinLastOneDay = (lastPurchasedOn) => {
 };
 
 const ItemsList = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
   const userToken = localStorage.getItem('token');
   const history = useHistory();
+  const [searchTerm, setSearchTerm] = useState('');
 
   const [shoppingList, loading, error] = useCollectionData(
     db.where('token', '==', userToken),
@@ -47,11 +44,6 @@ const ItemsList = () => {
     history.push('/additem');
   };
 
-  const clearText = (event) => {
-    event.preventDefault();
-    setSearchTerm('');
-  };
-
   return (
     <div className="items-list">
       <h1>Your Shopping List</h1>
@@ -67,17 +59,7 @@ const ItemsList = () => {
       )}
       <div className="search-list">
         {shoppingList && shoppingList[0] ? (
-          <div>
-            <input
-              type="text"
-              placeholder="Search list.."
-              value={searchTerm}
-              onChange={handleChange}
-            />
-            <button type="reset" onClick={clearText} value="Reset">
-              X
-            </button>
-          </div>
+          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         ) : null}
         <ul>
           {shoppingList &&
