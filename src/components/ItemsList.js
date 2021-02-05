@@ -65,7 +65,7 @@ const ItemsList = () => {
           </button>
         </div>
       )}
-      <form onReset={clearText} className="search-list">
+      <div className="search-list">
         {shoppingList && shoppingList[0] ? (
           <div>
             <input
@@ -74,7 +74,9 @@ const ItemsList = () => {
               value={searchTerm}
               onChange={handleChange}
             />
-            <input type="reset" value="X" />
+            <button type="reset" onClick={clearText} value="Reset">
+              X
+            </button>
           </div>
         ) : null}
         <ul>
@@ -107,7 +109,7 @@ const ItemsList = () => {
                 );
               })}
         </ul>
-      </form>
+      </div>
       <Nav />
     </div>
   );
