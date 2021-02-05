@@ -3,6 +3,7 @@ import React from 'react';
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
+    console.log(searchTerm);
   };
 
   const clearText = (event) => {
@@ -18,9 +19,11 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
         value={searchTerm}
         onChange={handleChange}
       />
-      <button type="reset" onClick={clearText} value="Reset">
-        X
-      </button>
+      {searchTerm ? (
+        <button type="reset" onClick={clearText} value="Reset">
+          X
+        </button>
+      ) : null}
     </div>
   );
 };
