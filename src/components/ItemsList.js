@@ -27,8 +27,6 @@ const ItemsList = () => {
   const userToken = localStorage.getItem('token');
   const history = useHistory();
 
-  const presentDate = Date.now();
-
   const [shoppingList, loading, error] = useCollectionData(
     db.where('token', '==', userToken),
     { idField: 'documentId' },
@@ -38,6 +36,8 @@ const ItemsList = () => {
     const { items, documentId } = shoppingList[0];
     const { lastPurchasedOn } = items[index];
     const shoppingItemObject = items[index];
+    const presentDate = Date.now();
+
     if (lastPurchasedOn === null) {
       shoppingItemObject.lastPurchasedOn = presentDate;
       shoppingItemObject.numberOfPurchases++;
