@@ -62,7 +62,12 @@ const ItemsList = () => {
       )}
       {listHasAtLeastOneItem ? (
         <div className="search-list">
-          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <SearchBar
+            value={searchTerm}
+            setValue={(searchTerm) => {
+              setSearchTerm(searchTerm);
+            }}
+          />
           <ul>
             {shoppingList[0].items
               .filter((shoppingItemObject) =>

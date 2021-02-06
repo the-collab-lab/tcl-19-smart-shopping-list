@@ -1,14 +1,13 @@
 import React from 'react';
 
-const SearchBar = ({ searchTerm, setSearchTerm }) => {
+const SearchBar = ({ value, setValue }) => {
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-    console.log(searchTerm);
+    setValue(event.target.value);
   };
 
   const clearText = (event) => {
     event.preventDefault();
-    setSearchTerm('');
+    setValue('');
   };
 
   return (
@@ -16,10 +15,10 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
       <input
         type="text"
         placeholder="Search list.."
-        value={searchTerm}
+        value={value}
         onChange={handleChange}
       />
-      {searchTerm ? (
+      {value ? (
         <button type="reset" onClick={clearText} value="Reset">
           X
         </button>
