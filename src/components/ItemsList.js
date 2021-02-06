@@ -60,7 +60,7 @@ const ItemsList = () => {
           </button>
         </div>
       )}
-      {listHasAtLeastOneItem ? (
+      {listHasAtLeastOneItem && (
         <div className="search-list">
           <SearchBar
             value={searchTerm}
@@ -97,7 +97,7 @@ const ItemsList = () => {
               })}
           </ul>
         </div>
-      ) : null}
+      )}
       <Nav />
     </div>
   );

@@ -18,11 +18,11 @@ const SearchBar = ({ value, setValue }) => {
         value={value}
         onChange={handleChange}
       />
-      {value ? (
+      {value && (
         <button type="reset" onClick={clearText} value="Reset">
           X
         </button>
-      ) : null}
+      )}
     </div>
   );
 };
