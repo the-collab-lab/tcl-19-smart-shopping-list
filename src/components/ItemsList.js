@@ -9,17 +9,15 @@ import '../styles/ItemsList.css';
 
 const db = firebase.firestore().collection('shopping_list');
 
-const presentDate = Date.now();
-
 const wasItemPurchasedWithinLastOneDay = (lastPurchasedOn) => {
   if (lastPurchasedOn === null) return false;
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
-  return presentDate - lastPurchasedOn <= oneDayInMilliseconds;
+  return Date.now() - lastPurchasedOn <= oneDayInMilliseconds;
 };
 
 const getDaysBetweenCurrentAndPreviousPurchase = (
   previousPurchaseDate,
-  currentPurchaseDate = presentDate,
+  currentPurchaseDate = Date.now(),
 ) => {
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
   return (currentPurchaseDate - previousPurchaseDate) / oneDayInMilliseconds;
@@ -28,6 +26,8 @@ const getDaysBetweenCurrentAndPreviousPurchase = (
 const ItemsList = () => {
   const userToken = localStorage.getItem('token');
   const history = useHistory();
+
+  const presentDate = Date.now();
 
   const [shoppingList, loading, error] = useCollectionData(
     db.where('token', '==', userToken),
