@@ -9,15 +9,17 @@ import '../styles/ItemsList.css';
 
 const db = firebase.firestore().collection('shopping_list');
 
+const presentDate = Date.now();
+
 const wasItemPurchasedWithinLastOneDay = (lastPurchasedOn) => {
   if (lastPurchasedOn === null) return false;
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
-  return Date.now() - lastPurchasedOn <= oneDayInMilliseconds;
+  return presentDate - lastPurchasedOn <= oneDayInMilliseconds;
 };
 
 const getDaysBetweenCurrentAndPreviousPurchase = (
   previousPurchaseDate,
-  currentPurchaseDate = Date.now(),
+  currentPurchaseDate = presentDate,
 ) => {
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
   return (currentPurchaseDate - previousPurchaseDate) / oneDayInMilliseconds;
@@ -37,26 +39,23 @@ const ItemsList = () => {
     const { lastPurchasedOn } = items[index];
     const shoppingItemObject = items[index];
     if (lastPurchasedOn === null) {
-      shoppingItemObject.lastPurchasedOn = Date.now();
+      shoppingItemObject.lastPurchasedOn = presentDate;
       shoppingItemObject.numberOfPurchases++;
-      shoppingItemObject.daysLeftForNextPurchase = calculateEstimate(
-        undefined,
-        shoppingItemObject.daysLeftForNextPurchase,
-        shoppingItemObject.numberOfPurchases,
-      );
     } else {
       if (wasItemPurchasedWithinLastOneDay(lastPurchasedOn)) {
         return;
       } else {
         shoppingItemObject.numberOfPurchases++;
         const { daysLeftForNextPurchase } = shoppingItemObject;
-        const now = Date.now();
         shoppingItemObject.daysLeftForNextPurchase = calculateEstimate(
           daysLeftForNextPurchase,
-          getDaysBetweenCurrentAndPreviousPurchase(lastPurchasedOn, now),
+          getDaysBetweenCurrentAndPreviousPurchase(
+            lastPurchasedOn,
+            presentDate,
+          ),
           shoppingItemObject.numberOfPurchases,
         );
-        shoppingItemObject.lastPurchasedOn = now;
+        shoppingItemObject.lastPurchasedOn = presentDate;
       }
     }
 
