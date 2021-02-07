@@ -38,27 +38,26 @@ const ItemsList = () => {
     const { items, documentId } = shoppingList[0];
     const { lastPurchasedOn } = items[index];
     const shoppingItemObject = items[index];
+    const presentDate = Date.now();
+
     if (lastPurchasedOn === null) {
-      shoppingItemObject.lastPurchasedOn = Date.now();
+      shoppingItemObject.lastPurchasedOn = presentDate;
       shoppingItemObject.numberOfPurchases++;
-      shoppingItemObject.daysLeftForNextPurchase = calculateEstimate(
-        undefined,
-        shoppingItemObject.daysLeftForNextPurchase,
-        shoppingItemObject.numberOfPurchases,
-      );
     } else {
       if (wasItemPurchasedWithinLastOneDay(lastPurchasedOn)) {
         return;
       } else {
         shoppingItemObject.numberOfPurchases++;
         const { daysLeftForNextPurchase } = shoppingItemObject;
-        const now = Date.now();
         shoppingItemObject.daysLeftForNextPurchase = calculateEstimate(
           daysLeftForNextPurchase,
-          getDaysBetweenCurrentAndPreviousPurchase(lastPurchasedOn, now),
+          getDaysBetweenCurrentAndPreviousPurchase(
+            lastPurchasedOn,
+            presentDate,
+          ),
           shoppingItemObject.numberOfPurchases,
         );
-        shoppingItemObject.lastPurchasedOn = now;
+        shoppingItemObject.lastPurchasedOn = presentDate;
       }
     }
 
