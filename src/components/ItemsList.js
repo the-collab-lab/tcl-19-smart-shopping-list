@@ -4,6 +4,7 @@ import Nav from './Nav';
 import '../styles/ItemsList.css';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router-dom';
+import calculateEstimate from '../lib/estimates';
 import '../styles/ItemsList.css';
 import SearchBar from './SearchBar';
 
@@ -13,6 +14,14 @@ const wasItemPurchasedWithinLastOneDay = (lastPurchasedOn) => {
   if (lastPurchasedOn === null) return false;
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
   return Date.now() - lastPurchasedOn <= oneDayInMilliseconds;
+};
+
+const getDaysBetweenCurrentAndPreviousPurchase = (
+  previousPurchaseDate,
+  currentPurchaseDate = Date.now(),
+) => {
+  const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+  return (currentPurchaseDate - previousPurchaseDate) / oneDayInMilliseconds;
 };
 
 const ItemsList = () => {
@@ -27,10 +36,31 @@ const ItemsList = () => {
 
   const markItemAsPurchased = (index) => {
     const { items, documentId } = shoppingList[0];
-
-    items[index].lastPurchasedOn = items[index].lastPurchasedOn
-      ? null
-      : Date.now();
+    const { lastPurchasedOn } = items[index];
+    const shoppingItemObject = items[index];
+    if (lastPurchasedOn === null) {
+      shoppingItemObject.lastPurchasedOn = Date.now();
+      shoppingItemObject.numberOfPurchases++;
+      shoppingItemObject.daysLeftForNextPurchase = calculateEstimate(
+        undefined,
+        shoppingItemObject.daysLeftForNextPurchase,
+        shoppingItemObject.numberOfPurchases,
+      );
+    } else {
+      if (wasItemPurchasedWithinLastOneDay(lastPurchasedOn)) {
+        return;
+      } else {
+        shoppingItemObject.numberOfPurchases++;
+        const { daysLeftForNextPurchase } = shoppingItemObject;
+        const now = Date.now();
+        shoppingItemObject.daysLeftForNextPurchase = calculateEstimate(
+          daysLeftForNextPurchase,
+          getDaysBetweenCurrentAndPreviousPurchase(lastPurchasedOn, now),
+          shoppingItemObject.numberOfPurchases,
+        );
+        shoppingItemObject.lastPurchasedOn = now;
+      }
+    }
 
     db.doc(documentId)
       .update({

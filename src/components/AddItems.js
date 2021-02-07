@@ -42,27 +42,25 @@ const AddItemsToList = () => {
       alert('Please enter item name...');
       return;
     }
-
     const item = {
       shoppingListItemName,
       daysLeftForNextPurchase,
       lastPurchasedOn: null,
+      numberOfPurchases: 0,
     };
 
     if (shoppingList.length) {
       const { documentId, items } = shoppingList[0];
-      const shoppingListItemExists = items.some(
-            (shoppingListItemObject) => {
-              return (
-                normalizeString(shoppingListItemObject.shoppingListItemName) ===
-                normalizeString(shoppingListItemName)
-              );
-            },
-          );
-          if (shoppingListItemExists) {
-            setShoppingListItemNameExists(true);
-            return;
-          }
+      const shoppingListItemExists = items.some((shoppingListItemObject) => {
+        return (
+          normalizeString(shoppingListItemObject.shoppingListItemName) ===
+          normalizeString(shoppingListItemName)
+        );
+      });
+      if (shoppingListItemExists) {
+        setShoppingListItemNameExists(true);
+        return;
+      }
 
       db.doc(documentId)
         .update({
