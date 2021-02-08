@@ -28,6 +28,8 @@ const ItemsList = () => {
   const userToken = localStorage.getItem('token');
   const history = useHistory();
   const [searchTerm, setSearchTerm] = useState('');
+  const [displayPrompt, setDisplayPrompt] = useState(false);
+  const [deleteItemIndex, setDeleteItemIndex] = useState('');
 
   const [shoppingList, loading, error] = useCollectionData(
     db.where('token', '==', userToken),
@@ -73,6 +75,31 @@ const ItemsList = () => {
     history.push('/additem');
   };
 
+  const displayPromptHandler = (itemName) => {
+    const shopIndex = shoppingList[0].items.findIndex((obj) => {
+      return obj.shoppingListItemName === itemName;
+    });
+    setDeleteItemIndex(shopIndex);
+    setDisplayPrompt(true);
+  };
+
+  const cancelPrompt = () => {
+    setDisplayPrompt(false);
+  };
+
+  const deleteItem = () => {
+    const { items, documentId } = shoppingList[0];
+    items.splice(deleteItemIndex, 1);
+    console.log(items);
+    db.doc(documentId)
+      .update({
+        items: items,
+      })
+      .then(() => console.log('Successfully deleted item'))
+      .catch((e) => console.log('error', e));
+    setDisplayPrompt(false);
+  };
+
   const listHasAtLeastOneItem = shoppingList && shoppingList[0];
   const listHasNoItems = shoppingList && !shoppingList.length;
 
@@ -87,6 +114,13 @@ const ItemsList = () => {
           <button type="submit" onClick={handleRedirect}>
             Add First Item
           </button>
+        </div>
+      )}
+      {displayPrompt && (
+        <div>
+          <p>Are you sure you want to delete this item?</p>
+          <button onClick={deleteItem}>Delete Item</button>
+          <button onClick={cancelPrompt}>Cancel</button>
         </div>
       )}
       {listHasAtLeastOneItem && (
@@ -121,6 +155,15 @@ const ItemsList = () => {
                     <label htmlFor={shoppingItemObject.shoppingListItemName}>
                       {shoppingItemObject.shoppingListItemName}
                     </label>
+                    <button
+                      onClick={() =>
+                        displayPromptHandler(
+                          shoppingItemObject.shoppingListItemName,
+                        )
+                      }
+                    >
+                      Delete
+                    </button>
                   </li>
                 );
               })}
