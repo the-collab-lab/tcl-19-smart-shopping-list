@@ -73,7 +73,7 @@ const ItemsList = () => {
     history.push('/additem');
   };
 
-  const deleteItemFromShoppinList = (itemName) => {
+  const deleteItemFromShoppingList = (itemName) => {
     const deleteItem = window.confirm(
       `Are you sure you want to  delete ${itemName} from shopping list?`,
     );
@@ -141,7 +141,7 @@ const ItemsList = () => {
                     </label>
                     <button
                       onClick={() =>
-                        deleteItemFromShoppinList(
+                        deleteItemFromShoppingList(
                           shoppingItemObject.shoppingListItemName,
                         )
                       }
