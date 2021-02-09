@@ -73,7 +73,8 @@ const ItemsList = () => {
     history.push('/additem');
   };
 
-  const listHasAtLeastOneItem = shoppingList && shoppingList[0];
+  let listHasAtLeastOneItem = shoppingList && shoppingList[0];
+
   const listHasNoItems = shoppingList && !shoppingList.length;
 
   return (
@@ -103,6 +104,9 @@ const ItemsList = () => {
                 shoppingItemObject.shoppingListItemName
                   .toLowerCase()
                   .includes(searchTerm.toLowerCase()),
+              )
+              .sort((a, b) =>
+                a.daysLeftForNextPurchase > b.daysLeftForNextPurchase ? 1 : -1,
               )
               .map((shoppingItemObject, index) => {
                 const shopIndex = shoppingList[0].items.indexOf(
