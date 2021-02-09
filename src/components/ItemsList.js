@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import calculateEstimate from '../lib/estimates';
 import '../styles/ItemsList.css';
 import SearchBar from './SearchBar';
+import { stylesFnx, describedState } from './sortingFunctions';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -113,7 +114,14 @@ const ItemsList = () => {
                   shoppingItemObject,
                 );
                 return (
-                  <li key={shoppingItemObject.shoppingListItemName + index}>
+                  <li
+                    key={shoppingItemObject.shoppingListItemName + index}
+                    style={{
+                      backgroundColor: stylesFnx(
+                        shoppingItemObject.daysLeftForNextPurchase,
+                      ),
+                    }}
+                  >
                     <input
                       type="checkbox"
                       id={shoppingItemObject.shoppingListItemName}
@@ -122,7 +130,12 @@ const ItemsList = () => {
                         shoppingItemObject.lastPurchasedOn,
                       )}
                     />
-                    <label htmlFor={shoppingItemObject.shoppingListItemName}>
+                    <label
+                      htmlFor={shoppingItemObject.shoppingListItemName}
+                      aria-label={describedState(
+                        shoppingItemObject.daysLeftForNextPurchase,
+                      )}
+                    >
                       {shoppingItemObject.shoppingListItemName}
                     </label>
                   </li>
