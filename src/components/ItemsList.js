@@ -75,7 +75,7 @@ const ItemsList = () => {
 
   const deleteItemFromShoppingList = (itemName) => {
     const deleteItem = window.confirm(
-      `Are you sure you want to  delete ${itemName} from shopping list?`,
+      `Are you sure you want to delete ${itemName} from shopping list?`,
     );
     if (deleteItem === false) return;
     const deleteItemIndex = shoppingList[0].items.findIndex((obj) => {
@@ -140,6 +140,7 @@ const ItemsList = () => {
                       {shoppingItemObject.shoppingListItemName}
                     </label>
                     <button
+                      className="delete-button"
                       onClick={() =>
                         deleteItemFromShoppingList(
                           shoppingItemObject.shoppingListItemName,

@@ -72,7 +72,9 @@ const AddItemsToList = () => {
       db.add({
         token: userToken,
         items: [item],
-      });
+      })
+        .then(() => alert('successfully added'))
+        .catch((e) => console.log('error', e));
     }
     setShoppingListItemName('');
     setDaysLeftForNextPurchase(7);
