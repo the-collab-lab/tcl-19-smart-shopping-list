@@ -107,7 +107,13 @@ const ItemsList = () => {
                   .includes(searchTerm.toLowerCase()),
               )
               .sort((a, b) =>
-                a.daysLeftForNextPurchase > b.daysLeftForNextPurchase ? 1 : -1,
+                a.daysLeftForNextPurchase > b.daysLeftForNextPurchase
+                  ? 1
+                  : a.daysLeftForNextPurchase === b.daysLeftForNextPurchase
+                  ? a.shoppingListItemName > b.shoppingListItemName
+                    ? 1
+                    : -1
+                  : -1,
               )
               .map((shoppingItemObject, index) => {
                 const shopIndex = shoppingList[0].items.indexOf(
