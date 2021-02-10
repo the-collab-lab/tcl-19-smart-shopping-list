@@ -106,15 +106,7 @@ const ItemsList = () => {
                   .toLowerCase()
                   .includes(searchTerm.toLowerCase()),
               )
-              .sort((a, b) =>
-                a.daysLeftForNextPurchase > b.daysLeftForNextPurchase
-                  ? 1
-                  : a.daysLeftForNextPurchase === b.daysLeftForNextPurchase
-                  ? a.shoppingListItemName > b.shoppingListItemName
-                    ? 1
-                    : -1
-                  : -1,
-              )
+              .sort(sortShoppingList)
               .map((shoppingItemObject, index) => {
                 const shopIndex = shoppingList[0].items.indexOf(
                   shoppingItemObject,
@@ -123,7 +115,7 @@ const ItemsList = () => {
                   <li
                     key={shoppingItemObject.shoppingListItemName + index}
                     style={{
-                      backgroundColor: stylesFnx(
+                      backgroundColor: stylesgetShoppingItemBackgroundStylesFnx(
                         shoppingItemObject.daysLeftForNextPurchase,
                       ),
                     }}
@@ -138,7 +130,7 @@ const ItemsList = () => {
                     />
                     <label
                       htmlFor={shoppingItemObject.shoppingListItemName}
-                      aria-label={describedState(
+                      aria-label={descrigetItemDescriptionbedState(
                         shoppingItemObject.daysLeftForNextPurchase,
                       )}
                     >

@@ -1,4 +1,4 @@
-export const stylesFnx = (days) => {
+export const getShoppingItemBackgroundStyles = (days) => {
   if (days > 0 && days <= 7) {
     return 'green';
   } else if (days > 7 && days <= 30) {
@@ -10,7 +10,7 @@ export const stylesFnx = (days) => {
   }
 };
 
-export const describedState = (days) => {
+export const getItemDescription = (days) => {
   if (days <= 7) {
     return 'this item needs to be bought soon';
   } else if (days > 7 && days <= 30) {
@@ -18,4 +18,15 @@ export const describedState = (days) => {
   } else {
     return 'this item needs not be bought soon';
   }
+};
+
+export const sortShoppingList = () => {
+  return (a, b) =>
+    a.daysLeftForNextPurchase > b.daysLeftForNextPurchase
+      ? 1
+      : a.daysLeftForNextPurchase === b.daysLeftForNextPurchase
+      ? a.shoppingListItemName > b.shoppingListItemName
+        ? 1
+        : -1
+      : -1;
 };
