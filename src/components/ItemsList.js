@@ -7,7 +7,11 @@ import { useHistory } from 'react-router-dom';
 import calculateEstimate from '../lib/estimates';
 import '../styles/ItemsList.css';
 import SearchBar from './SearchBar';
-import { stylesFnx, describedState } from './sortingFunctions';
+import {
+  getShoppingItemBackgroundStyles,
+  getItemDescription,
+  sortShoppingList,
+} from './sortingFunctions';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -115,7 +119,7 @@ const ItemsList = () => {
                   <li
                     key={shoppingItemObject.shoppingListItemName + index}
                     style={{
-                      backgroundColor: stylesgetShoppingItemBackgroundStylesFnx(
+                      backgroundColor: getShoppingItemBackgroundStyles(
                         shoppingItemObject.daysLeftForNextPurchase,
                       ),
                     }}
@@ -130,7 +134,7 @@ const ItemsList = () => {
                     />
                     <label
                       htmlFor={shoppingItemObject.shoppingListItemName}
-                      aria-label={descrigetItemDescriptionbedState(
+                      aria-label={getItemDescription(
                         shoppingItemObject.daysLeftForNextPurchase,
                       )}
                     >
