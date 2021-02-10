@@ -3,17 +3,19 @@ export const stylesFnx = (days) => {
     return 'green';
   } else if (days > 7 && days <= 30) {
     return 'orange';
-  } else {
+  } else if (days > 30 && days <= 90) {
     return 'red';
+  } else {
+    return 'grey';
   }
 };
 
 export const describedState = (days) => {
   if (days <= 7) {
-    return 'this item needs to be bought soon (fewer than 7 days)';
+    return 'this item needs to be bought soon';
   } else if (days > 7 && days <= 30) {
-    return 'this item needs to be bought kind of soon (between 7 & 30 days)';
+    return 'this item needs to be bought kind of soon';
   } else {
-    return 'this item needs to be bought not soon (more than 30 days)';
+    return 'this item needs to be bought not soon';
   }
 };
