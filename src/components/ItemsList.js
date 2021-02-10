@@ -74,7 +74,7 @@ const ItemsList = () => {
     history.push('/additem');
   };
 
-  let listHasAtLeastOneItem = shoppingList && shoppingList[0];
+  const listHasAtLeastOneItem = shoppingList && shoppingList[0];
 
   const listHasNoItems = shoppingList && !shoppingList.length;
 
