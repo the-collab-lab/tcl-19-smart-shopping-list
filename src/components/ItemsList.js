@@ -121,6 +121,8 @@ const ItemsList = () => {
                     style={{
                       backgroundColor: getShoppingItemBackgroundStyles(
                         shoppingItemObject.daysLeftForNextPurchase,
+                        getDaysBetweenCurrentAndPreviousPurchase,
+                        shoppingItemObject.lastPurchasedOn,
                       ),
                     }}
                   >
