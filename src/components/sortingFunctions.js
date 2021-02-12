@@ -12,7 +12,7 @@ export const getShoppingItemBackgroundStyles = (
     return 'grey';
   } else if (daysLeftForNextPurchase <= 7) {
     return 'green';
-  } else if (daysLeftForNextPurchase > 7 && daysLeftForNextPurchase <= 30) {
+  } else if (daysLeftForNextPurchase > 7 && daysLeftForNextPurchase < 30) {
     return 'orange';
   } else {
     return 'red';
@@ -20,12 +20,13 @@ export const getShoppingItemBackgroundStyles = (
 };
 
 export const getItemDescription = (days) => {
-  if (days <= 7) {
-    return 'this item needs to be bought soon';
-  } else if (days > 7 && days <= 30) {
-    return 'this item needs to be bought kind of soon';
-  } else {
-    return 'this item needs not be bought soon';
+  switch (days) {
+    case days <= 7:
+      return 'this item needs to be bought soon';
+    case days > 7 && days < 30:
+      return 'this item needs to be bought kind of soon';
+    default:
+      return 'this item needs not be bought soon';
   }
 };
 
