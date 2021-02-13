@@ -7,6 +7,11 @@ import { useHistory } from 'react-router-dom';
 import calculateEstimate from '../lib/estimates';
 import '../styles/ItemsList.css';
 import SearchBar from './SearchBar';
+import {
+  getShoppingItemBackgroundStyles,
+  getItemDescription,
+  sortShoppingList,
+} from './sortingFunctions';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -92,6 +97,7 @@ const ItemsList = () => {
   };
 
   const listHasAtLeastOneItem = shoppingList && shoppingList[0];
+
   const listHasNoItems = shoppingList && !shoppingList.length;
 
   return (
@@ -122,12 +128,22 @@ const ItemsList = () => {
                   .toLowerCase()
                   .includes(searchTerm.toLowerCase()),
               )
+              .sort(sortShoppingList)
               .map((shoppingItemObject, index) => {
                 const shopIndex = shoppingList[0].items.indexOf(
                   shoppingItemObject,
                 );
                 return (
-                  <li key={shoppingItemObject.shoppingListItemName + index}>
+                  <li
+                    key={shoppingItemObject.shoppingListItemName + index}
+                    style={{
+                      backgroundColor: getShoppingItemBackgroundStyles(
+                        shoppingItemObject.daysLeftForNextPurchase,
+                        getDaysBetweenCurrentAndPreviousPurchase,
+                        shoppingItemObject.lastPurchasedOn,
+                      ),
+                    }}
+                  >
                     <input
                       type="checkbox"
                       id={shoppingItemObject.shoppingListItemName}
@@ -136,7 +152,12 @@ const ItemsList = () => {
                         shoppingItemObject.lastPurchasedOn,
                       )}
                     />
-                    <label htmlFor={shoppingItemObject.shoppingListItemName}>
+                    <label
+                      htmlFor={shoppingItemObject.shoppingListItemName}
+                      aria-label={getItemDescription(
+                        shoppingItemObject.daysLeftForNextPurchase,
+                      )}
+                    >
                       {shoppingItemObject.shoppingListItemName}
                     </label>
                     <button
