@@ -77,7 +77,7 @@ const ItemsList = () => {
     const deleteItem = window.confirm(
       `Are you sure you want to delete ${itemName} from shopping list?`,
     );
-    if (deleteItem === false) return;
+    if (!deleteItem) return;
     const deleteItemIndex = shoppingList[0].items.findIndex((obj) => {
       return obj.shoppingListItemName === itemName;
     });
