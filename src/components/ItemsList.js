@@ -73,6 +73,24 @@ const ItemsList = () => {
     history.push('/additem');
   };
 
+  const deleteItemFromShoppingList = (itemName) => {
+    const deleteItem = window.confirm(
+      `Are you sure you want to delete ${itemName} from shopping list?`,
+    );
+    if (!deleteItem) return;
+    const deleteItemIndex = shoppingList[0].items.findIndex((obj) => {
+      return obj.shoppingListItemName === itemName;
+    });
+    const { items, documentId } = shoppingList[0];
+    items.splice(deleteItemIndex, 1);
+    db.doc(documentId)
+      .update({
+        items: items,
+      })
+      .then(() => console.log('Successfully deleted item'))
+      .catch((e) => console.log('error', e));
+  };
+
   const listHasAtLeastOneItem = shoppingList && shoppingList[0];
   const listHasNoItems = shoppingList && !shoppingList.length;
 
@@ -121,6 +139,16 @@ const ItemsList = () => {
                     <label htmlFor={shoppingItemObject.shoppingListItemName}>
                       {shoppingItemObject.shoppingListItemName}
                     </label>
+                    <button
+                      className="delete-button"
+                      onClick={() =>
+                        deleteItemFromShoppingList(
+                          shoppingItemObject.shoppingListItemName,
+                        )
+                      }
+                    >
+                      Delete
+                    </button>
                   </li>
                 );
               })}
