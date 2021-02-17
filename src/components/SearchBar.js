@@ -11,15 +11,22 @@ const SearchBar = ({ value, setValue }) => {
   };
 
   return (
-    <div>
+    <div className="relative">
       <input
+        className="border rounded py-2 text-gray-700
+      focus:shadow-outline focus:bg-blue-100 placeholder-indigo-400"
         type="text"
         placeholder="Search list.."
         value={value}
         onChange={handleChange}
       />
       {value && (
-        <button type="reset" onClick={clearText} value="Reset">
+        <button
+          className="absolute mt-2"
+          type="reset"
+          onClick={clearText}
+          value="Reset"
+        >
           X
         </button>
       )}
