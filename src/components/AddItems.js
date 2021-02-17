@@ -152,6 +152,15 @@ const AddItemsToList = () => {
           <button type="submit">Add Item</button>
         </form>
       </div>
+
+      <p class="text-lg font-semibold">
+        “Tailwind CSS is the only framework that I've seen scale on large teams.
+        It’s easy to customize, adapts to any design, and the build size is
+        tiny.”
+      </p>
+      <div className="font-bold text-purple-500 text-xl mb-2">
+        Blessing Krofegha
+      </div>
       <Nav />
     </div>
   );
