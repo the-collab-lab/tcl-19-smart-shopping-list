@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
+import { Alert } from 'rsuite';
 import Nav from './Nav';
 
 const db = firebase.firestore().collection('shopping_list');
@@ -39,7 +40,7 @@ const AddItemsToList = () => {
     event.preventDefault();
 
     if (shoppingListItemName === '') {
-      alert('Please enter item name...');
+      alert('please add an item');
       return;
     }
     const item = {
@@ -73,7 +74,9 @@ const AddItemsToList = () => {
         token: userToken,
         items: [item],
       })
-        .then(() => alert('successfully added'))
+        .then(() => {
+          alert('successfully added');
+        })
         .catch((e) => console.log('error', e));
     }
     setShoppingListItemName('');
@@ -89,10 +92,9 @@ const AddItemsToList = () => {
   }
 
   return (
-    <div>
-      <div>
+    <div className="flex justify-center ">
+      <div className=" text-black mt-40 w-1/3">
         <form onSubmit={submitShoppingListItemHandler}>
-          <h2>Add Item to List</h2>
           {shoppingListItemNameExists ? (
             <p>
               {`You have ${normalizeString(
@@ -100,66 +102,74 @@ const AddItemsToList = () => {
               )} in your shopping list already`}
             </p>
           ) : null}
-          <div>
-            <label>
-              Name
+          <div className="">
+            <div className="flex justify-center">
+              {/* <label className="text-black">Name of Item</label>  */}
+
               <input
                 type="text"
+                placeholder="Add Item..."
                 value={shoppingListItemName}
                 onChange={shoppingListItemNameHandler}
+                className="border  text-grey-darkest w-2/3 px-4 py-3 mb-8 rounded"
               />
-            </label>
+            </div>
           </div>
-          <fieldset>
-            How soon are you likely to buy it again?
-            <div>
+          <div className="flex justify-center mb-8">
+            <p className="font-bold">
+              How soon are you likely to buy it again?
+            </p>
+          </div>
+          <div className="flex space-x-4 text-black mb-8">
+            <div className="w-1/3">
               <label>
-                Soon
                 <input
                   type="radio"
                   name="next_purchase"
                   value="7"
                   checked={daysLeftForNextPurchase === 7}
                   onChange={daysLeftForNextPurchaseHandler}
+                  className="mr-4"
                 />
+                Soon
               </label>
             </div>
-            <div>
+            <div className="w-1/3">
               <label>
-                Kind of soon
                 <input
                   type="radio"
                   name="next_purchase"
                   value="14"
                   checked={daysLeftForNextPurchase === 14}
                   onChange={daysLeftForNextPurchaseHandler}
+                  className="mr-4"
                 />
+                Kind of soon
               </label>
             </div>
-            <div>
+            <div className="w-1/3">
               <label>
-                Not soon
                 <input
                   type="radio"
                   name="next_purchase"
                   value="30"
                   checked={daysLeftForNextPurchase === 30}
                   onChange={daysLeftForNextPurchaseHandler}
+                  className="mr-4"
                 />
+                Not soon
               </label>
             </div>
-          </fieldset>
-          <button type="submit">Add Item</button>
+          </div>
+          <div className="flex justify-center">
+            <button
+              className="flex items-center border py-2 px-3 hover:shadow-lg justify-center rounded-md bg-white text-black shadow-md w-60"
+              type="submit"
+            >
+              Add Item
+            </button>
+          </div>
         </form>
-      </div>
-
-      <p class="text-lg font-semibold">
-        “Tailwind CSS is the only framework that I've seen scale on large teams.
-        It’s easy to customize, adapts to any design, and the build size is
-        tiny.”
-      </p>
-      <div className="font-bold text-purple-500 text-xl mb-2">
-        Blessing Krofegha
       </div>
       <Nav />
     </div>

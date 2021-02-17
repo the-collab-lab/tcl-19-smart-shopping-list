@@ -2,4 +2,6 @@ body {
   margin: auto;
   width: 80%;
   max-height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
