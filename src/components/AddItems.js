@@ -93,7 +93,7 @@ const AddItemsToList = () => {
 
   return (
     <div className="flex justify-center ">
-      <div className=" text-black mt-40 w-1/3">
+      <div className=" text-black md:mt-40 md:w-1/3 mt-20">
         <form onSubmit={submitShoppingListItemHandler}>
           {shoppingListItemNameExists ? (
             <p>
@@ -111,17 +111,17 @@ const AddItemsToList = () => {
                 placeholder="Add Item..."
                 value={shoppingListItemName}
                 onChange={shoppingListItemNameHandler}
-                className="border  text-grey-darkest w-2/3 px-4 py-3 mb-8 rounded"
+                className="border  text-grey-darkest md:w-2/3 px-2 py-2 md:px-4 md:py-3 mb-8 rounded"
               />
             </div>
           </div>
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center md:mb-8 mb-4">
             <p className="font-bold">
               How soon are you likely to buy it again?
             </p>
           </div>
-          <div className="flex space-x-4 text-black mb-8">
-            <div className="w-1/3">
+          <div className="flex flex-col md:flex-row md:space-x-4 text-black md:mb-8 mb-4">
+            <div className="md:w-1/3 mb-4">
               <label>
                 <input
                   type="radio"
@@ -134,7 +134,7 @@ const AddItemsToList = () => {
                 Soon
               </label>
             </div>
-            <div className="w-1/3">
+            <div className="md:w-1/3 mb-4">
               <label>
                 <input
                   type="radio"
@@ -147,7 +147,7 @@ const AddItemsToList = () => {
                 Kind of soon
               </label>
             </div>
-            <div className="w-1/3">
+            <div className="md:w-1/3 mb-4">
               <label>
                 <input
                   type="radio"
@@ -161,9 +161,9 @@ const AddItemsToList = () => {
               </label>
             </div>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-8">
             <button
-              className="flex items-center border py-2 px-3 hover:shadow-lg justify-center rounded-md bg-white text-black shadow-md w-60"
+              className="flex items-center border py-2 px-3 hover:shadow-lg justify-center rounded-md bg-white text-black shadow-md w-32 md:w-60"
               type="submit"
             >
               Add Item
