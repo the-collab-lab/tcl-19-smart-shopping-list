@@ -104,7 +104,7 @@ const ItemsList = () => {
   return (
     <div className="h-screen flex flex-col">
       <header className="bg-gray-500 w-full fixed text-center">
-        <h1 className="bg-red-500 text-xl pt-4 pb-12 text-3xl font-thin text-gray-100">
+        <h1 className="bg-red-500 pt-4 pb-12 text-3xl font-thin text-gray-100">
           Your Shopping List
         </h1>
         <span className="text-white top-0 right-0 mt-4 mr-4 absolute">
