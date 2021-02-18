@@ -5,11 +5,11 @@ const Nav = () => {
   return (
     <nav className="h-auto fixed bottom-0 right-0 left-0">
       <ul className="flex justify-center content-center fixed bottom-0 right-0 left-0 m-auto bg-green-300 rounded-t-3xl shadow-top">
-        <li className="list-none mr-6">
+        <li className="list-none mr-8">
           <NavLink to="/list" activeClassName="font-bold">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-2/3 w-24 mt-5 fill-current text-green-500"
+              className="w-20 mt-5 mb-5 fill-current text-green-500 shadow-xl rounded-full"
               viewBox="0 0 375 375"
               version="1.2"
             >
@@ -32,11 +32,11 @@ const Nav = () => {
             </svg>
           </NavLink>
         </li>
-        <li className="list-none ml-6">
+        <li className="list-none ml-8">
           <NavLink to="/addItem" activeClassName="font-bold">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-2/3 w-24 fill-current text-green-500 mt-5"
+              className="w-20 fill-current text-green-500 mt-5 mb-5 shadow-xl rounded-full"
               viewBox="0 0 375 375"
               version="1.2"
             >
