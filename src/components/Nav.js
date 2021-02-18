@@ -4,12 +4,12 @@ import { NavLink } from 'react-router-dom';
 const Nav = () => {
   return (
     <nav className="h-auto fixed bottom-0 right-0 left-0">
-      <ul className="flex justify-center content-center fixed bottom-0 right-0 left-0 m-auto bg-green-200 rounded-t-3xl shadow-top">
-        <li className="list-none mr-5">
+      <ul className="flex justify-center content-center fixed bottom-0 right-0 left-0 m-auto bg-green-300 rounded-t-3xl shadow-top">
+        <li className="list-none mr-6">
           <NavLink to="/list" activeClassName="font-bold">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-3/4 w-24 mt-3.5 fill-current text-green-600"
+              className="h-2/3 w-24 mt-5 fill-current text-green-500"
               viewBox="0 0 375 375"
               version="1.2"
             >
@@ -29,14 +29,14 @@ const Nav = () => {
                 d="M187.35 110.63h-52.9a2.64 2.64 0 100 5.3h52.9a2.65 2.65 0 000-5.3zm0 0M187.35 163.58h-52.9a2.65 2.65 0 000 5.3h52.9a2.65 2.65 0 000-5.3zm0 0M187.35 216.54h-52.9a2.65 2.65 0 000 5.29h52.9a2.64 2.64 0 100-5.3zm0 0M187.35 269.49h-52.9a2.64 2.64 0 100 5.3h52.9a2.65 2.65 0 000-5.3zm0 0M248.63 143.58l-19.37 29.09-8.3-8.31a2.65 2.65 0 10-3.74 3.75l10.58 10.59a2.63 2.63 0 004.07-.4l21.17-31.78a2.65 2.65 0 00-4.4-2.94zm0 0M248.63 196.54l-19.37 29.08-8.3-8.3a2.65 2.65 0 10-3.74 3.74l10.58 10.59c.5.5 1.17.77 1.87.77l.26-.01c.79-.09 1.5-.5 1.94-1.17l21.17-31.77a2.65 2.65 0 00-4.4-2.93zm0 0"
                 fill="#fff"
               />
-            </svg>{' '}
+            </svg>
           </NavLink>
         </li>
-        <li className="list-none ml-5">
+        <li className="list-none ml-6">
           <NavLink to="/addItem" activeClassName="font-bold">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-3/4 w-24 fill-current text-green-600 mt-3.5"
+              className="h-2/3 w-24 fill-current text-green-500 mt-5"
               viewBox="0 0 375 375"
               version="1.2"
             >
