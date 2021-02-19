@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
 import Nav from './Nav';
+import { ReactComponent as HomeIcon } from '../img/home-solid.svg';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -91,8 +92,15 @@ const AddItemsToList = () => {
   return (
     <div>
       <div>
+        <header className="bg-green-400 w-full fixed text-center">
+          <h2 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
+            Add Item to List
+          </h2>
+          <span className="text-white top-0 right-0 absolute sm:mt-4 sm:mr-4">
+            <HomeIcon />
+          </span>
+        </header>
         <form onSubmit={submitShoppingListItemHandler}>
-          <h2>Add Item to List</h2>
           {shoppingListItemNameExists ? (
             <p>
               {`You have ${normalizeString(

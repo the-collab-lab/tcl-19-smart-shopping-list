@@ -105,9 +105,9 @@ const ItemsList = () => {
   return (
     <div className="max-h-screen flex flex-col box-border items-center">
       <header className="bg-green-400 w-full fixed text-center">
-        <h1 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
+        <h2 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
           Your Shopping List
-        </h1>
+        </h2>
         <span className="text-white top-0 right-0 absolute sm:mt-4 sm:mr-4">
           <HomeIcon />
         </span>
