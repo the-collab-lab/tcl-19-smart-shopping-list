@@ -18,3 +18,7 @@ input[type='checkbox']:checked + label {
 .delete-button {
   margin-left: 5px;
 }
+
+.btn-bg {
+  background-color: #659f95;
+}

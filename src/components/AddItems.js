@@ -3,6 +3,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
 import { Alert } from 'rsuite';
 import Nav from './Nav';
+import ItemListButton from './ItemListButton';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -116,9 +117,7 @@ const AddItemsToList = () => {
             </div>
           </div>
           <div className="flex justify-center md:mb-8 mb-4">
-            <p className="font-bold">
-              How soon are you likely to buy it again?
-            </p>
+            <p className="">How soon are you likely to buy it again?</p>
           </div>
           <div className="flex flex-col md:flex-row md:space-x-4 text-black md:mb-8 mb-4">
             <div className="md:w-1/3 mb-4">
@@ -172,6 +171,7 @@ const AddItemsToList = () => {
         </form>
       </div>
       <Nav />
+      <ItemListButton />
     </div>
   );
 };
