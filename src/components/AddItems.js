@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
-import { Alert } from 'rsuite';
 import Nav from './Nav';
 import ItemListButton from './ItemListButton';
 
@@ -162,7 +161,7 @@ const AddItemsToList = () => {
           </div>
           <div className="flex justify-center mt-8">
             <button
-              className="flex items-center border py-2 px-3 hover:shadow-lg justify-center rounded-md bg-white text-black shadow-md w-32 md:w-60"
+              className="flex items-center border py-2 px-3 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom w-32 md:w-60"
               type="submit"
             >
               Add Item

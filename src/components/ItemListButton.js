@@ -13,7 +13,7 @@ function ItemListButton() {
         <button
           type="submit"
           onClick={handleRedirectToList}
-          className="btn-bg flex items-center border py-3 px-3 hover:shadow-lg justify-center rounded-md bg-green-600 text-white shadow-md w-36"
+          className="btn-bg flex items-center border py-3 px-3 hover:bg-green-300 justify-center rounded-md bg-green-600 text-white w-36"
         >
           <span>
             <svg
