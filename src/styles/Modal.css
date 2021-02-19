@@ -1,0 +1,14 @@
+.style-modal {
+  width: 50%;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  margin-left: -25%;
+  text-align: center;
+  margin-top: 5%;
+  padding: 5%;
+}
+
+.hidden {
+  display: none;
+}

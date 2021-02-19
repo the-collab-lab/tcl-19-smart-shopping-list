@@ -4,6 +4,7 @@ import firebase from '../lib/firebase';
 import { Alert } from 'rsuite';
 import Nav from './Nav';
 import ItemListButton from './ItemListButton';
+import Modal from './Modal.js';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -16,6 +17,7 @@ const AddItemsToList = () => {
   const [shoppingListItemNameExists, setShoppingListItemNameExists] = useState(
     false,
   );
+  const [isModalActive, setModalActive] = useState(false);
 
   const [shoppingList, loading, error] = useCollectionData(
     db.where('token', '==', userToken),
@@ -41,7 +43,7 @@ const AddItemsToList = () => {
     event.preventDefault();
 
     if (shoppingListItemName === '') {
-      alert('please add an item');
+      setModalActive(true);
       return;
     }
     const item = {
@@ -95,6 +97,7 @@ const AddItemsToList = () => {
   return (
     <div className="flex justify-center ">
       <div className=" text-black md:mt-40 md:w-1/3 mt-20">
+        <Modal message="please confirm" active={isModalActive} />
         <form onSubmit={submitShoppingListItemHandler}>
           {shoppingListItemNameExists ? (
             <p>
@@ -162,7 +165,7 @@ const AddItemsToList = () => {
           </div>
           <div className="flex justify-center mt-8">
             <button
-              className="flex items-center border py-2 px-3 hover:shadow-lg justify-center rounded-md bg-white text-black shadow-md w-32 md:w-60"
+              className="flex items-center border py-2 px-3 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom w-32 md:w-60"
               type="submit"
             >
               Add Item
