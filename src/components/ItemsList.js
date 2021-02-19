@@ -13,6 +13,7 @@ import {
 } from './sortingFunctions';
 import { ReactComponent as TrashBin } from '../img/trash-alt-regular.svg';
 import { ReactComponent as HomeIcon } from '../img/home-solid.svg';
+import spinner from '../img/spinner-3.gif';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -102,23 +103,25 @@ const ItemsList = () => {
   const listHasNoItems = shoppingList && !shoppingList.length;
 
   return (
-    <div className="h-screen flex flex-col">
-      <header className="bg-gray-500 w-full fixed text-center">
-        <h1 className="bg-red-500 pt-4 pb-12 text-3xl font-thin text-gray-100">
+    <div className="max-h-screen flex flex-col box-border items-center">
+      <header className="bg-green-400 w-full fixed text-center">
+        <h1 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
           Your Shopping List
         </h1>
-        <span className="text-white top-0 right-0 mt-4 mr-4 absolute">
+        <span className="text-white top-0 right-0 absolute sm:mt-4 sm:mr-4">
           <HomeIcon />
         </span>
       </header>
-      <main className="bg-white relative w-screen h-full mt-20 flex rounded-t-3xl justify-center">
-        {loading && <p>Loading...</p>}
+      <main className="bg-white relative w-full h-full mt-24 rounded-t-3xl overflow-auto">
+        {loading && (
+          <img className="m-auto w-12" src={spinner} alt="Loading..." />
+        )}
         {error && <p>An error has occured...</p>}
         {listHasNoItems && (
-          <div className="flex flex-col w-screen justify-center items-center text-gray-900">
+          <div className="h-64 bg-white flex flex-col w-screen justify-center items-center text-gray-900">
             <p className="">You haven't created a shopping list yet...</p>
             <button
-              className="bg-white-100 px-6 py-3 text-sm mt-6 border border-color-gray-500 border-solid rounded shadow-md hover:bg-gray-500 cursor-pointer hover:text-white"
+              className="bg-white-100 px-6 py-3 text-sm mt-6 border border-color-gray-500 border-solid rounded shadow-md hover:bg-green-500 cursor-pointer hover:text-white"
               type="submit"
               onClick={handleRedirect}
             >
@@ -127,14 +130,14 @@ const ItemsList = () => {
           </div>
         )}
         {listHasAtLeastOneItem && (
-          <div className="flex flex-col mt-6">
+          <div className="mt-6 max-w-md mx-auto overflow-auto">
             <SearchBar
               value={searchTerm}
               setValue={(searchTerm) => {
                 setSearchTerm(searchTerm);
               }}
             />
-            <ul className="">
+            <ul className="mt-4 mb-2 mx-2">
               {shoppingList[0].items
                 .filter((shoppingItemObject) =>
                   shoppingItemObject.shoppingListItemName
@@ -148,7 +151,7 @@ const ItemsList = () => {
                   );
                   return (
                     <li
-                      className="mt-2 py-2 flex items-center rounded"
+                      className="py-3 mt-2 rounded-lg flex items-center shadow-md"
                       key={shoppingItemObject.shoppingListItemName + index}
                       style={{
                         backgroundColor: getShoppingItemBackgroundStyles(
@@ -159,7 +162,7 @@ const ItemsList = () => {
                       }}
                     >
                       <input
-                        className="mx-2"
+                        className="mx-4"
                         type="checkbox"
                         id={shoppingItemObject.shoppingListItemName}
                         onChange={() => markItemAsPurchased(shopIndex)}
@@ -168,7 +171,7 @@ const ItemsList = () => {
                         )}
                       />
                       <label
-                        className="w-4/6"
+                        className="flex-1 text-xl"
                         htmlFor={shoppingItemObject.shoppingListItemName}
                         aria-label={getItemDescription(
                           shoppingItemObject.daysLeftForNextPurchase,
@@ -177,7 +180,7 @@ const ItemsList = () => {
                         {shoppingItemObject.shoppingListItemName}
                       </label>
                       <button
-                        className="text-gray-100"
+                        className="text-gray-100 mr-4"
                         onClick={() =>
                           deleteItemFromShoppingList(
                             shoppingItemObject.shoppingListItemName,
@@ -195,7 +198,7 @@ const ItemsList = () => {
           </div>
         )}
       </main>
-      <footer>
+      <footer className="absolute bottom-0">
         <Nav />
       </footer>
     </div>
