@@ -40,7 +40,7 @@ const AddItemsToList = () => {
     event.preventDefault();
 
     if (shoppingListItemName === '') {
-      alert('please add an item');
+      alert('Please add an item');
       return;
     }
     const item = {
