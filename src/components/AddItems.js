@@ -91,7 +91,7 @@ const AddItemsToList = () => {
 
   return (
     <div>
-      <div>
+      <div className="max-h-screen flex flex-col box-border items-center">
         <header className="bg-green-400 w-full fixed text-center">
           <h2 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
             Add Item to List
@@ -100,65 +100,67 @@ const AddItemsToList = () => {
             <HomeIcon />
           </span>
         </header>
-        <form onSubmit={submitShoppingListItemHandler}>
-          {shoppingListItemNameExists ? (
-            <p>
-              {`You have ${normalizeString(
-                shoppingListItemName,
-              )} in your shopping list already`}
-            </p>
-          ) : null}
-          <div>
-            <label>
-              Name
-              <input
-                type="text"
-                value={shoppingListItemName}
-                onChange={shoppingListItemNameHandler}
-              />
-            </label>
-          </div>
-          <fieldset>
-            How soon are you likely to buy it again?
+        <main className="bg-white relative w-full h-full mt-24 rounded-t-3xl overflow-auto">
+          <form onSubmit={submitShoppingListItemHandler} className="mt-12">
+            {shoppingListItemNameExists ? (
+              <p>
+                {`You have ${normalizeString(
+                  shoppingListItemName,
+                )} in your shopping list already`}
+              </p>
+            ) : null}
             <div>
               <label>
-                Soon
+                Name
                 <input
-                  type="radio"
-                  name="next_purchase"
-                  value="7"
-                  checked={daysLeftForNextPurchase === 7}
-                  onChange={daysLeftForNextPurchaseHandler}
+                  type="text"
+                  value={shoppingListItemName}
+                  onChange={shoppingListItemNameHandler}
                 />
               </label>
             </div>
-            <div>
-              <label>
-                Kind of soon
-                <input
-                  type="radio"
-                  name="next_purchase"
-                  value="14"
-                  checked={daysLeftForNextPurchase === 14}
-                  onChange={daysLeftForNextPurchaseHandler}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Not soon
-                <input
-                  type="radio"
-                  name="next_purchase"
-                  value="30"
-                  checked={daysLeftForNextPurchase === 30}
-                  onChange={daysLeftForNextPurchaseHandler}
-                />
-              </label>
-            </div>
-          </fieldset>
-          <button type="submit">Add Item</button>
-        </form>
+            <fieldset>
+              How soon are you likely to buy it again?
+              <div>
+                <label>
+                  Soon
+                  <input
+                    type="radio"
+                    name="next_purchase"
+                    value="7"
+                    checked={daysLeftForNextPurchase === 7}
+                    onChange={daysLeftForNextPurchaseHandler}
+                  />
+                </label>
+              </div>
+              <div>
+                <label>
+                  Kind of soon
+                  <input
+                    type="radio"
+                    name="next_purchase"
+                    value="14"
+                    checked={daysLeftForNextPurchase === 14}
+                    onChange={daysLeftForNextPurchaseHandler}
+                  />
+                </label>
+              </div>
+              <div>
+                <label>
+                  Not soon
+                  <input
+                    type="radio"
+                    name="next_purchase"
+                    value="30"
+                    checked={daysLeftForNextPurchase === 30}
+                    onChange={daysLeftForNextPurchaseHandler}
+                  />
+                </label>
+              </div>
+            </fieldset>
+            <button type="submit">Add Item</button>
+          </form>
+        </main>
       </div>
       <Nav />
     </div>
