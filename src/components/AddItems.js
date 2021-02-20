@@ -111,7 +111,7 @@ const AddItemsToList = () => {
                 placeholder="Add Item..."
                 value={shoppingListItemName}
                 onChange={shoppingListItemNameHandler}
-                className="border  text-grey-darkest md:w-2/3 px-2 py-2 md:px-4 md:py-3 mb-8 rounded"
+                className="border text-gray-900 md:w-2/3 px-2 py-2 md:px-4 md:py-3 mb-8 rounded"
               />
             </div>
           </div>
