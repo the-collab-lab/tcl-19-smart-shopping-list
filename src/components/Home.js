@@ -71,7 +71,7 @@ const Home = () => {
           id="token"
           value={existingToken}
           onChange={tokenHandler}
-          className="my-2 py-2 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent shadow-md"
+          className="my-2 py-2 rounded-md border border-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent shadow-md text-gray-900"
         />
         <button
           type="submit"
