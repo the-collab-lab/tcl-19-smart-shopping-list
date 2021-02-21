@@ -115,7 +115,7 @@ const AddItemsToList = () => {
               />
             </div>
           </div>
-          <div className="flex justify-center md:mb-8 mb-4">
+          <div className="text-center md:mb-8 mb-4">
             <p className="">How soon are you likely to buy it again?</p>
           </div>
           <div className="flex flex-col md:flex-row md:space-x-4 text-black md:mb-8 mb-4">
@@ -159,9 +159,9 @@ const AddItemsToList = () => {
               </label>
             </div>
           </div>
-          <div className="flex justify-center mt-8">
+          <div className="text-center mt-8">
             <button
-              className="flex items-center border py-2 px-3 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom w-32 md:w-60"
+              className="border py-2 px-3 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom w-32 md:w-60"
               type="submit"
             >
               Add Item
