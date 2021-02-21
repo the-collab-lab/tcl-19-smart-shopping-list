@@ -2,3 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type='checkbox']:checked + label {
+  text-decoration: line-through;
+}

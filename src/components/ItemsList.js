@@ -13,6 +13,7 @@ import {
 import { ReactComponent as TrashBin } from '../img/trash-alt-regular.svg';
 import { ReactComponent as HomeIcon } from '../img/home-solid.svg';
 import spinner from '../img/spinner-3.gif';
+import '../index.css';
 
 const db = firebase.firestore().collection('shopping_list');
 
