@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { ReactComponent as ArrowRight } from '../img/arrow-right.svg';
 
 function AddItemButton() {
   const history = useHistory();
@@ -16,34 +17,8 @@ function AddItemButton() {
           className="btn-bg flex items-center border py-3 px-3 hover:shadow-hover justify-center rounded-md bg-green-600 text-white w-40"
         >
           <span className="mr-4">Add an Item</span>
-          <span>
-            <svg
-              width="13"
-              height="15"
-              viewBox="0 0 15 19"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0.414978 18L13.4099 8.55556L0.414978 1"
-                stroke="white"
-              />
-            </svg>
-          </span>
-          <span>
-            <svg
-              width="13"
-              height="15"
-              viewBox="0 0 15 19"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M0.414978 18L13.4099 8.55556L0.414978 1"
-                stroke="white"
-              />
-            </svg>
-          </span>
+          <ArrowRight />
+          <ArrowRight />
         </button>
       </div>
     </div>

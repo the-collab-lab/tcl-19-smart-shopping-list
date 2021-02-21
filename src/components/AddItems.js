@@ -93,7 +93,7 @@ const AddItemsToList = () => {
 
   return (
     <div className="flex justify-center ">
-      <div className=" text-black md:mt-40 md:w-1/3 mt-20">
+      <div className=" text-black md:mt-40 lg:w-1/3 mt-40">
         <form onSubmit={submitShoppingListItemHandler}>
           {shoppingListItemNameExists ? (
             <p>
@@ -118,8 +118,8 @@ const AddItemsToList = () => {
           <div className="text-center md:mb-8 mb-4">
             <p className="">How soon are you likely to buy it again?</p>
           </div>
-          <div className="flex flex-col md:flex-row md:space-x-4 text-black md:mb-8 mb-4">
-            <div className="md:w-1/3 mb-4">
+          <div className="flex flex-col sm:flex-row sm:space-x-4 text-black md:mb-8 mb-4">
+            <div className="xl:w-1/3 mb-4">
               <label>
                 <input
                   type="radio"
@@ -132,7 +132,7 @@ const AddItemsToList = () => {
                 Soon
               </label>
             </div>
-            <div className="md:w-1/3 mb-4">
+            <div className="xl:w-1/3 mb-4">
               <label>
                 <input
                   type="radio"
@@ -145,7 +145,7 @@ const AddItemsToList = () => {
                 Kind of soon
               </label>
             </div>
-            <div className="md:w-1/3 mb-4">
+            <div className="xl:w-1/3 mb-4">
               <label>
                 <input
                   type="radio"

@@ -1,0 +1,28 @@
+<span>
+            <svg
+              width="13"
+              height="15"
+              viewBox="0 0 15 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.9517 0.99173L1.00558 10.5098L14.0483 17.9915"
+                stroke="white"
+              />
+            </svg>
+          </span>
+          <span className="">
+            <svg
+              width="13"
+              height="15"
+              viewBox="0 0 15 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.9517 0.99173L1.00558 10.5098L14.0483 17.9915"
+                stroke="white"
+              />
+            </svg>
+          </span>
