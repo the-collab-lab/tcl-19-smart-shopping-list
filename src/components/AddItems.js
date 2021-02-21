@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
 import Nav from './Nav';
+import ItemListButton from './ItemListButton';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -39,7 +40,7 @@ const AddItemsToList = () => {
     event.preventDefault();
 
     if (shoppingListItemName === '') {
-      alert('Please enter item name...');
+      alert('Please add an item');
       return;
     }
     const item = {
@@ -73,7 +74,9 @@ const AddItemsToList = () => {
         token: userToken,
         items: [item],
       })
-        .then(() => alert('successfully added'))
+        .then(() => {
+          alert('successfully added');
+        })
         .catch((e) => console.log('error', e));
     }
     setShoppingListItemName('');
@@ -89,10 +92,9 @@ const AddItemsToList = () => {
   }
 
   return (
-    <div>
-      <div>
+    <div className="flex justify-center ">
+      <div className=" text-black md:mt-40 lg:w-1/3 mt-40">
         <form onSubmit={submitShoppingListItemHandler}>
-          <h2>Add Item to List</h2>
           {shoppingListItemNameExists ? (
             <p>
               {`You have ${normalizeString(
@@ -100,59 +102,75 @@ const AddItemsToList = () => {
               )} in your shopping list already`}
             </p>
           ) : null}
-          <div>
-            <label>
-              Name
+          <div className="">
+            <div className="flex justify-center">
+              {/* <label className="text-black">Name of Item</label>  */}
+
               <input
                 type="text"
+                placeholder="Add Item..."
                 value={shoppingListItemName}
                 onChange={shoppingListItemNameHandler}
+                className="border text-gray-900 md:w-2/3 px-2 py-2 md:px-4 md:py-3 mb-8 rounded"
               />
-            </label>
+            </div>
           </div>
-          <fieldset>
-            How soon are you likely to buy it again?
-            <div>
+          <div className="text-center md:mb-8 mb-4">
+            <p className="">How soon are you likely to buy it again?</p>
+          </div>
+          <div className="flex flex-col sm:flex-row sm:space-x-4 text-black md:mb-8 mb-4">
+            <div className="xl:w-1/3 mb-4">
               <label>
-                Soon
                 <input
                   type="radio"
                   name="next_purchase"
                   value="7"
                   checked={daysLeftForNextPurchase === 7}
                   onChange={daysLeftForNextPurchaseHandler}
+                  className="mr-4"
                 />
+                Soon
               </label>
             </div>
-            <div>
+            <div className="xl:w-1/3 mb-4">
               <label>
-                Kind of soon
                 <input
                   type="radio"
                   name="next_purchase"
                   value="14"
                   checked={daysLeftForNextPurchase === 14}
                   onChange={daysLeftForNextPurchaseHandler}
+                  className="mr-4"
                 />
+                Kind of soon
               </label>
             </div>
-            <div>
+            <div className="xl:w-1/3 mb-4">
               <label>
-                Not soon
                 <input
                   type="radio"
                   name="next_purchase"
                   value="30"
                   checked={daysLeftForNextPurchase === 30}
                   onChange={daysLeftForNextPurchaseHandler}
+                  className="mr-4"
                 />
+                Not soon
               </label>
             </div>
-          </fieldset>
-          <button type="submit">Add Item</button>
+          </div>
+          <div className="text-center mt-8">
+            <button
+              className="border py-2 px-3 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom w-32 md:w-60"
+              type="submit"
+            >
+              Add Item
+            </button>
+          </div>
         </form>
       </div>
       <Nav />
+      <ItemListButton />
     </div>
   );
 };

@@ -12,6 +12,7 @@ import {
   getItemDescription,
   sortShoppingList,
 } from './sortingFunctions';
+import AddItemButton from './AddItemButton';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -177,6 +178,7 @@ const ItemsList = () => {
         </div>
       )}
       <Nav />
+      <AddItemButton />
     </div>
   );
 };
