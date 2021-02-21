@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
 import getToken from '../lib/tokens';
-import '../styles/Home.css';
 
 const db = firebase.firestore().collection('shopping_list');
 

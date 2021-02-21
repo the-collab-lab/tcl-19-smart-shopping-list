@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import firebase from '../lib/firebase';
 import Nav from './Nav';
-import '../styles/ItemsList.css';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router-dom';
 import calculateEstimate from '../lib/estimates';
