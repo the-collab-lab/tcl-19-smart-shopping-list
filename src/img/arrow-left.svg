@@ -1,4 +1,4 @@
-<span>
+<span id="arror-right">
             <svg
               width="13"
               height="15"
@@ -12,7 +12,7 @@
               />
             </svg>
           </span>
-          <span className="">
+          <span >
             <svg
               width="13"
               height="15"
