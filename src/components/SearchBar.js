@@ -11,10 +11,10 @@ const SearchBar = ({ value, setValue }) => {
   };
 
   return (
-    <div className="flex mx-2">
+    <div className="flex mx-2 py-2">
       <input
-        className="py-3 px-2 border rounded-lg py-2 text-gray-900
-      focus:shadow-outline focus:bg-blue-100 placeholder-gray-400 w-full"
+        className="w-full py-3 px-2 border rounded-lg text-gray-900
+      focus:bg-green-100 placeholder-gray-400 focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none"
         type="text"
         placeholder="Search list.."
         value={value}
@@ -22,7 +22,7 @@ const SearchBar = ({ value, setValue }) => {
       />
       {value && (
         <button
-          className="bg-gray-800 py-2 px-4 rounded-lg text-gray-100 ml-1 shadow-md"
+          className="bg-green-600 py-2 px-4 rounded-lg text-gray-100 ml-1 shadow-md"
           type="reset"
           onClick={clearText}
           value="Reset"
