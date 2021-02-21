@@ -1,4 +1,4 @@
- {
+{
   "name": "smart-shopping-list",
   "version": "0.1.0",
   "private": true,
@@ -12,8 +12,7 @@
     "react-dom": "^16.14.0",
     "react-firebase-hooks": "^2.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.4",
-    "rsuite": "^4.8.9"
+    "react-scripts": "^3.4.4"
   },
   "scripts": {
     "start": "craco start",

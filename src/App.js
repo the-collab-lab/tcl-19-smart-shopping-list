@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import ItemsList from './components/ItemsList';
 import AddItems from './components/AddItems';
-import './styles/App.css';
 import Home from './components/Home';
 
 function App() {

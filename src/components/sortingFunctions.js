@@ -10,13 +10,13 @@ export const getShoppingItemBackgroundStyles = (
   );
 
   if (daysBetweenCurrentAndPreviousPurchase >= daysLeftForNextPurchase * 2) {
-    return 'grey';
+    return '#D1D5DB';
   } else if (daysLeftForNextPurchase <= 7) {
-    return 'green';
+    return '#047857';
   } else if (daysLeftForNextPurchase < 30) {
-    return 'orange';
+    return '#10B981';
   } else {
-    return 'red';
+    return '#6EE7B7';
   }
 };
 
@@ -30,14 +30,9 @@ export const getItemDescription = (days) => {
   }
 };
 
-// Compare two elements a and b. If a is bigger than b sort b before a.
-// If a and b are the same sort alphabetically.
 export const sortShoppingList = (a, b) => {
-  return a.daysLeftForNextPurchase > b.daysLeftForNextPurchase
-    ? 1
-    : a.daysLeftForNextPurchase === b.daysLeftForNextPurchase
-    ? a.shoppingListItemName > b.shoppingListItemName
-      ? 1
-      : -1
-    : -1;
+  return (
+    a.daysLeftForNextPurchase - b.daysLeftForNextPurchase ||
+    a.shoppingListItemName - b.shoppingListItemName
+  );
 };
