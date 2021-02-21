@@ -201,6 +201,7 @@ const ItemsList = () => {
       </main>
       <footer className="absolute bottom-0">
         <Nav />
+        <AddItemButton />
       </footer>
     </div>
   );

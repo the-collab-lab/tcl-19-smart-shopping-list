@@ -104,45 +104,46 @@ const AddItemsToList = () => {
           </span>
         </header>
       </div>
-      <div className="flex justify-center ">
-        <div className=" text-black md:mt-40 lg:w-1/3 mt-40">
-          <form onSubmit={submitShoppingListItemHandler}>
-            {shoppingListItemNameExists ? (
-              <p>
-                {`You have ${normalizeString(
-                  shoppingListItemName,
-                )} in your shopping list already`}
-              </p>
-            ) : null}
-            <div className="">
-              <div className="flex justify-center">
-                {/* <label className="text-black">Name of Item</label>  */}
-
-                <input
-                  type="text"
-                  placeholder="Add Item..."
-                  value={shoppingListItemName}
-                  onChange={shoppingListItemNameHandler}
-                  className="border text-gray-900 md:w-2/3 px-2 py-2 md:px-4 md:py-3 mb-8 rounded"
-                />
-              </div>
-            </div>
-            <div className="text-center md:mb-8 mb-4">
-              <p className="">How soon are you likely to buy it again?</p>
-            </div>
-            <div className="flex flex-col sm:flex-row sm:space-x-4 text-black md:mb-8 mb-4">
-              <div className="xl:w-1/3 mb-4">
-                <label>
+      <main className="bg-white relative w-full h-full mt-24 rounded-t-3xl overflow-auto">
+        <div className="flex justify-center ">
+          <div className=" text-black md:mt-40 lg:w-1/3 mt-40">
+            <form onSubmit={submitShoppingListItemHandler}>
+              {shoppingListItemNameExists ? (
+                <p>
+                  {`You have ${normalizeString(
+                    shoppingListItemName,
+                  )} in your shopping list already`}
+                </p>
+              ) : null}
+              <div className="">
+                <div className="flex justify-center">
+                  {/* <label className="text-black">Name of Item</label>  */}
                   <input
-                    type="radio"
-                    name="next_purchase"
-                    value="7"
-                    checked={daysLeftForNextPurchase === 7}
-                    onChange={daysLeftForNextPurchaseHandler}
-                    className="mr-4"
+                    type="text"
+                    placeholder="Add Item..."
+                    value={shoppingListItemName}
+                    onChange={shoppingListItemNameHandler}
+                    className="border text-gray-900 md:w-2/3 px-2 py-2 md:px-4 md:py-3 mb-8 rounded focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none focus:bg-green-100"
                   />
-                  Soon
-                </label>
+                </div>
+              </div>
+              <div className="text-center md:mb-8 mb-4">
+                <p className="">How soon are you likely to buy it again?</p>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:space-x-4 text-black md:mb-8 mb-4">
+                <div className="xl:w-1/3 mb-4">
+                  <label>
+                    <input
+                      type="radio"
+                      name="next_purchase"
+                      value="7"
+                      checked={daysLeftForNextPurchase === 7}
+                      onChange={daysLeftForNextPurchaseHandler}
+                      className="mr-4"
+                    />
+                    Soon
+                  </label>
+                </div>
                 <div className="xl:w-1/3 mb-4">
                   <label>
                     <input
@@ -178,12 +179,13 @@ const AddItemsToList = () => {
                   Add Item
                 </button>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
+
           <Nav />
           <ItemListButton />
         </div>
-      </div>
+      </main>
     </div>
   );
 };
