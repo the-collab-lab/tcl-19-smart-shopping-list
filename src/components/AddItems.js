@@ -106,7 +106,7 @@ const AddItemsToList = () => {
       </div>
       <main className="bg-white relative w-full h-full mt-24 rounded-t-3xl overflow-auto">
         <div className="flex justify-center ">
-          <div className=" text-black md:mt-40 lg:w-1/3 mt-40">
+          <div className=" text-black md:mt-40 lg:w-1/3 mt-20">
             <form onSubmit={submitShoppingListItemHandler}>
               {shoppingListItemNameExists ? (
                 <p>
