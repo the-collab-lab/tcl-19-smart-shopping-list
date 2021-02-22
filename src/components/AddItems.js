@@ -4,6 +4,7 @@ import firebase from '../lib/firebase';
 import Nav from './Nav';
 import ItemListButton from './ItemListButton';
 import { ReactComponent as HomeIcon } from '../img/home-solid.svg';
+import Modal from './Modal';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -12,6 +13,8 @@ const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
 const AddItemsToList = () => {
   const userToken = localStorage.getItem('token');
   const [shoppingListItemName, setShoppingListItemName] = useState('');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
   const [daysLeftForNextPurchase, setDaysLeftForNextPurchase] = useState(7);
   const [shoppingListItemNameExists, setShoppingListItemNameExists] = useState(
     false,
@@ -41,7 +44,9 @@ const AddItemsToList = () => {
     event.preventDefault();
 
     if (shoppingListItemName === '') {
-      alert('Please add an item');
+      setShowSuccessModal(true);
+      setModalMessage('Please add an item check');
+      // alert('Please add an item');
       return;
     }
     const item = {
@@ -68,7 +73,11 @@ const AddItemsToList = () => {
         .update({
           items: arrayUnion(item),
         })
-        .then(() => alert('successfully added'))
+        .then(() => {
+          setShowSuccessModal(true);
+          setModalMessage('successfully added');
+          // alert('successfully added');
+        })
         .catch((e) => console.log('error', e));
     } else {
       db.add({
@@ -76,7 +85,9 @@ const AddItemsToList = () => {
         items: [item],
       })
         .then(() => {
-          alert('successfully added');
+          setShowSuccessModal(true);
+          setModalMessage('successfully added');
+          // alert('successfully added');
         })
         .catch((e) => console.log('error', e));
     }
@@ -94,6 +105,11 @@ const AddItemsToList = () => {
 
   return (
     <div>
+      <Modal
+        message={modalMessage}
+        showModal={showSuccessModal}
+        setShowSuccessModal={setShowSuccessModal}
+      />
       <div className="max-h-screen flex flex-col box-border items-center">
         <header className="bg-green-400 w-full fixed text-center">
           <h2 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
@@ -109,10 +125,10 @@ const AddItemsToList = () => {
           <div className=" text-black md:mt-40 lg:w-1/3 mt-20">
             <form onSubmit={submitShoppingListItemHandler}>
               {shoppingListItemNameExists ? (
-                <p>
+                <p className="text-center mb-2 italic text-xs text-red-600">
                   {`You have ${normalizeString(
                     shoppingListItemName,
-                  )} in your shopping list already`}
+                  )} in your shopping list already!`}
                 </p>
               ) : null}
               <div className="">
