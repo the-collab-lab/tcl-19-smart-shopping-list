@@ -14,11 +14,12 @@ function AddItemButton() {
         <button
           type="submit"
           onClick={handleRedirectToAddItem}
-          className="btn-bg flex items-center border py-3 px-3 hover:shadow-hover justify-center rounded-md bg-green-600 text-white w-40"
+          className="bg-green-700 text-gray-100 py-3 px-4 flex items-center shadow-hover rounded-lg"
         >
-          <span className="mr-4">Add an Item</span>
-          <ArrowRight />
-          <ArrowRight />
+          Add an Item
+          <span className="ml-2">
+            <ArrowRight />
+          </span>
         </button>
       </div>
     </div>
