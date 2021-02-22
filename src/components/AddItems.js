@@ -19,6 +19,11 @@ const AddItemsToList = () => {
   );
   const [isModalActive, setModalActive] = useState(false);
 
+  const removeModal = () => {
+    console.log('running');
+    setModalActive(false);
+  };
+
   const [shoppingList, loading, error] = useCollectionData(
     db.where('token', '==', userToken),
     { idField: 'documentId' },
@@ -43,6 +48,7 @@ const AddItemsToList = () => {
     event.preventDefault();
 
     if (shoppingListItemName === '') {
+      console.log('here');
       setModalActive(true);
       return;
     }
@@ -97,7 +103,11 @@ const AddItemsToList = () => {
   return (
     <div className="flex justify-center ">
       <div className=" text-black md:mt-40 md:w-1/3 mt-20">
-        <Modal message="Please add an item" active={isModalActive} />
+        <Modal
+          message="Please add an item"
+          removeModal={removeModal}
+          active={isModalActive}
+        />
         <form onSubmit={submitShoppingListItemHandler}>
           {shoppingListItemNameExists ? (
             <p>
