@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import firebase from '../lib/firebase';
+import { shoppingListCollection, arrayUnion } from '../lib/firebase';
 import Nav from './Nav';
 import ItemListButton from './ItemListButton';
 import { ReactComponent as HomeIcon } from '../img/home-solid.svg';
-
-const db = firebase.firestore().collection('shopping_list');
-
-const arrayUnion = firebase.firestore.FieldValue.arrayUnion;
+import { normalizeString } from '../utils/utility-functions';
 
 const AddItemsToList = () => {
   const userToken = localStorage.getItem('token');
@@ -17,8 +14,12 @@ const AddItemsToList = () => {
     false,
   );
 
-  const [shoppingList, loading, error] = useCollectionData(
-    db.where('token', '==', userToken),
+  const [
+    shoppingList,
+    loading,
+    error,
+  ] = useCollectionData(
+    shoppingListCollection.where('token', '==', userToken),
     { idField: 'documentId' },
   );
 
@@ -28,13 +29,9 @@ const AddItemsToList = () => {
       setShoppingListItemNameExists(false);
     }
   };
+
   const daysLeftForNextPurchaseHandler = (event) => {
     setDaysLeftForNextPurchase(parseInt(event.target.value));
-  };
-
-  const normalizeString = (str) => {
-    const nonWordCharactersAndUnderscores = /[\W_]/g;
-    return str.toLowerCase().replace(nonWordCharactersAndUnderscores, '');
   };
 
   function submitShoppingListItemHandler(event) {
@@ -64,17 +61,19 @@ const AddItemsToList = () => {
         return;
       }
 
-      db.doc(documentId)
+      shoppingListCollection
+        .doc(documentId)
         .update({
           items: arrayUnion(item),
         })
         .then(() => alert('successfully added'))
         .catch((e) => console.log('error', e));
     } else {
-      db.add({
-        token: userToken,
-        items: [item],
-      })
+      shoppingListCollection
+        .add({
+          token: userToken,
+          items: [item],
+        })
         .then(() => {
           alert('successfully added');
         })
@@ -117,7 +116,6 @@ const AddItemsToList = () => {
               ) : null}
               <div className="">
                 <div className="flex justify-center">
-                  {/* <label className="text-black">Name of Item</label>  */}
                   <input
                     type="text"
                     placeholder="Add Item..."

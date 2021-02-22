@@ -1,49 +1,42 @@
 import React, { useState } from 'react';
-import firebase from '../lib/firebase';
+import { shoppingListCollection } from '../lib/firebase';
 import Nav from './Nav';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router-dom';
 import calculateEstimate from '../lib/estimates';
 import SearchBar from './SearchBar';
 import {
-  getShoppingItemBackgroundStyles,
   getItemDescription,
   sortShoppingList,
-} from './sortingFunctions';
+  getShoppingItemBackgroundStyles,
+  wasItemPurchasedWithinLastOneDay,
+  getDaysBetweenCurrentAndPreviousPurchase,
+} from '../utils/utility-functions';
 import AddItemButton from './AddItemButton';
 import { ReactComponent as TrashBin } from '../img/trash-alt-regular.svg';
 import { ReactComponent as HomeIcon } from '../img/home-solid.svg';
 import spinner from '../img/spinner-3.gif';
 import '../index.css';
 
-const db = firebase.firestore().collection('shopping_list');
-
-const wasItemPurchasedWithinLastOneDay = (lastPurchasedOn) => {
-  if (lastPurchasedOn === null) return false;
-  const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
-  return Date.now() - lastPurchasedOn <= oneDayInMilliseconds;
-};
-
-const getDaysBetweenCurrentAndPreviousPurchase = (
-  previousPurchaseDate,
-  currentPurchaseDate = Date.now(),
-) => {
-  const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
-  return (currentPurchaseDate - previousPurchaseDate) / oneDayInMilliseconds;
-};
-
 const ItemsList = () => {
   const userToken = localStorage.getItem('token');
   const history = useHistory();
   const [searchTerm, setSearchTerm] = useState('');
 
-  const [shoppingList, loading, error] = useCollectionData(
-    db.where('token', '==', userToken),
+  const [
+    shoppingList,
+    loading,
+    error,
+  ] = useCollectionData(
+    shoppingListCollection.where('token', '==', userToken),
     { idField: 'documentId' },
   );
 
-  const markItemAsPurchased = (index) => {
+  const markItemAsPurchased = (itemName) => {
     const { items, documentId } = shoppingList[0];
+    const index = items.findIndex((obj) => {
+      return obj.shoppingListItemName === itemName;
+    });
     const { lastPurchasedOn } = items[index];
     const shoppingItemObject = items[index];
     const presentDate = Date.now();
@@ -69,7 +62,8 @@ const ItemsList = () => {
       }
     }
 
-    db.doc(documentId)
+    shoppingListCollection
+      .doc(documentId)
       .update({
         items: items,
       })
@@ -91,7 +85,8 @@ const ItemsList = () => {
     });
     const { items, documentId } = shoppingList[0];
     items.splice(deleteItemIndex, 1);
-    db.doc(documentId)
+    shoppingListCollection
+      .doc(documentId)
       .update({
         items: items,
       })
@@ -147,45 +142,44 @@ const ItemsList = () => {
                 )
                 .sort(sortShoppingList)
                 .map((shoppingItemObject, index) => {
-                  const shopIndex = shoppingList[0].items.indexOf(
-                    shoppingItemObject,
-                  );
+                  const {
+                    shoppingListItemName,
+                    daysLeftForNextPurchase,
+                    lastPurchasedOn,
+                  } = shoppingItemObject;
                   return (
                     <li
                       className="py-3 mt-2 rounded-lg flex items-center shadow-md"
-                      key={shoppingItemObject.shoppingListItemName + index}
+                      key={shoppingListItemName + index}
                       style={{
                         backgroundColor: getShoppingItemBackgroundStyles(
-                          shoppingItemObject.daysLeftForNextPurchase,
-                          getDaysBetweenCurrentAndPreviousPurchase,
-                          shoppingItemObject.lastPurchasedOn,
+                          daysLeftForNextPurchase,
+                          lastPurchasedOn,
                         ),
                       }}
                     >
                       <input
                         className="mx-4"
                         type="checkbox"
-                        id={shoppingItemObject.shoppingListItemName}
-                        onChange={() => markItemAsPurchased(shopIndex)}
+                        id={shoppingListItemName}
+                        onChange={() =>
+                          markItemAsPurchased(shoppingListItemName)
+                        }
                         checked={wasItemPurchasedWithinLastOneDay(
-                          shoppingItemObject.lastPurchasedOn,
+                          lastPurchasedOn,
                         )}
                       />
                       <label
                         className="flex-1 text-xl"
-                        htmlFor={shoppingItemObject.shoppingListItemName}
-                        aria-label={getItemDescription(
-                          shoppingItemObject.daysLeftForNextPurchase,
-                        )}
+                        htmlFor={shoppingListItemName}
+                        aria-label={getItemDescription(daysLeftForNextPurchase)}
                       >
-                        {shoppingItemObject.shoppingListItemName}
+                        {shoppingListItemName}
                       </label>
                       <button
                         className="text-gray-100 mr-4"
                         onClick={() =>
-                          deleteItemFromShoppingList(
-                            shoppingItemObject.shoppingListItemName,
-                          )
+                          deleteItemFromShoppingList(shoppingListItemName)
                         }
                       >
                         <span>
