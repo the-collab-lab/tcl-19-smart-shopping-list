@@ -170,7 +170,7 @@ const AddItemsToList = () => {
             </section>
             <section className="text-center mt-8">
               <button
-                className="border py-2 px-3 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom w-32 md:w-60"
+                className="border py-2 px-3 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom w-32 mb-4 md:w-60 mb-4"
                 type="submit"
               >
                 Add Item
