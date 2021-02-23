@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import firebase from '../lib/firebase';
+import { shoppingListCollection } from '../lib/firebase';
 import getToken from '../lib/tokens';
-
-const db = firebase.firestore().collection('shopping_list');
 
 const Home = () => {
   const [existingToken, setExistingToken] = useState('');
@@ -21,7 +19,7 @@ const Home = () => {
   };
 
   const [shoppingList] = useCollectionData(
-    db.where('token', '==', existingToken),
+    shoppingListCollection.where('token', '==', existingToken),
   );
 
   const submitToken = (e) => {

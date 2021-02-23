@@ -11,7 +11,7 @@ const Nav = () => {
           <ul className="flex justify-center content-center fixed bottom-0 right-0 left-0 m-auto bg-green-300 rounded-t-3xl shadow-top">
             <li className="list-none mr-8 py-2">
               <NavLink to="/list" activeClassName="font-bold">
-                <button class="rounded-full h-20 w-20 flex items-center justify-center bg-green-600 text-white shadow-xl">
+                <button className="rounded-full h-20 w-20 flex items-center justify-center bg-green-600 text-white shadow-xl">
                   <TaskIcon />
                 </button>
               </NavLink>
