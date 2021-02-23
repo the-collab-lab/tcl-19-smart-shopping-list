@@ -23,8 +23,7 @@ const Nav = () => {
               <NavLink to="/addItem" activeClassName="font-bold">
                 <button
                   class="rounded-full h-20 w-20 flex items-center justify-center bg-green-600 text-white shadow-xl"
-                  aria
-                  label="Go to Add Item"
+                  aria-label="Go to Add Item"
                 >
                   <AddIcon />
                 </button>
