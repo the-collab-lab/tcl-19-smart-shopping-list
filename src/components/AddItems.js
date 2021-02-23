@@ -116,6 +116,7 @@ const AddItemsToList = () => {
             ) : null}
             <section className="flex justify-center">
               <input
+                aria-label="Add an item input"
                 type="text"
                 placeholder="Add Item..."
                 value={shoppingListItemName}
