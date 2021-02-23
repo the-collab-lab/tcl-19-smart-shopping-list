@@ -167,7 +167,7 @@ const ItemsList = () => {
                       }}
                     >
                       <input
-                        className="mx-4"
+                        className="mx-4 h-6 w-6 rounded text-pink-500 focus:ring-2 focus:ring-pink-600 cursor-pointer"
                         type="checkbox"
                         id={shoppingItemObject.shoppingListItemName}
                         onChange={() => markItemAsPurchased(shopIndex)}
