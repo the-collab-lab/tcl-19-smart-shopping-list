@@ -11,7 +11,7 @@ import spinner from '../img/spinner-3.gif';
 const AddItemsToList = () => {
   const userToken = localStorage.getItem('token');
   const [shoppingListItemName, setShoppingListItemName] = useState('');
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [daysLeftForNextPurchase, setDaysLeftForNextPurchase] = useState(7);
   const [shoppingListItemNameExists, setShoppingListItemNameExists] = useState(
@@ -42,7 +42,7 @@ const AddItemsToList = () => {
     event.preventDefault();
 
     if (shoppingListItemName === '') {
-      setShowSuccessModal(true);
+      setShowModal(true);
       setModalMessage('Please add an item');
       return;
     }
@@ -72,10 +72,17 @@ const AddItemsToList = () => {
           items: arrayUnion(item),
         })
         .then(() => {
-          setShowSuccessModal(true);
-          setModalMessage('Item successfully added');
+          setShowModal(true);
+          setModalMessage(
+            `Added ${shoppingListItemName} successfully to your shopping list.`,
+          );
         })
-        .catch((e) => console.log('error', e));
+        .catch((e) => {
+          setShowModal(true);
+          setModalMessage(
+            'Oops. An error has occurred. Please try again later',
+          );
+        });
     } else {
       shoppingListCollection
         .add({
@@ -83,29 +90,48 @@ const AddItemsToList = () => {
           items: [item],
         })
         .then(() => {
-          setShowSuccessModal(true);
-          setModalMessage('Item successfully added');
+          setShowModal(true);
+          setModalMessage(
+            `Added ${shoppingListItemName} successfully to your shopping list.`,
+          );
         })
-        .catch((e) => console.log('error', e));
+        .catch((e) => {
+          setShowModal(true);
+          setModalMessage(
+            'Oops. An error has occurred. Please try again later',
+          );
+        });
     }
     setShoppingListItemName('');
     setDaysLeftForNextPurchase(7);
   }
 
   if (loading) {
-    return <img className="m-auto w-12" src={spinner} alt="Loading..." />;
+    return (
+      <img
+        className="m-auto w-12"
+        src={spinner}
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+        alt="Loading..."
+      />
+    );
   }
 
   if (error) {
-    return <p>An error occured</p>;
+    return <p>An error has occured</p>;
   }
 
   return (
     <div>
       <Modal
         message={modalMessage}
-        showModal={showSuccessModal}
-        setShowSuccessModal={setShowSuccessModal}
+        showModal={showModal}
+        setShowSuccessModal={setShowModal}
       />
       <div className="max-h-screen flex flex-col box-border items-center">
         <header className="bg-green-400 w-full fixed text-center">
@@ -132,7 +158,7 @@ const AddItemsToList = () => {
                 <div className="flex justify-center">
                   <input
                     type="text"
-                    placeholder="Add Item..."
+                    placeholder="Item name"
                     value={shoppingListItemName}
                     onChange={shoppingListItemNameHandler}
                     className="border text-gray-900 md:w-2/3 px-2 py-2 md:px-4 md:py-3 mb-8 rounded focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none focus:bg-green-100"

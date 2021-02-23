@@ -16,16 +16,15 @@ import AddItemButton from './AddItemButton';
 import { ReactComponent as TrashBin } from '../img/trash-alt-regular.svg';
 import { ReactComponent as HomeIcon } from '../img/home-solid.svg';
 import spinner from '../img/spinner-3.gif';
-import ConfirmModal from './ConfirmModal';
+import ConfirmDeleteModal from './ConfirmDeleteModal';
 import '../index.css';
 
 const ItemsList = () => {
   const userToken = localStorage.getItem('token');
   const history = useHistory();
   const [searchTerm, setSearchTerm] = useState('');
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
-  const [itemsToDelete, setsetItemToDelete] = useState('');
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState('');
 
   const [
     shoppingList,
@@ -79,12 +78,9 @@ const ItemsList = () => {
     history.push('/additem');
   };
 
-  const handledeleteConfirmation = (itemName) => {
-    setShowSuccessModal(true);
-    setsetItemToDelete(itemName);
-    setModalMessage(
-      `Are you sure you want to delete ${itemName} from shopping list?`,
-    );
+  const confirmDeleteItemHandler = (itemName) => {
+    setShowDeleteModal(true);
+    setItemToDelete(itemName);
   };
 
   const deleteItemFromShoppingList = (itemName) => {
@@ -106,118 +102,128 @@ const ItemsList = () => {
 
   const listHasNoItems = shoppingList && !shoppingList.length;
   if (loading) {
-    return <img className="m-auto w-12" src={spinner} alt="Loading..." />;
-  } else {
     return (
-      <div>
-        <ConfirmModal
-          message={modalMessage}
-          showModal={showSuccessModal}
-          setShowSuccessModal={setShowSuccessModal}
-          deleteItemFromShoppingList={deleteItemFromShoppingList}
-          itemsToDelete={itemsToDelete}
-        />
-        <div className="max-h-screen flex flex-col box-border items-center">
-          <header className="bg-green-400 w-full fixed text-center">
-            <h2 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
-              Your Shopping List
-            </h2>
-            <span className="text-white top-0 right-0 absolute sm:mt-4 sm:mr-4">
-              <HomeIcon />
-            </span>
-          </header>
-          <main className="bg-white relative w-full h-full mt-24 rounded-t-3xl overflow-auto">
-            {error && <p>An error has occured...</p>}
-            {listHasNoItems && (
-              <div className="h-64 bg-white flex flex-col w-screen justify-center items-center text-gray-900">
-                <p className="">You haven't created a shopping list yet...</p>
-                <button
-                  className="bg-white-100 px-6 py-3 text-sm mt-6 border border-color-gray-500 border-solid rounded shadow-md hover:bg-green-500 cursor-pointer hover:text-white"
-                  type="submit"
-                  onClick={handleRedirect}
-                >
-                  Add First Item
-                </button>
-              </div>
-            )}
-            {listHasAtLeastOneItem && (
-              <div className="mt-6 max-w-md mx-auto overflow-auto">
-                <SearchBar
-                  value={searchTerm}
-                  setValue={(searchTerm) => {
-                    setSearchTerm(searchTerm);
-                  }}
-                />
-                <ul className="mt-4 mb-2 mx-2">
-                  {shoppingList[0].items
-                    .filter((shoppingItemObject) =>
-                      shoppingItemObject.shoppingListItemName
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()),
-                    )
-                    .sort(sortShoppingList)
-                    .map((shoppingItemObject, index) => {
-                      const {
-                        shoppingListItemName,
-                        daysLeftForNextPurchase,
-                        lastPurchasedOn,
-                      } = shoppingItemObject;
-                      return (
-                        <li
-                          className="py-3 mt-2 rounded-lg flex items-center shadow-md"
-                          key={shoppingListItemName + index}
-                          style={{
-                            backgroundColor: getShoppingItemBackgroundStyles(
-                              daysLeftForNextPurchase,
-                              lastPurchasedOn,
-                            ),
-                          }}
-                        >
-                          <input
-                            className="mx-4"
-                            type="checkbox"
-                            id={shoppingListItemName}
-                            onChange={() =>
-                              markItemAsPurchased(shoppingListItemName)
-                            }
-                            checked={wasItemPurchasedWithinLastOneDay(
-                              lastPurchasedOn,
-                            )}
-                          />
-                          <label
-                            className="flex-1 text-xl"
-                            htmlFor={shoppingListItemName}
-                            aria-label={getItemDescription(
-                              daysLeftForNextPurchase,
-                            )}
-                          >
-                            {shoppingListItemName}
-                          </label>
-                          <button
-                            className="text-gray-100 mr-4"
-                            onClick={() =>
-                              handledeleteConfirmation(shoppingListItemName)
-                            }
-                          >
-                            <span>
-                              <TrashBin />
-                            </span>
-                          </button>
-                        </li>
-                      );
-                    })}
-                </ul>
-              </div>
-            )}
-          </main>
-          <footer className="absolute bottom-0">
-            <Nav />
-            <AddItemButton />
-          </footer>
-        </div>
-      </div>
+      <img
+        className="m-auto w-20"
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+        src={spinner}
+        alt="Loading..."
+      />
     );
   }
+  return (
+    <div>
+      <ConfirmDeleteModal
+        showDeleteModal={showDeleteModal}
+        setShowDeleteModal={setShowDeleteModal}
+        deleteItemFromShoppingList={deleteItemFromShoppingList}
+        itemToDelete={itemToDelete}
+      />
+      <div className="max-h-screen flex flex-col box-border items-center">
+        <header className="bg-green-400 w-full fixed text-center">
+          <h2 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
+            Your Shopping List
+          </h2>
+          <span className="text-white top-0 right-0 absolute sm:mt-4 sm:mr-4">
+            <HomeIcon />
+          </span>
+        </header>
+        <main className="bg-white relative w-full h-full mt-24 rounded-t-3xl overflow-auto">
+          {error && <p>An error has occured...</p>}
+          {listHasNoItems && (
+            <div className="h-64 bg-white flex flex-col w-screen justify-center items-center text-gray-900">
+              <p className="">You haven't created a shopping list yet...</p>
+              <button
+                className="bg-white-100 px-6 py-3 text-sm mt-6 border border-color-gray-500 border-solid rounded shadow-md hover:bg-green-500 cursor-pointer hover:text-white"
+                type="submit"
+                onClick={handleRedirect}
+              >
+                Add First Item
+              </button>
+            </div>
+          )}
+          {listHasAtLeastOneItem && (
+            <div className="mt-6 max-w-md mx-auto overflow-auto">
+              <SearchBar
+                value={searchTerm}
+                setValue={(searchTerm) => {
+                  setSearchTerm(searchTerm);
+                }}
+              />
+              <ul className="mt-4 mb-2 mx-2">
+                {shoppingList[0].items
+                  .filter((shoppingItemObject) =>
+                    shoppingItemObject.shoppingListItemName
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()),
+                  )
+                  .sort(sortShoppingList)
+                  .map((shoppingItemObject, index) => {
+                    const {
+                      shoppingListItemName,
+                      daysLeftForNextPurchase,
+                      lastPurchasedOn,
+                    } = shoppingItemObject;
+                    return (
+                      <li
+                        className="py-3 mt-2 rounded-lg flex items-center shadow-md"
+                        key={shoppingListItemName + index}
+                        style={{
+                          backgroundColor: getShoppingItemBackgroundStyles(
+                            daysLeftForNextPurchase,
+                            lastPurchasedOn,
+                          ),
+                        }}
+                      >
+                        <input
+                          className="mx-4"
+                          type="checkbox"
+                          id={shoppingListItemName}
+                          onChange={() =>
+                            markItemAsPurchased(shoppingListItemName)
+                          }
+                          checked={wasItemPurchasedWithinLastOneDay(
+                            lastPurchasedOn,
+                          )}
+                        />
+                        <label
+                          className="flex-1 text-xl"
+                          htmlFor={shoppingListItemName}
+                          aria-label={getItemDescription(
+                            daysLeftForNextPurchase,
+                          )}
+                        >
+                          {shoppingListItemName}
+                        </label>
+                        <button
+                          className="text-gray-100 mr-4"
+                          onClick={() =>
+                            confirmDeleteItemHandler(shoppingListItemName)
+                          }
+                        >
+                          <span>
+                            <TrashBin />
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
+              </ul>
+            </div>
+          )}
+        </main>
+        <footer className="absolute bottom-0">
+          <Nav />
+          <AddItemButton />
+        </footer>
+      </div>
+    </div>
+  );
 };
 
 export default ItemsList;

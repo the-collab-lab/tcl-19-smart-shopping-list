@@ -3,9 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { shoppingListCollection } from '../lib/firebase';
 import getToken from '../lib/tokens';
+import spinner from '../img/spinner-3.gif';
 
 const Home = () => {
   const [existingToken, setExistingToken] = useState('');
+  const [shoppingList, loading, error] = useCollectionData(
+    shoppingListCollection.where('token', '==', existingToken),
+  );
   const history = useHistory();
 
   const newList = () => {
@@ -17,10 +21,6 @@ const Home = () => {
   const tokenHandler = (event) => {
     setExistingToken(event.target.value);
   };
-
-  const [shoppingList] = useCollectionData(
-    shoppingListCollection.where('token', '==', existingToken),
-  );
 
   const submitToken = (e) => {
     e.preventDefault();
@@ -38,6 +38,24 @@ const Home = () => {
       setExistingToken(' ');
     }
   };
+  if (loading) {
+    return (
+      <img
+        className="m-auto w-20"
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+        src={spinner}
+        alt="Loading..."
+      />
+    );
+  }
+  if (error) {
+    return <p>An error has occurred</p>;
+  }
 
   return (
     <div className="home">
