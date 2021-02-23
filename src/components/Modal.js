@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Modal({ message, showModal, setShowSuccessModal }) {
+export default function Modal({ message, showModal, setShowModal }) {
   return (
     <>
       {showModal ? (
@@ -11,7 +11,7 @@ export default function Modal({ message, showModal, setShowSuccessModal }) {
                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
                   <button
                     className="p-1 ml-auto border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowSuccessModal(false)}
+                    onClick={() => setShowModal(false)}
                   >
                     <span className=" text-red h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
@@ -28,7 +28,7 @@ export default function Modal({ message, showModal, setShowSuccessModal }) {
                     className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                     style={{ transition: 'all .15s ease' }}
-                    onClick={() => setShowSuccessModal(false)}
+                    onClick={() => setShowModal(false)}
                   >
                     OK
                   </button>

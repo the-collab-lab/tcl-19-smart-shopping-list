@@ -43,7 +43,9 @@ const AddItemsToList = () => {
 
     if (shoppingListItemName === '') {
       setShowModal(true);
-      setModalMessage('Please add an item');
+      setModalMessage(
+        'Please enter item name before adding to your shopping list',
+      );
       return;
     }
     const item = {
@@ -131,7 +133,7 @@ const AddItemsToList = () => {
       <Modal
         message={modalMessage}
         showModal={showModal}
-        setShowSuccessModal={setShowModal}
+        setShowModal={setShowModal}
       />
       <div className="max-h-screen flex flex-col box-border items-center">
         <header className="bg-green-400 w-full fixed text-center">

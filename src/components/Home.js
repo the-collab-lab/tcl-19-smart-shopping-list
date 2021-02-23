@@ -4,12 +4,15 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { shoppingListCollection } from '../lib/firebase';
 import getToken from '../lib/tokens';
 import spinner from '../img/spinner-3.gif';
+import Modal from './Modal';
 
 const Home = () => {
   const [existingToken, setExistingToken] = useState('');
   const [shoppingList, loading, error] = useCollectionData(
     shoppingListCollection.where('token', '==', existingToken),
   );
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
   const history = useHistory();
 
   const newList = () => {
@@ -26,7 +29,8 @@ const Home = () => {
     e.preventDefault();
 
     if (existingToken === '') {
-      alert('Please enter a token...');
+      setShowModal(true);
+      setModalMessage('Please enter a token');
       return;
     }
 
@@ -34,7 +38,10 @@ const Home = () => {
       localStorage.setItem('token', existingToken);
       history.push('/list');
     } else {
-      alert('Token does not exist! Please try again or create a new list.');
+      setShowModal(true);
+      setModalMessage(
+        'Token does not exist. Please try again or create a new list.',
+      );
       setExistingToken(' ');
     }
   };
@@ -59,6 +66,11 @@ const Home = () => {
 
   return (
     <div className="home">
+      <Modal
+        message={modalMessage}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
       <div>
         <h1>Welcome to Smart Shopping App</h1>
         <button type="submit" onClick={newList}>
