@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReactComponent as ResetIcon } from '../img/reset.svg';
 
 const SearchBar = ({ value, setValue }) => {
   const handleChange = (event) => {
@@ -22,12 +23,12 @@ const SearchBar = ({ value, setValue }) => {
       />
       {value && (
         <button
-          className="bg-green-700 py-2 px-4 ml-1 rounded-lg text-gray-100 hover:bg-green-500"
+          className="bg-green-700 py-2 px-3 ml-1 rounded-lg text-gray-100 hover:bg-green-500 focus:outline-none"
           type="reset"
           onClick={clearText}
           value="Reset"
         >
-          X
+          <ResetIcon />
         </button>
       )}
     </div>
