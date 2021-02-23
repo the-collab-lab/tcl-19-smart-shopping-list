@@ -108,7 +108,7 @@ const ItemsList = () => {
     <div className="max-h-screen box-border flex flex-col items-center">
       <header className="bg-green-700 w-full fixed text-center text-gray-100">
         <h2 className="pt-8 pb-16 text-4xl font-thin">Your Shopping List</h2>
-        <span className="absolute top-0 right-0">
+        <span className="absolute top-0 right-0 md:hidden">
           <HomeIcon />
         </span>
       </header>
@@ -131,6 +131,9 @@ const ItemsList = () => {
         )}
         {listHasAtLeastOneItem && (
           <div className="mt-6 max-w-md mx-auto overflow-auto">
+            <nav>
+              <AddItemButton />
+            </nav>
             <SearchBar
               value={searchTerm}
               setValue={(searchTerm) => {
@@ -206,7 +209,6 @@ const ItemsList = () => {
       </main>
       <footer>
         <Nav />
-        <AddItemButton />
       </footer>
     </div>
   );
