@@ -95,7 +95,7 @@ const AddItemsToList = () => {
   return (
     <div>
       <div className="max-h-screen flex flex-col box-border items-center">
-        <header className="bg-green-400 w-full fixed text-center">
+        <header className="bg-green-700 w-full fixed text-center">
           <h2 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
             Add Item to List
           </h2>
