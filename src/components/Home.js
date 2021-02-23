@@ -3,8 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
 import getToken from '../lib/tokens';
-import { ReactComponent as CartIcon } from '../img/cart2.svg';
-import paid from '../img/paid.gif';
+import welcome from '../img/welcome.png';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -50,10 +49,7 @@ const Home = () => {
           Welcome to <br />
           Smart Shopping App
         </h1>
-        <span className="sm:hidden">
-          <CartIcon />
-        </span>
-        <img className="hidden m-auto w-12" src={paid} alt="symbol" />
+        <img className="m-auto w-56" src={welcome} alt="symbol" />
       </div>
       <button type="submit" onClick={newList} className="btn">
         Create List
