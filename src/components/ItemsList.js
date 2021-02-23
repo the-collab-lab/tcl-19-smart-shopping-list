@@ -112,7 +112,7 @@ const ItemsList = () => {
           <HomeIcon />
         </span>
       </header>
-      <main className="bg-white relative w-full h-screen mt-28 pb-24 rounded-t-3xl shadow-top overflow-auto">
+      <main className="bg-white relative w-full mt-28 pb-24 md-pb-0 rounded-t-3xl shadow-top overflow-auto">
         {loading && (
           <img className="m-auto w-12" src={spinner} alt="Loading..." />
         )}
