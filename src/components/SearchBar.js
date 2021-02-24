@@ -14,8 +14,8 @@ const SearchBar = ({ value, setValue }) => {
   return (
     <div className="flex mx-2 py-2">
       <input
-        className="w-full py-3 px-2 border rounded-lg text-gray-900
-      focus:bg-green-100 placeholder-gray-400 focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none"
+        aria-label="Search list for item"
+        className="w-full py-3 px-2 border rounded-lg focus:bg-green-100 placeholder-gray-400 focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none"
         type="text"
         placeholder="Search list.."
         value={value}

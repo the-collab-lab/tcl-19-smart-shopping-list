@@ -11,11 +11,11 @@ function AddItemButton() {
   };
   return (
     <div className="hidden md:block">
-      <div className="mb-4 flex justify-between">
+      <div className="mb-4 flex justify-around">
         <button
           type="submit"
           onClick={handleRedirectToAddItem}
-          className="bg-green-700 text-gray-100 py-3 px-4 flex items-center rounded-lg"
+          className="bg-green-700 text-gray-100 w-40 py-3 flex items-center rounded-lg justify-center shadow-bottom"
         >
           <span className="mr-2">
             <ArrowLeft />
@@ -25,7 +25,7 @@ function AddItemButton() {
         <button
           type="submit"
           onClick={handleRedirectToAddItem}
-          className="bg-green-700 text-gray-100 py-3 px-4 flex items-center rounded-lg"
+          className="bg-green-700 text-gray-100 w-40 py-3 flex items-center rounded-lg justify-center shadow-bottom"
         >
           Add an Item
           <span className="ml-2">

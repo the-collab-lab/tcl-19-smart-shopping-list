@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
 import getToken from '../lib/tokens';
-import welcome from '../img/welcome.png';
+import welcome from '../img/welcome1.png';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -70,7 +70,7 @@ const Home = () => {
           id="token"
           value={existingToken}
           onChange={tokenHandler}
-          className="my-2 py-2 shadow-hover rounded-md border-transparent focus:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent text-gray-900"
+          className="my-2 py-2 shadow-hover rounded-lg border-transparent focus:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent text-gray-900"
         />
         <button type="submit" className="btn">
           Join list

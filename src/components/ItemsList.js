@@ -112,16 +112,16 @@ const ItemsList = () => {
           <HomeIcon />
         </span>
       </header>
-      <main className="bg-white relative w-full mt-28 pb-24 md-pb-0 rounded-t-3xl shadow-top overflow-auto">
+      <main className="bg-white relative w-full h-screen mt-28 pb-24 md:pb-0 rounded-t-3xl shadow-top overflow-auto">
         {loading && (
           <img className="m-auto w-12" src={spinner} alt="Loading..." />
         )}
         {error && <p>An error has occured...</p>}
         {listHasNoItems && (
-          <div className="h-64 bg-white flex flex-col w-screen justify-center items-center text-gray-900">
+          <div className="h-64 flex flex-col w-screen justify-center items-center text-gray-900">
             <p className="">You haven't created a shopping list yet...</p>
             <button
-              className="bg-white-100 px-6 py-3 text-sm mt-6 rounded shadow-hover hover:bg-green-700 cursor-pointer hover:text-gray-100"
+              className="bg-green-700 py-3 py-2 mt-8 w-40 rounded-lg text-gray-100 shadow-bottom hover:shadow-hover"
               type="submit"
               onClick={handleRedirect}
             >
@@ -130,7 +130,7 @@ const ItemsList = () => {
           </div>
         )}
         {listHasAtLeastOneItem && (
-          <div className="mt-6 max-w-md mx-auto overflow-auto">
+          <section className="pt-6 max-w-md mx-auto overflow-auto">
             <nav>
               <AddItemButton />
             </nav>
@@ -188,7 +188,7 @@ const ItemsList = () => {
                         {shoppingItemObject.shoppingListItemName}
                       </label>
                       <button
-                        title="delete"
+                        aria-label="delete item"
                         className="text-gray-100 mr-4"
                         onClick={() =>
                           deleteItemFromShoppingList(
@@ -204,7 +204,7 @@ const ItemsList = () => {
                   );
                 })}
             </ul>
-          </div>
+          </section>
         )}
       </main>
       <footer>
