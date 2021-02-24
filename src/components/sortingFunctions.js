@@ -20,6 +20,28 @@ export const getShoppingItemBackgroundStyles = (
   }
 };
 
+export const getShoppingItemTextStyles = (
+  daysLeftForNextPurchase,
+  getDaysBetweenCurrentAndPreviousPurchase,
+  lastPurchasedOn,
+) => {
+  const presentDate = Date.now();
+  const daysBetweenCurrentAndPreviousPurchase = getDaysBetweenCurrentAndPreviousPurchase(
+    lastPurchasedOn,
+    presentDate,
+  );
+
+  if (daysBetweenCurrentAndPreviousPurchase >= daysLeftForNextPurchase * 2) {
+    return '#111827';
+  } else if (daysLeftForNextPurchase <= 7) {
+    return '#F3F4F6';
+  } else if (daysLeftForNextPurchase < 30) {
+    return '#111827';
+  } else {
+    return '#111827';
+  }
+};
+
 export const getItemDescription = (days) => {
   if (days <= 7) {
     return 'this item needs to be bought soon';
