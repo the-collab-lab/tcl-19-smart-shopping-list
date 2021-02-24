@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
 import getToken from '../lib/tokens';
-import welcome from '../img/welcome.png';
+import welcome from '../img/welcome1.png';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -44,12 +44,12 @@ const Home = () => {
 
   return (
     <div className="bg-gradient-to-b from-green-300 to-blue-700 min-h-screen w-screen flex flex-col items-center justify-around text-center text-gray-100 text-lg font-light">
-      <div className=" w-full pt-4 flex flex-col items-center">
+      <div className=" w-full pt-6 flex flex-col items-center">
         <h1 className="text-gray-900 font-normal text-4xl leading-loose">
           Welcome to <br />
           Smart Shopping App
         </h1>
-        <img className="m-auto w-56" src={welcome} alt="symbol" />
+        <img className="m-auto w-56 mt-4" src={welcome} alt="symbol" />
       </div>
       <button type="submit" onClick={newList} className="btn">
         Create List
