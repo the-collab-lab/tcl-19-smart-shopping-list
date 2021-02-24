@@ -57,7 +57,6 @@ const Home = () => {
         .catch((error) => {
           setShowModal(true);
           setModalMessage(error);
-          console.log(error);
         });
     }
   };
