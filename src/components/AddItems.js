@@ -93,95 +93,91 @@ const AddItemsToList = () => {
   }
 
   return (
-    <div>
-      <header className="max-h-screen flex flex-col box-border items-center">
-        <section className="bg-green-700 w-full fixed text-center">
-          <h2 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
-            Add Item to List
-          </h2>
-          <span className="text-white top-0 right-0 absolute sm:mt-4 sm:mr-4">
-            <HomeIcon />
-          </span>
-        </section>
+    <div className="max-h-screen box-border flex flex-col items-center">
+      <header className="bg-green-700 w-full fixed text-center">
+        <h2 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
+          Add Item to List
+        </h2>
+        <span className="text-white top-0 right-0 absolute sm:mt-4 sm:mr-4">
+          <HomeIcon />
+        </span>
       </header>
-      <main className="bg-white relative w-full h-full mt-24 rounded-t-3xl overflow-auto flex justify-center">
-        <section className=" text-black md:mt-40 lg:w-1/3 mt-20">
-          <form onSubmit={submitShoppingListItemHandler}>
-            {shoppingListItemNameExists ? (
-              <p>
-                {`You have ${normalizeString(
-                  shoppingListItemName,
-                )} in your shopping list already`}
-              </p>
-            ) : null}
-            <section className="flex justify-center">
-              <input
-                aria-label="Add an item input"
-                type="text"
-                placeholder="Add Item..."
-                value={shoppingListItemName}
-                onChange={shoppingListItemNameHandler}
-                className="border text-gray-900 md:w-2/3 px-2 py-2 md:px-4 md:py-3 mb-8 rounded focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none focus:bg-green-100 text-center"
-              />
-            </section>
-            <p className="text-center md:mb-8 mb-4">
-              How soon are you likely to buy it again?
+      <main className="bg-white relative w-full h-screen mt-24 rounded-t-3xl overflow-auto text-gray-900">
+        <form
+          className="mt-20 px-2 flex flex-col max-w-sm mx-auto"
+          onSubmit={submitShoppingListItemHandler}
+        >
+          {shoppingListItemNameExists ? (
+            <p>
+              {`You have ${normalizeString(
+                shoppingListItemName,
+              )} in your shopping list already`}
             </p>
-            <section className="flex flex-col sm:flex-row sm:space-x-4 text-black md:mb-8 mb-4">
-              <section className="xl:w-1/3 mb-4">
-                <label>
-                  <input
-                    type="radio"
-                    name="next_purchase"
-                    value="7"
-                    checked={daysLeftForNextPurchase === 7}
-                    onChange={daysLeftForNextPurchaseHandler}
-                    className="mr-4"
-                  />
-                  Soon
-                </label>
-              </section>
-              <section className="xl:w-1/3 mb-4">
-                <label>
-                  <input
-                    type="radio"
-                    name="next_purchase"
-                    value="14"
-                    checked={daysLeftForNextPurchase === 14}
-                    onChange={daysLeftForNextPurchaseHandler}
-                    className="mr-4"
-                  />
-                  Kind of soon
-                </label>
-              </section>
-              <section className="xl:w-1/3 mb-4">
-                <label>
-                  <input
-                    type="radio"
-                    name="next_purchase"
-                    value="30"
-                    checked={daysLeftForNextPurchase === 30}
-                    onChange={daysLeftForNextPurchaseHandler}
-                    className="mr-4"
-                  />
-                  Not soon
-                </label>
-              </section>
+          ) : null}
+          <input
+            aria-label="Add an item input"
+            type="text"
+            placeholder="Add Item..."
+            value={shoppingListItemName}
+            onChange={shoppingListItemNameHandler}
+            className="py-3 px-2 border rounded-md focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none focus:bg-green-100 w-full "
+          />
+          <p className="my-4 text-center">
+            How soon are you likely to buy it again?
+          </p>
+          <section className="flex flex-col">
+            <section className="">
+              <label>
+                <input
+                  type="radio"
+                  name="next_purchase"
+                  value="7"
+                  checked={daysLeftForNextPurchase === 7}
+                  onChange={daysLeftForNextPurchaseHandler}
+                  className=""
+                />
+                Soon
+              </label>
             </section>
-            <section className="text-center mt-8">
-              <button
-                className="border py-2 px-3 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom w-32 mb-4 md:w-60 mb-4"
-                type="submit"
-              >
-                Add Item
-              </button>
+            <section className="">
+              <label>
+                <input
+                  type="radio"
+                  name="next_purchase"
+                  value="14"
+                  checked={daysLeftForNextPurchase === 14}
+                  onChange={daysLeftForNextPurchaseHandler}
+                  className="my-4"
+                />
+                Kind of soon
+              </label>
             </section>
-          </form>
-        </section>
-
+            <section className="">
+              <label>
+                <input
+                  type="radio"
+                  name="next_purchase"
+                  value="30"
+                  checked={daysLeftForNextPurchase === 30}
+                  onChange={daysLeftForNextPurchaseHandler}
+                  className=""
+                />
+                Not soon
+              </label>
+            </section>
+          </section>
+          <button
+            className="border py-2 px-3 mt-8 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom"
+            type="submit"
+          >
+            Add Item
+          </button>
+        </form>
+      </main>
+      <footer>
         <Nav />
         <ItemListButton />
-      </main>
+      </footer>
     </div>
   );
 };
