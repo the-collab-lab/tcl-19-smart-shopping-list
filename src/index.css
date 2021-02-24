@@ -5,4 +5,5 @@
 
 input[type='checkbox']:checked + label {
   text-decoration: line-through;
+  opacity: 0.5;
 }
