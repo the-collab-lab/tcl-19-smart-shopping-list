@@ -111,14 +111,14 @@ const AddItemsToList = () => {
   if (loading) {
     return (
       <img
-        className="m-auto w-12"
-        src={spinner}
+        className="m-auto w-20"
         style={{
           position: 'fixed',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
         }}
+        src={spinner}
         alt="Loading..."
       />
     );

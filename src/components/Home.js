@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { shoppingListCollection } from '../lib/firebase';
 import getToken from '../lib/tokens';
 import spinner from '../img/spinner-3.gif';
@@ -8,9 +7,7 @@ import Modal from './Modal';
 
 const Home = () => {
   const [existingToken, setExistingToken] = useState('');
-  const [shoppingList, loading, error] = useCollectionData(
-    shoppingListCollection.where('token', '==', existingToken),
-  );
+  const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const history = useHistory();
@@ -26,23 +23,42 @@ const Home = () => {
   };
 
   const submitToken = (e) => {
+    let allTokens = [];
     e.preventDefault();
 
     if (existingToken === '') {
       setShowModal(true);
       setModalMessage('Please enter a token');
       return;
-    }
-
-    if (shoppingList.length) {
-      localStorage.setItem('token', existingToken);
-      history.push('/list');
     } else {
-      setShowModal(true);
-      setModalMessage(
-        'Token does not exist. Please try again or create a new list.',
-      );
-      setExistingToken(' ');
+      setLoading(true);
+      shoppingListCollection
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            allTokens.push(doc.data().token);
+            console.log(allTokens);
+          });
+        })
+        .then(() => {
+          const tokenExists = allTokens.filter((val) => existingToken === val);
+          if (tokenExists.length > 0) {
+            localStorage.setItem('token', existingToken);
+            history.push('/list');
+          } else {
+            setLoading(false);
+            setShowModal(true);
+            setModalMessage(
+              'Token does not exist. Please try again or create a new list.',
+            );
+            setExistingToken('');
+          }
+        })
+        .catch((error) => {
+          setShowModal(true);
+          setModalMessage(error);
+          console.log(error);
+        });
     }
   };
   if (loading) {
@@ -59,9 +75,6 @@ const Home = () => {
         alt="Loading..."
       />
     );
-  }
-  if (error) {
-    return <p>An error has occurred</p>;
   }
 
   return (
