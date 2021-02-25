@@ -20,6 +20,8 @@ export const getShoppingItemBackgroundStyles = (
   }
 };
 
+//#047857 #10B981 #6EE7B7
+
 export const getShoppingItemTextStyles = (
   daysLeftForNextPurchase,
   getDaysBetweenCurrentAndPreviousPurchase,

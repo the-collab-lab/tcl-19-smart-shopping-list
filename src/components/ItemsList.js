@@ -105,8 +105,8 @@ const ItemsList = () => {
   const listHasNoItems = shoppingList && !shoppingList.length;
 
   return (
-    <div className="max-h-screen box-border flex flex-col items-center">
-      <header className="bg-green-700 w-full fixed text-center text-gray-100">
+    <div className="bg-gradient-to-b from-green-300 to-blue-700 max-h-screen box-border flex flex-col items-center">
+      <header className="w-full fixed text-center text-gray-800">
         <h2 className="pt-8 pb-16 text-4xl font-thin">Your Shopping List</h2>
         <span className="absolute top-0 right-0 md:hidden">
           <HomeIcon />
@@ -170,7 +170,7 @@ const ItemsList = () => {
                       }}
                     >
                       <input
-                        className="mx-4 h-6 w-6 rounded text-pink-500 focus:ring-2 focus:ring-pink-600 cursor-pointer"
+                        className="mx-4 h-6 w-6 rounded text-blue-600 focus:ring-2 focus:ring-blue-700 cursor-pointer"
                         type="checkbox"
                         id={shoppingItemObject.shoppingListItemName}
                         onChange={() => markItemAsPurchased(shopIndex)}

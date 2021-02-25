@@ -15,7 +15,7 @@ function AddItemButton() {
         <button
           type="submit"
           onClick={handleRedirectToAddItem}
-          className="bg-green-700 text-gray-100 w-40 py-3 flex items-center rounded-lg justify-center shadow-bottom"
+          className="bg-blue-600 text-gray-100 w-40 py-3 flex items-center rounded-lg justify-center shadow-bottom font-light hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50"
         >
           <span className="mr-2">
             <ArrowLeft />
@@ -25,7 +25,7 @@ function AddItemButton() {
         <button
           type="submit"
           onClick={handleRedirectToAddItem}
-          className="bg-green-700 text-gray-100 w-40 py-3 flex items-center rounded-lg justify-center shadow-bottom"
+          className="bg-blue-600 text-gray-100 w-40 py-3 flex items-center rounded-lg justify-center shadow-bottom font-light hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50"
         >
           Add an Item
           <span className="ml-2">
