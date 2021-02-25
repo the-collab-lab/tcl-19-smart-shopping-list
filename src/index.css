@@ -19,7 +19,7 @@
 
 input[type='checkbox']:checked + label {
   text-decoration: line-through;
-  opacity: 0.5;
+  opacity: 0.93;
 }
 
 @tailwind utilities;
