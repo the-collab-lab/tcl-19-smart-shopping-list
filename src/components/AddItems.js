@@ -137,7 +137,7 @@ const AddItemsToList = () => {
                     value="7"
                     checked={daysLeftForNextPurchase === 7}
                     onChange={daysLeftForNextPurchaseHandler}
-                    className="mr-2 h-5 w-5 text-pink-500 focus:ring-1 focus:ring-pink-600 cursor-pointer -mt-1"
+                    className="mb-1 mr-2 h-5 w-5 text-pink-500 focus:ring-1 focus:ring-pink-600 cursor-pointer"
                   />
                   Soon
                 </label>
