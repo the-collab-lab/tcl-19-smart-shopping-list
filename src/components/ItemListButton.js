@@ -15,17 +15,14 @@ function ItemListButton() {
         <button
           type="submit"
           onClick={handleRedirectToList}
-          className="bg-blue-600 text-gray-100 w-40 py-3 flex items-center rounded-lg justify-center shadow-bottom font-light hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50"
+          className="nav-btn"
         >
           <span className="mr-2">
             <ArrowLeft />
           </span>
           Go to list
         </button>
-        <button
-          type="submit"
-          className="bg-blue-600 text-gray-100 w-40 py-3 flex items-center rounded-lg justify-center shadow-bottom font-light hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50"
-        >
+        <button type="submit" className="nav-btn">
           Back to Home
           <span className="ml-2">
             <ArrowRight />

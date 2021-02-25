@@ -105,7 +105,7 @@ const ItemsList = () => {
   const listHasNoItems = shoppingList && !shoppingList.length;
 
   return (
-    <div className="bg-gradient-to-b from-green-300 to-blue-700 max-h-screen box-border flex flex-col items-center">
+    <div className="bg-gradient-to-b from-green-300 to-blue-700 max-h-screen box-border flex flex-col items-center font-sans">
       <header className="w-full fixed text-center text-gray-800">
         <h2 className="pt-8 pb-16 text-4xl font-thin">Your Shopping List</h2>
         <span className="absolute top-0 right-0 md:hidden">
@@ -120,11 +120,7 @@ const ItemsList = () => {
         {listHasNoItems && (
           <div className="h-64 flex flex-col w-screen justify-center items-center text-gray-900">
             <p className="">You haven't created a shopping list yet...</p>
-            <button
-              className="bg-green-700 py-3 mt-8 w-40 rounded-lg text-gray-100 shadow-bottom hover:shadow-hover"
-              type="submit"
-              onClick={handleRedirect}
-            >
+            <button className="add-btn" type="submit" onClick={handleRedirect}>
               Add First Item
             </button>
           </div>

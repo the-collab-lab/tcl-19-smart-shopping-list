@@ -93,7 +93,7 @@ const AddItemsToList = () => {
   }
 
   return (
-    <div className="bg-gradient-to-b from-green-300 to-blue-700 max-h-screen box-border flex flex-col items-center">
+    <div className="bg-gradient-to-b from-green-300 to-blue-700 max-h-screen box-border flex flex-col items-center font-sans">
       <header className="w-full fixed text-center text-gray-800">
         <h2 className="pt-8 pb-16 text-4xl font-thin">Add Items to List</h2>
         <span className="absolute top-0 right-0 md:hidden">
@@ -122,7 +122,7 @@ const AddItemsToList = () => {
               placeholder="Add Item..."
               value={shoppingListItemName}
               onChange={shoppingListItemNameHandler}
-              className="w-full py-3 px-2 border border-gray-400 rounded-lg text-gray-900 focus:bg-yellow-100 placeholder-gray-400 focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none"
+              className="input"
             />
             <p className="my-8 text-center">
               How soon are you likely to buy it again?
@@ -149,7 +149,7 @@ const AddItemsToList = () => {
                     value="14"
                     checked={daysLeftForNextPurchase === 14}
                     onChange={daysLeftForNextPurchaseHandler}
-                    className="my-4 md:my-0 mr-2 h-5 w-5 text-green-600 focus:ring-1 focus:ring-green-600 cursor-pointer"
+                    className="mr-2 h-5 w-5 text-green-600 focus:ring-1 focus:ring-green-600 cursor-pointer my-4 md:my-0 "
                   />
                   Kind of soon
                 </label>
@@ -168,10 +168,7 @@ const AddItemsToList = () => {
                 </label>
               </section>
             </section>
-            <button
-              className="mx-auto bg-green-600 text-gray-100 w-40 py-3 mt-8 hover:shadow-hover text-center rounded-lg shadow-bottom font-light hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50"
-              type="submit"
-            >
+            <button className="add-btn mx-auto" type="submit">
               Add Item
             </button>
           </form>
