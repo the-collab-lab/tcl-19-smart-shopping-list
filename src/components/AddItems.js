@@ -137,7 +137,7 @@ const AddItemsToList = () => {
                     value="7"
                     checked={daysLeftForNextPurchase === 7}
                     onChange={daysLeftForNextPurchaseHandler}
-                    className="mr-2 h-5 w-5 text-pink-500 focus:ring-1 focus:ring-pink-600 cursor-pointer"
+                    className="mr-2 h-5 w-5 text-pink-500 focus:ring-1 focus:ring-pink-600 cursor-pointer -mt-1"
                   />
                   Soon
                 </label>
@@ -150,7 +150,7 @@ const AddItemsToList = () => {
                     value="14"
                     checked={daysLeftForNextPurchase === 14}
                     onChange={daysLeftForNextPurchaseHandler}
-                    className="my-4 md:my-0 mr-2 h-5 w-5 text-pink-500 focus:ring-1 focus:ring-pink-600 cursor-pointer"
+                    className="mt-3 mb-4 md:mb-0 md:-mt-1 mr-2 h-5 w-5 text-pink-500 focus:ring-1 focus:ring-pink-600 cursor-pointer"
                   />
                   Kind of soon
                 </label>
@@ -163,7 +163,7 @@ const AddItemsToList = () => {
                     value="30"
                     checked={daysLeftForNextPurchase === 30}
                     onChange={daysLeftForNextPurchaseHandler}
-                    className="mr-2 h-5 w-5 text-pink-500 focus:ring-1 focus:ring-pink-600 cursor-pointer"
+                    className="mr-2 h-5 w-5 text-pink-500 focus:ring-1 focus:ring-pink-600 cursor-pointer -mt-1"
                   />
                   Not soon
                 </label>
