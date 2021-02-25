@@ -23,42 +23,49 @@ const Home = () => {
   };
 
   const submitToken = (e) => {
-    let allTokens = [];
     e.preventDefault();
 
     if (existingToken === '') {
       setShowModal(true);
       setModalMessage('Please enter a token');
       return;
-    } else {
-      setLoading(true);
-      shoppingListCollection
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            allTokens.push(doc.data().token);
-            console.log(allTokens);
-          });
-        })
-        .then(() => {
-          const tokenExists = allTokens.filter((val) => existingToken === val);
-          if (tokenExists.length > 0) {
-            localStorage.setItem('token', existingToken);
+    }
+    setLoading(true);
+    shoppingListCollection
+      .where('token', '==', existingToken.trim())
+      .get()
+      .then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          setShowModal(true);
+          setModalMessage(
+            'Token does not exist. Please try again or create a new list.',
+          );
+          setExistingToken('');
+          setLoading(false);
+          return;
+        }
+
+        if (querySnapshot.size === 1) {
+          const { token } = querySnapshot.docs[0].data();
+          if (token === existingToken.trim()) {
+            localStorage.setItem('token', token);
             history.push('/list');
           } else {
-            setLoading(false);
-            setShowModal(true);
-            setModalMessage(
-              'Token does not exist. Please try again or create a new list.',
+            // Unlikely this will happen. This is for safety just in case it does.
+            throw new Error(
+              'Token retrieved is not the same as provided token',
             );
-            setExistingToken('');
           }
-        })
-        .catch((error) => {
-          setShowModal(true);
-          setModalMessage(error);
-        });
-    }
+        } else {
+          // Unlikely this will happen. This is for safety just in case it does.
+          throw new Error('More than one shopping list with the same token');
+        }
+      })
+      .catch((error) => {
+        setShowModal(true);
+        setLoading(false);
+        setModalMessage('An error has occurred');
+      });
   };
   if (loading) {
     return (
