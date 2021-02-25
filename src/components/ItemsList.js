@@ -121,7 +121,7 @@ const ItemsList = () => {
           <div className="h-64 flex flex-col w-screen justify-center items-center text-gray-900">
             <p className="">You haven't created a shopping list yet...</p>
             <button
-              className="bg-green-700 py-3 py-2 mt-8 w-40 rounded-lg text-gray-100 shadow-bottom hover:shadow-hover"
+              className="bg-green-700 py-3 mt-8 w-40 rounded-lg text-gray-100 shadow-bottom hover:shadow-hover"
               type="submit"
               onClick={handleRedirect}
             >

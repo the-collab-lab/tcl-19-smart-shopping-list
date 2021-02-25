@@ -125,7 +125,7 @@ const AddItemsToList = () => {
               className="w-full py-3 px-2 border rounded-lg text-gray-900
             focus:bg-green-100 placeholder-gray-400 focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none"
             />
-            <p className="my-4 text-center">
+            <p className="my-8 text-center">
               How soon are you likely to buy it again?
             </p>
             <section className="flex flex-col md:flex-row md:justify-around md:items-center mx-auto md:mx-0">
@@ -170,7 +170,7 @@ const AddItemsToList = () => {
               </section>
             </section>
             <button
-              className="mx-auto bg-green-700 text-gray-100 w-40 py-3 py-2 mt-8 w-40 hover:shadow-hover text-center rounded-lg shadow-bottom"
+              className="mx-auto bg-green-700 text-gray-100 w-40 py-3 mt-8 hover:shadow-hover text-center rounded-lg shadow-bottom"
               type="submit"
             >
               Add Item
