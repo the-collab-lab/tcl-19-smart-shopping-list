@@ -220,6 +220,7 @@ const AddItemsToList = () => {
                   className="border py-2 px-3 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom w-32 md:w-60"
                   type="submit"
                   tabIndex={showModal ? -1 : 0}
+                  id="addItemButton"
                 >
                   Add Item
                 </button>
