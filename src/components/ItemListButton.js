@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as ArrowLeft } from '../img/arrow-left.svg';
 
-function ItemListButton() {
+function ItemListButton(props) {
   const history = useHistory();
 
   const handleRedirectToList = () => {
@@ -15,6 +15,7 @@ function ItemListButton() {
           type="submit"
           onClick={handleRedirectToList}
           className="btn-bg flex items-center border py-3 px-3 hover:shadow-hover justify-center rounded-md bg-green-600 text-white w-36"
+          tabIndex={props.showModal ? -1 : 0}
         >
           <ArrowLeft />
           <ArrowLeft />

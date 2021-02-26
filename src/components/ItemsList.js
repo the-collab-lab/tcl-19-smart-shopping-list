@@ -142,6 +142,7 @@ const ItemsList = () => {
                 className="bg-white-100 px-6 py-3 text-sm mt-6 border border-color-gray-500 border-solid rounded shadow-md hover:bg-green-500 cursor-pointer hover:text-white"
                 type="submit"
                 onClick={handleRedirect}
+                tabIndex={showDeleteModal ? -1 : 0}
               >
                 Add First Item
               </button>
@@ -154,6 +155,7 @@ const ItemsList = () => {
                 setValue={(searchTerm) => {
                   setSearchTerm(searchTerm);
                 }}
+                showDeleteModal={showDeleteModal}
               />
               <ul className="mt-4 mb-2 mx-2">
                 {shoppingList[0].items
@@ -190,6 +192,7 @@ const ItemsList = () => {
                           checked={wasItemPurchasedWithinLastOneDay(
                             lastPurchasedOn,
                           )}
+                          tabIndex={showDeleteModal ? -1 : 0}
                         />
                         <label
                           className="flex-1 text-xl"
@@ -205,6 +208,8 @@ const ItemsList = () => {
                           onClick={() =>
                             confirmDeleteItemHandler(shoppingListItemName)
                           }
+                          id={shoppingListItemName + 'focus'}
+                          tabIndex={showDeleteModal ? -1 : 0}
                         >
                           <span>
                             <TrashBin />
@@ -219,7 +224,7 @@ const ItemsList = () => {
         </main>
         <footer className="absolute bottom-0">
           <Nav />
-          <AddItemButton />
+          <AddItemButton showDeleteModal={showDeleteModal} />
         </footer>
       </div>
     </div>

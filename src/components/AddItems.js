@@ -164,6 +164,7 @@ const AddItemsToList = () => {
                     value={shoppingListItemName}
                     onChange={shoppingListItemNameHandler}
                     className="border text-gray-900 md:w-2/3 px-2 py-2 md:px-4 md:py-3 mb-8 rounded focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none focus:bg-green-100"
+                    tabIndex={showModal ? -1 : 0}
                   />
                 </div>
               </div>
@@ -180,6 +181,7 @@ const AddItemsToList = () => {
                       checked={daysLeftForNextPurchase === 7}
                       onChange={daysLeftForNextPurchaseHandler}
                       className="mr-4"
+                      tabIndex={showModal ? -1 : 0}
                     />
                     Soon
                   </label>
@@ -193,6 +195,7 @@ const AddItemsToList = () => {
                       checked={daysLeftForNextPurchase === 14}
                       onChange={daysLeftForNextPurchaseHandler}
                       className="mr-4"
+                      tabIndex={showModal ? -1 : 0}
                     />
                     Kind of soon
                   </label>
@@ -206,6 +209,7 @@ const AddItemsToList = () => {
                       checked={daysLeftForNextPurchase === 30}
                       onChange={daysLeftForNextPurchaseHandler}
                       className="mr-4"
+                      tabIndex={showModal ? -1 : 0}
                     />
                     Not soon
                   </label>
@@ -215,6 +219,8 @@ const AddItemsToList = () => {
                 <button
                   className="border py-2 px-3 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom w-32 md:w-60"
                   type="submit"
+                  tabIndex={showModal ? -1 : 0}
+                  id="addItemButton"
                 >
                   Add Item
                 </button>
@@ -223,7 +229,7 @@ const AddItemsToList = () => {
           </div>
 
           <Nav />
-          <ItemListButton />
+          <ItemListButton showModal={showModal} />
         </div>
       </main>
     </div>
