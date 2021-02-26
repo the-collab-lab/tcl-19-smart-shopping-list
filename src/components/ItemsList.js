@@ -208,6 +208,7 @@ const ItemsList = () => {
                           onClick={() =>
                             confirmDeleteItemHandler(shoppingListItemName)
                           }
+                          id={shoppingListItemName + 'focus'}
                           tabIndex={showDeleteModal ? -1 : 0}
                         >
                           <span>

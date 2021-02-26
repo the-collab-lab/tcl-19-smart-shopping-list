@@ -12,6 +12,7 @@ export default function ConfirmDeleteModal({
   };
   const cancelDelete = () => {
     setShowDeleteModal(false);
+    document.getElementById(`${itemToDelete}focus`).focus();
   };
 
   return (
