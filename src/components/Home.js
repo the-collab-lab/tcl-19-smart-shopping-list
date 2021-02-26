@@ -25,7 +25,7 @@ const Home = () => {
   const submitToken = (e) => {
     e.preventDefault();
 
-    if (existingToken === '') {
+    if (existingToken.trim() === '') {
       setShowModal(true);
       setModalMessage('Please enter a token');
       return;
