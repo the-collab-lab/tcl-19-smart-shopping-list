@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as ArrowRight } from '../img/arrow-right.svg';
 
-function AddItemButton() {
+function AddItemButton(props) {
   const history = useHistory();
 
   const handleRedirectToAddItem = () => {
@@ -15,6 +15,7 @@ function AddItemButton() {
           type="submit"
           onClick={handleRedirectToAddItem}
           className="btn-bg flex items-center border py-3 px-3 hover:shadow-hover justify-center rounded-md bg-green-600 text-white w-40"
+          tabIndex={props.showDeleteModal ? -1 : 0}
         >
           <span className="mr-4">Add an Item</span>
           <ArrowRight />
