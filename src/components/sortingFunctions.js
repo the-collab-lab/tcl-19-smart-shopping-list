@@ -10,17 +10,15 @@ export const getShoppingItemBackgroundStyles = (
   );
 
   if (daysBetweenCurrentAndPreviousPurchase >= daysLeftForNextPurchase * 2) {
-    return '#D1D5DB';
+    return 'var(--checked-default)';
   } else if (daysLeftForNextPurchase <= 7) {
-    return '#047857';
+    return 'var(--checked-dark)';
   } else if (daysLeftForNextPurchase < 30) {
-    return '#10B981';
+    return 'var(--checked-middle)';
   } else {
-    return '#6EE7B7';
+    return 'var(--checked-light)';
   }
 };
-
-//#047857 #10B981 #6EE7B7
 
 export const getShoppingItemTextStyles = (
   daysLeftForNextPurchase,
@@ -34,13 +32,13 @@ export const getShoppingItemTextStyles = (
   );
 
   if (daysBetweenCurrentAndPreviousPurchase >= daysLeftForNextPurchase * 2) {
-    return '#111827';
+    return 'var(--text-dark)';
   } else if (daysLeftForNextPurchase <= 7) {
-    return '#F3F4F6';
+    return 'var(--text-light)';
   } else if (daysLeftForNextPurchase < 30) {
-    return '#111827';
+    return 'var(--text-dark)';
   } else {
-    return '#111827';
+    return 'var(--text-dark)';
   }
 };
 

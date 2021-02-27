@@ -1,3 +1,12 @@
+:root {
+  --checked-default: #d1d5db;
+  --checked-dark: #047857;
+  --checked-middle: #10b981;
+  --checked-light: #6ee7b7;
+  --text-light: #f3f4f6;
+  --text-dark: #111827;
+}
+
 @tailwind base;
 @tailwind components;
 
