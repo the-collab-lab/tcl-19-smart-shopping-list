@@ -175,7 +175,7 @@ const ItemsList = () => {
                         )}
                       />
                       <label
-                        className="flex-1 text-xl"
+                        className="flex-1 text-xl break-all"
                         htmlFor={shoppingItemObject.shoppingListItemName}
                         aria-label={getItemDescription(
                           shoppingItemObject.daysLeftForNextPurchase,
