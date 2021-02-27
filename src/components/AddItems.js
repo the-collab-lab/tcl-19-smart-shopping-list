@@ -168,7 +168,7 @@ const AddItemsToList = () => {
                 </label>
               </section>
             </section>
-            <button className="add-btn mx-auto" type="submit">
+            <button className="add-btn mx-auto md:mt-12" type="submit">
               Add Item
             </button>
           </form>
