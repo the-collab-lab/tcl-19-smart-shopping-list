@@ -6,7 +6,7 @@
 }
 
 .nav-btn {
-  @apply bg-blue-600 text-gray-100 w-40 py-3 flex items-center rounded-lg justify-center shadow-bottom font-light hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50;
+  @apply bg-green-600 text-gray-100 w-40 py-3 my-3 flex items-center rounded-lg justify-center shadow-bottom font-light hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50;
 }
 
 .add-btn {

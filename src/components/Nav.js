@@ -7,12 +7,12 @@ const Nav = () => {
   return (
     <div className="md:hidden">
       <nav className="h-auto fixed bottom-0 right-0 left-0">
-        <ul className="flex justify-center content-center fixed bottom-0 right-0 left-0 bg-blue-700 rounded-t-3xl shadow-top">
+        <ul className="flex justify-center content-center fixed bottom-0 right-0 left-0 bg-green-500 rounded-t-3xl shadow-top">
           <li className="list-none mr-8 py-2">
             <NavLink to="/list">
               <button
                 aria-label="Go to list"
-                className="rounded-full h-20 w-20 flex items-center justify-center bg-green-600 text-gray-100 shadow-xl focus:ring-4 focus:ring-green-200 focus:ring-opacity-50 focus:outline-none"
+                className="rounded-full h-16 w-16 flex items-center justify-center bg-green-700 text-gray-100 shadow-xl focus:ring-4 focus:ring-green-200 focus:ring-opacity-50 focus:outline-none"
               >
                 <TaskIcon />
               </button>
@@ -22,7 +22,7 @@ const Nav = () => {
             <NavLink to="/addItem">
               <button
                 aria-label="Go to Add Item"
-                className="rounded-full h-20 w-20 flex items-center justify-center bg-green-600 text-gray-100 shadow-xl focus:ring-4 focus:ring-green-200 focus:ring-opacity-50 focus:outline-none"
+                className="rounded-full h-16 w-16 flex items-center justify-center bg-green-700 text-gray-100 shadow-xl focus:ring-4 focus:ring-green-200 focus:ring-opacity-50 focus:outline-none"
               >
                 <AddIcon />
               </button>
