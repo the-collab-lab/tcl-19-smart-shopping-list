@@ -136,7 +136,12 @@ const ItemsList = () => {
         {listHasNoItems && (
           <div className="h-64 flex flex-col w-screen justify-center items-center text-gray-900">
             <p className="">You haven't created a shopping list yet...</p>
-            <button className="add-btn" type="submit" onClick={handleRedirect}>
+            <button
+              className="add-btn"
+              type="submit"
+              onClick={handleRedirect}
+              tabIndex={showDeleteModal ? -1 : 0}
+            >
               Add First Item
             </button>
           </div>
@@ -144,13 +149,14 @@ const ItemsList = () => {
         {listHasAtLeastOneItem && (
           <section className="pt-6 max-w-md mx-auto overflow-auto">
             <nav>
-              <AddItemButton />
+              <AddItemButton showDeleteModal={showDeleteModal} />
             </nav>
             <SearchBar
               value={searchTerm}
               setValue={(searchTerm) => {
                 setSearchTerm(searchTerm);
               }}
+              showDeleteModal={showDeleteModal}
             />
             <ul className="mt-4 mb-2 mx-2">
               {shoppingList[0].items
@@ -169,7 +175,7 @@ const ItemsList = () => {
                   return (
                     <li
                       className="py-3 mt-2 rounded-lg flex items-center"
-                      key={shoppingItemObject.shoppingListItemName + index}
+                      key={shoppingListItemName + index}
                       style={{
                         backgroundColor: getShoppingItemBackgroundStyles(
                           daysLeftForNextPurchase,
@@ -185,6 +191,7 @@ const ItemsList = () => {
                         className="mx-4 h-6 w-6 rounded text-blue-600 focus:ring-2 focus:ring-blue-700 cursor-pointer"
                         type="checkbox"
                         id={shoppingListItemName}
+                        tabIndex={showDeleteModal ? -1 : 0}
                         onChange={() =>
                           markItemAsPurchased(shoppingListItemName)
                         }
@@ -202,6 +209,8 @@ const ItemsList = () => {
                       <button
                         aria-label="delete item"
                         className="text-gray-100 mr-4"
+                        id={shoppingListItemName + 'focus'}
+                        tabIndex={showDeleteModal ? -1 : 0}
                         onClick={() =>
                           confirmDeleteItemHandler(shoppingListItemName)
                         }

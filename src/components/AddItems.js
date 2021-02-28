@@ -144,7 +144,7 @@ const AddItemsToList = () => {
       <main className="bg-white relative w-full h-screen mt-28 rounded-t-3xl shadow-top overflow-auto">
         <section className="max-w-md mx-auto overflow-auto py-6">
           <nav>
-            <ItemListButton />
+            <ItemListButton showModal={showModal} />
           </nav>
           <form
             className="pt-2 px-2 flex flex-col mx-auto"
@@ -177,6 +177,7 @@ const AddItemsToList = () => {
                     value="7"
                     checked={daysLeftForNextPurchase === 7}
                     onChange={daysLeftForNextPurchaseHandler}
+                    tabIndex={showModal ? -1 : 0}
                     className="mb-1 mr-2 h-5 w-5 text-green-600 focus:ring-1 focus:ring-green-600 cursor-pointer"
                   />
                   Soon
@@ -190,6 +191,7 @@ const AddItemsToList = () => {
                     value="14"
                     checked={daysLeftForNextPurchase === 14}
                     onChange={daysLeftForNextPurchaseHandler}
+                    tabIndex={showModal ? -1 : 0}
                     className="mt-3 mb-4 md:mb-0 md:-mt-1 mr-2 h-5 w-5 text-green-600 focus:ring-1 focus:ring-green-600 cursor-pointer"
                   />
                   Kind of soon
@@ -203,13 +205,19 @@ const AddItemsToList = () => {
                     value="30"
                     checked={daysLeftForNextPurchase === 30}
                     onChange={daysLeftForNextPurchaseHandler}
+                    tabIndex={showModal ? -1 : 0}
                     className="mr-2 h-5 w-5 text-green-600 focus:ring-1 focus:ring-green-600 cursor-pointer -mt-1"
                   />
                   Not soon
                 </label>
               </section>
             </section>
-            <button className="add-btn mx-auto md:mt-12" type="submit">
+            <button
+              className="add-btn mx-auto md:mt-12"
+              type="submit"
+              tabIndex={showModal ? -1 : 0}
+              id="addItemButton"
+            >
               Add Item
             </button>
           </form>

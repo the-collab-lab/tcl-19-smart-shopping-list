@@ -12,13 +12,19 @@ export default function ConfirmDeleteModal({
   };
   const cancelDelete = () => {
     setShowDeleteModal(false);
+    document.getElementById(`${itemToDelete}focus`).focus();
   };
 
   return (
     <>
       {showDeleteModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="confirm delete"
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+          >
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
@@ -50,6 +56,7 @@ export default function ConfirmDeleteModal({
                     type="button"
                     style={{ transition: 'all .15s ease' }}
                     onClick={handleDelete}
+                    autoFocus
                   >
                     DELETE
                   </button>
