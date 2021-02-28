@@ -129,103 +129,95 @@ const AddItemsToList = () => {
   }
 
   return (
-    <div>
+    <div className="bg-gradient-to-b from-green-300 to-blue-700 max-h-screen box-border flex flex-col items-center font-sans">
       <Modal
         message={modalMessage}
         showModal={showModal}
         setShowModal={setShowModal}
       />
-      <div className="max-h-screen flex flex-col box-border items-center">
-        <header className="bg-green-400 w-full fixed text-center">
-          <h2 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
-            Add Item to List
-          </h2>
-          <span className="text-white top-0 right-0 absolute sm:mt-4 sm:mr-4">
-            <HomeIcon />
-          </span>
-        </header>
-      </div>
-      <main className="bg-white relative w-full h-full mt-24 rounded-t-3xl overflow-auto">
-        <div className="flex justify-center ">
-          <div className=" text-black md:mt-40 lg:w-1/3 mt-20">
-            <form onSubmit={submitShoppingListItemHandler}>
-              {shoppingListItemNameExists ? (
-                <p className="text-center mb-2 italic text-xs text-red-600">
-                  {`You have ${normalizeString(
-                    shoppingListItemName,
-                  )} in your shopping list already!`}
-                </p>
-              ) : null}
-              <div className="">
-                <div className="flex justify-center">
+      <header className="w-full fixed text-center text-gray-800">
+        <h2 className="pt-8 pb-16 text-4xl font-thin">Add Items to List</h2>
+        <span className="absolute top-0 right-0 md:hidden">
+          <HomeIcon />
+        </span>
+      </header>
+      <main className="bg-white relative w-full h-screen mt-28 rounded-t-3xl shadow-top overflow-auto">
+        <section className="max-w-md mx-auto overflow-auto py-6">
+          <nav>
+            <ItemListButton />
+          </nav>
+          <form
+            className="pt-2 px-2 flex flex-col mx-auto"
+            onSubmit={submitShoppingListItemHandler}
+          >
+            {shoppingListItemNameExists ? (
+              <p>
+                {`You have ${normalizeString(
+                  shoppingListItemName,
+                )} in your shopping list already`}
+              </p>
+            ) : null}
+            <input
+              aria-label="Add an item input"
+              type="text"
+              placeholder="Add Item..."
+              value={shoppingListItemName}
+              onChange={shoppingListItemNameHandler}
+              className="input"
+            />
+            <p className="my-8 text-center">
+              How soon are you likely to buy it again?
+            </p>
+            <section className="flex flex-col md:flex-row md:justify-around md:items-center mx-auto md:mx-0">
+              <section>
+                <label>
                   <input
-                    type="text"
-                    placeholder="Item name"
-                    value={shoppingListItemName}
-                    onChange={shoppingListItemNameHandler}
-                    className="border text-gray-900 md:w-2/3 px-2 py-2 md:px-4 md:py-3 mb-8 rounded focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none focus:bg-green-100"
+                    type="radio"
+                    name="next_purchase"
+                    value="7"
+                    checked={daysLeftForNextPurchase === 7}
+                    onChange={daysLeftForNextPurchaseHandler}
+                    className="mb-1 mr-2 h-5 w-5 text-green-600 focus:ring-1 focus:ring-green-600 cursor-pointer"
                   />
-                </div>
-              </div>
-              <div className="text-center md:mb-8 mb-4">
-                <p className="">How soon are you likely to buy it again?</p>
-              </div>
-              <div className="flex flex-col sm:flex-row sm:space-x-4 text-black md:mb-8 mb-4">
-                <div className="xl:w-1/3 mb-4">
-                  <label>
-                    <input
-                      type="radio"
-                      name="next_purchase"
-                      value="7"
-                      checked={daysLeftForNextPurchase === 7}
-                      onChange={daysLeftForNextPurchaseHandler}
-                      className="mr-4"
-                    />
-                    Soon
-                  </label>
-                </div>
-                <div className="xl:w-1/3 mb-4">
-                  <label>
-                    <input
-                      type="radio"
-                      name="next_purchase"
-                      value="14"
-                      checked={daysLeftForNextPurchase === 14}
-                      onChange={daysLeftForNextPurchaseHandler}
-                      className="mr-4"
-                    />
-                    Kind of soon
-                  </label>
-                </div>
-                <div className="xl:w-1/3 mb-4">
-                  <label>
-                    <input
-                      type="radio"
-                      name="next_purchase"
-                      value="30"
-                      checked={daysLeftForNextPurchase === 30}
-                      onChange={daysLeftForNextPurchaseHandler}
-                      className="mr-4"
-                    />
-                    Not soon
-                  </label>
-                </div>
-              </div>
-              <div className="text-center mt-8">
-                <button
-                  className="border py-2 px-3 hover:shadow-hover justify-center rounded-md bg-white text-black shadow-bottom w-32 md:w-60"
-                  type="submit"
-                >
-                  Add Item
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <Nav />
-          <ItemListButton />
-        </div>
+                  Soon
+                </label>
+              </section>
+              <section>
+                <label>
+                  <input
+                    type="radio"
+                    name="next_purchase"
+                    value="14"
+                    checked={daysLeftForNextPurchase === 14}
+                    onChange={daysLeftForNextPurchaseHandler}
+                    className="mt-3 mb-4 md:mb-0 md:-mt-1 mr-2 h-5 w-5 text-green-600 focus:ring-1 focus:ring-green-600 cursor-pointer"
+                  />
+                  Kind of soon
+                </label>
+              </section>
+              <section>
+                <label>
+                  <input
+                    type="radio"
+                    name="next_purchase"
+                    value="30"
+                    checked={daysLeftForNextPurchase === 30}
+                    onChange={daysLeftForNextPurchaseHandler}
+                    className="mr-2 h-5 w-5 text-green-600 focus:ring-1 focus:ring-green-600 cursor-pointer -mt-1"
+                  />
+                  Not soon
+                </label>
+              </section>
+            </section>
+            <button className="add-btn mx-auto md:mt-12" type="submit">
+              Add Item
+            </button>
+          </form>
+        </section>
       </main>
+      <footer>
+        <Nav />
+      </footer>
     </div>
   );
 };

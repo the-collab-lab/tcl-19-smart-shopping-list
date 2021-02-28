@@ -19,4 +19,3 @@ const shoppingListCollection = firebase.firestore().collection('shopping_list');
 const { arrayUnion } = firebase.firestore.FieldValue;
 
 export { shoppingListCollection, arrayUnion };
-// export default firebase;
