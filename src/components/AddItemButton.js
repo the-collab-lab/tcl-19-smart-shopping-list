@@ -15,7 +15,7 @@ function AddItemButton(props) {
         <button
           type="submit"
           onClick={handleRedirectToAddItem}
-          className="btn-bg flex items-center border py-3 px-3 hover:shadow-hover justify-center rounded-md bg-green-600 text-white w-40"
+          className="nav-btn"
           tabIndex={props.showDeleteModal ? -1 : 0}
         >
           <span className="mr-2">
