@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactComponent as ResetIcon } from '../img/reset.svg';
 
-const SearchBar = ({ value, setValue }) => {
+const SearchBar = ({ value, setValue, showDeleteModal }) => {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -20,6 +20,7 @@ const SearchBar = ({ value, setValue }) => {
         placeholder="Search list.."
         value={value}
         onChange={handleChange}
+        tabIndex={showDeleteModal ? -1 : 0}
       />
       {value && (
         <button
