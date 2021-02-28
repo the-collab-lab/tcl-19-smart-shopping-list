@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as ArrowRight } from '../img/arrow-right.svg';
+import { ReactComponent as ArrowLeft } from '../img/arrow-left.svg';
 
 function AddItemButton() {
   const history = useHistory();
@@ -10,15 +11,26 @@ function AddItemButton() {
   };
   return (
     <div className="hidden md:block">
-      <div className="fixed bottom-12 right-1/4">
+      <div className="mb-4 flex justify-around">
         <button
           type="submit"
           onClick={handleRedirectToAddItem}
-          className="btn-bg flex items-center border py-3 px-3 hover:shadow-hover justify-center rounded-md bg-green-600 text-white w-40"
+          className="nav-btn"
         >
-          <span className="mr-4">Add an Item</span>
-          <ArrowRight />
-          <ArrowRight />
+          <span className="mr-2">
+            <ArrowLeft />
+          </span>
+          Back to Home
+        </button>
+        <button
+          type="submit"
+          onClick={handleRedirectToAddItem}
+          className="nav-btn"
+        >
+          Add an Item
+          <span className="ml-2">
+            <ArrowRight />
+          </span>
         </button>
       </div>
     </div>

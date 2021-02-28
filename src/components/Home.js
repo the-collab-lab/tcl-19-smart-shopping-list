@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../lib/firebase';
 import getToken from '../lib/tokens';
+import welcome from '../img/welcome.png';
 
 const db = firebase.firestore().collection('shopping_list');
 
@@ -42,27 +43,43 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
-      <div>
-        <h1>Welcome to Smart Shopping App</h1>
-        <button type="submit" onClick={newList}>
-          Create List
-        </button>
+    <div className="bg-gradient-to-b from-green-300 to-blue-700 min-h-screen w-screen flex flex-col items-center justify-around text-center text-gray-100 text-lg font-light font-sans">
+      <div className=" w-full pt-6 flex flex-col items-center">
+        <h1 className="text-gray-900 font-normal text-3xl sm:text-4xl leading-loose">
+          Welcome to <br />
+          Smart Shopping App
+        </h1>
+        <img className="m-auto w-40 sm:w-56 mt-6" src={welcome} alt="symbol" />
       </div>
+      <button
+        type="submit"
+        onClick={newList}
+        className="home-btn hover:bg-blue-600"
+      >
+        Create List
+      </button>
       <div>
         <p>- or -</p>
-        <p>Join an Existing list by entering the three word token.</p>
-        <form onSubmit={submitToken}>
-          <label htmlFor="token">Enter token</label>
-          <input
-            type="text"
-            id="token"
-            value={existingToken}
-            onChange={tokenHandler}
-          />
-          <button type="submit">Join list</button>
-        </form>
       </div>
+      <div>
+        <p>
+          Join an existing list <br />
+          by entering the three word token.
+        </p>
+      </div>
+      <form onSubmit={submitToken} className="flex flex-col pb-4">
+        <label htmlFor="token">Enter token</label>
+        <input
+          type="text"
+          id="token"
+          value={existingToken}
+          onChange={tokenHandler}
+          className="input my-2 py-2"
+        />
+        <button type="submit" className="home-btn mx-auto">
+          Join list
+        </button>
+      </form>
     </div>
   );
 };

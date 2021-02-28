@@ -7,6 +7,7 @@ import calculateEstimate from '../lib/estimates';
 import SearchBar from './SearchBar';
 import {
   getShoppingItemBackgroundStyles,
+  getShoppingItemTextStyles,
   getItemDescription,
   sortShoppingList,
 } from './sortingFunctions';
@@ -104,34 +105,31 @@ const ItemsList = () => {
   const listHasNoItems = shoppingList && !shoppingList.length;
 
   return (
-    <div className="max-h-screen flex flex-col box-border items-center">
-      <header className="bg-green-400 w-full fixed text-center">
-        <h2 className="pt-6 pb-16 text-4xl font-thin text-gray-100">
-          Your Shopping List
-        </h2>
-        <span className="text-white top-0 right-0 absolute sm:mt-4 sm:mr-4">
+    <div className="bg-gradient-to-b from-green-300 to-blue-700 max-h-screen box-border flex flex-col items-center font-sans">
+      <header className="w-full fixed text-center text-gray-800">
+        <h2 className="pt-8 pb-16 text-4xl font-thin">Your Shopping List</h2>
+        <span className="absolute top-0 right-0 md:hidden">
           <HomeIcon />
         </span>
       </header>
-      <main className="bg-white relative w-full h-full mt-24 rounded-t-3xl overflow-auto">
+      <main className="bg-white relative w-full h-screen mt-28 pb-24 md:pb-0 rounded-t-3xl shadow-top overflow-auto">
         {loading && (
           <img className="m-auto w-12" src={spinner} alt="Loading..." />
         )}
         {error && <p>An error has occured...</p>}
         {listHasNoItems && (
-          <div className="h-64 bg-white flex flex-col w-screen justify-center items-center text-gray-900">
+          <div className="h-64 flex flex-col w-screen justify-center items-center text-gray-900">
             <p className="">You haven't created a shopping list yet...</p>
-            <button
-              className="bg-white-100 px-6 py-3 text-sm mt-6 border border-color-gray-500 border-solid rounded shadow-md hover:bg-green-500 cursor-pointer hover:text-white"
-              type="submit"
-              onClick={handleRedirect}
-            >
+            <button className="add-btn" type="submit" onClick={handleRedirect}>
               Add First Item
             </button>
           </div>
         )}
         {listHasAtLeastOneItem && (
-          <div className="mt-6 max-w-md mx-auto overflow-auto">
+          <section className="pt-6 max-w-md mx-auto overflow-auto">
+            <nav>
+              <AddItemButton />
+            </nav>
             <SearchBar
               value={searchTerm}
               setValue={(searchTerm) => {
@@ -152,7 +150,7 @@ const ItemsList = () => {
                   );
                   return (
                     <li
-                      className="py-3 mt-2 rounded-lg flex items-center shadow-md"
+                      className="py-3 mt-2 rounded-lg flex items-center"
                       key={shoppingItemObject.shoppingListItemName + index}
                       style={{
                         backgroundColor: getShoppingItemBackgroundStyles(
@@ -160,10 +158,15 @@ const ItemsList = () => {
                           getDaysBetweenCurrentAndPreviousPurchase,
                           shoppingItemObject.lastPurchasedOn,
                         ),
+                        color: getShoppingItemTextStyles(
+                          shoppingItemObject.daysLeftForNextPurchase,
+                          getDaysBetweenCurrentAndPreviousPurchase,
+                          shoppingItemObject.lastPurchasedOn,
+                        ),
                       }}
                     >
                       <input
-                        className="mx-4"
+                        className="mx-4 h-6 w-6 rounded text-blue-600 focus:ring-2 focus:ring-blue-700 cursor-pointer"
                         type="checkbox"
                         id={shoppingItemObject.shoppingListItemName}
                         onChange={() => markItemAsPurchased(shopIndex)}
@@ -172,7 +175,7 @@ const ItemsList = () => {
                         )}
                       />
                       <label
-                        className="flex-1 text-xl"
+                        className="flex-1 text-xl break-all"
                         htmlFor={shoppingItemObject.shoppingListItemName}
                         aria-label={getItemDescription(
                           shoppingItemObject.daysLeftForNextPurchase,
@@ -181,6 +184,7 @@ const ItemsList = () => {
                         {shoppingItemObject.shoppingListItemName}
                       </label>
                       <button
+                        aria-label="delete item"
                         className="text-gray-100 mr-4"
                         onClick={() =>
                           deleteItemFromShoppingList(
@@ -196,12 +200,11 @@ const ItemsList = () => {
                   );
                 })}
             </ul>
-          </div>
+          </section>
         )}
       </main>
-      <footer className="absolute bottom-0">
+      <footer>
         <Nav />
-        <AddItemButton />
       </footer>
     </div>
   );
