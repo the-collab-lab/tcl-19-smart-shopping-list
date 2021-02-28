@@ -164,6 +164,7 @@ const AddItemsToList = () => {
               value={shoppingListItemName}
               onChange={shoppingListItemNameHandler}
               className="input"
+              tabIndex={showModal ? -1 : 0}
             />
             <p className="my-8 text-center">
               How soon are you likely to buy it again?

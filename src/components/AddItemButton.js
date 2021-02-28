@@ -4,6 +4,7 @@ import { ReactComponent as ArrowRight } from '../img/arrow-right.svg';
 import { ReactComponent as ArrowLeft } from '../img/arrow-left.svg';
 
 function AddItemButton(props) {
+  console.log(props);
   const history = useHistory();
 
   const handleRedirectToAddItem = () => {
@@ -27,6 +28,7 @@ function AddItemButton(props) {
           type="submit"
           onClick={handleRedirectToAddItem}
           className="nav-btn"
+          tabIndex={props.showDeleteModal ? -1 : 0}
         >
           Add an Item
           <span className="ml-2">
