@@ -12,17 +12,17 @@ function AddItemButton(props) {
   return (
     <div className="hidden md:block">
       <div className="mb-4 flex justify-around">
-        {/* <button
+        <button
           type="submit"
           onClick={handleRedirectToAddItem}
-          className="nav-btn"
+          className="nav-btn hidden"
           tabIndex={props.showDeleteModal ? -1 : 0}
         >
           <span className="mr-2">
             <ArrowLeft />
           </span>
           Back to Home
-        </button> */}
+        </button>
         <button
           type="submit"
           onClick={handleRedirectToAddItem}
