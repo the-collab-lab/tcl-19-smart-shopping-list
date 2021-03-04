@@ -137,9 +137,9 @@ const AddItemsToList = () => {
       />
       <header className="w-full fixed text-center text-gray-800">
         <h2 className="pt-8 pb-16 text-4xl font-thin">Add Items to List</h2>
-        <span className="absolute top-0 right-0 md:hidden">
+        {/* <span className="absolute top-0 right-0 md:hidden">
           <HomeIcon />
-        </span>
+        </span> */}
       </header>
       <main className="bg-white relative w-full h-screen mt-28 rounded-t-3xl shadow-top overflow-auto">
         <section className="max-w-md mx-auto overflow-auto py-6">

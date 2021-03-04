@@ -12,7 +12,7 @@ function AddItemButton(props) {
   return (
     <div className="hidden md:block">
       <div className="mb-4 flex justify-around">
-        <button
+        {/* <button
           type="submit"
           onClick={handleRedirectToAddItem}
           className="nav-btn"
@@ -22,7 +22,7 @@ function AddItemButton(props) {
             <ArrowLeft />
           </span>
           Back to Home
-        </button>
+        </button> */}
         <button
           type="submit"
           onClick={handleRedirectToAddItem}
