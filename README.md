@@ -1,44 +1,32 @@
-Live view of the app: [![Netlify Status](https://api.netlify.com/api/v1/badges/f9a7f8d3-58ca-44ed-a038-ae8d2efd31a5/deploy-status)](https://app.netlify.com/sites/tcl-19-smart-shopping-list/deploys)
-
+[Live app](https://tcl-19-smart-shopping-list-2.web.app/)
 # Overview
 
 ## What is this project?
 
-This project was set up by a group of four developers to create a “smart” shopping list app that learns your buying habits and helps you remember what you’re likely to need to buy on your next trip to the store. 
+This is a smart shopping app which was developed by a group of four developers under the [collab lab](https://the-collab-lab.codes/about-us/) mentorship program. The app learns your buying habits and helps you remember what you will likely need to buy on your next trip to the store. 
 
 ## How does it work?
 
-As a user, you will enter items (e.g., “Greek yogurt” or “Paper towels”) into your list. Each time you buy the item, you mark it as purchased in the list. Over time, the app comes to understand the intervals at which you buy different items. If an item is likely to be due to be bought soon, it rises to the top of the shopping list.
+As a user, you will need to create a new shopping list or join an existing list. You can then add items to your list. Each time you buy the item, you mark it as purchased in the list. Over time, the app comes to understand the intervals at which you buy different items. If an item is likely to be bought soon, it rises to the top of the shopping list.
 
 ## Check out a video demo of the app here:
 
 [![](https://cdn.zappy.app/33815167c45d74c3ae5af232de633add.png)](https://www.youtube.com/watch?v=mwj74mE9s64&t)
 
-<hr>
 
-# Project setup
+# Setting up the project locally
 
-## Download Node and NPM
+To set up the project locally, follow the steps below.
 
-* `npm` is distributed with Node.js which means that when you download Node.js, you automatically get `npm` installed on your computer.
-* Follow the [instructions here to install Node.js and `npm`](https://nodejs.org/en/).
+1. Clone the project to your local machine using the command `git clone https://github.com/the-collab-lab/tcl-19-smart-shopping-list.git`. This requires you to have git installed on your machine. If you don't have git, you can download it from [here](https://git-scm.com/downloads). It is a very powerful and popular version control system(VCS). If you are familiar with another VCS, you can check out the [documentation](https://git-scm.com/doc). If you are a total beginner to git and VCS, [this awesome course by atlassian](https://www.atlassian.com/git/tutorials) will set you off.
+2. Build the app locally. 
+  
+   To run the app locally, you need to:
 
-## Clone project locally
-
-
-
-## Update dependencies
-
-* Once you have the project locally and you are in the project directory, you’ll want to update all the project’s dependencies. To do so, type the following into your terminal: `npm update`
-![screenshot of npm update in the terminal](https://cdn.zappy.app/b7619c19e38166329334430335746d3b.png)
-* Maybe take a sip of coffee or check in on Twitter, this could take a minute -- don’t worry.
+    - have `node` and `npm` installed on your machine. If you don't have `node` installed on your machine, follow the instructions [here](https://nodejs.org/en/) to install it. If you are not sure whether you have it installed, run `node --version` on your terminal. If you see the version of node like `v15.0.1` then node has already been installed.  When you download Node.js, you automatically get `npm` installed as well.
+    - create a firebase project and copy the API keys in `.env` file
+    - run `npm update` to install and update the project dependencies
+    - run `npm start` to start a live version of the app on local host. The app will be on `localhost:3000`.
 
 
-Added firebase and react-firebase-hooks as project dependencies. According to firebase docs and this stackoveflow question, it is not a security risk to expose your firestore configuration details though it includes your API key. It could however be a security risk to store sensitive credentials like API keys for other platforms in a gitHub repository. The best place for them is in the .env file which you then ignore in .gitignore.
 
-react-router-dom
-
-## Access the project in your browser
-
-* After you’ve cloned the project locally and updated the dependencies, you should be able to see the project at `localhost:3000`.
-![screenshot of the react project](https://cdn.zappy.app/30d5733fe9abc6d74d3adde2d046c101.png)
