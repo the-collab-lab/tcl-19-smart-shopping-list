@@ -1,4 +1,5 @@
 [Live app](https://tcl-19-smart-shopping-list-2.web.app/)
+
 # Overview
 
 ## What is this project?
@@ -27,6 +28,3 @@ To set up the project locally, follow the steps below.
     - create a firebase project and copy the API keys in `.env` file
     - run `npm update` to install and update the project dependencies
     - run `npm start` to start a live version of the app on local host. The app will be on `localhost:3000`.
-
-
-

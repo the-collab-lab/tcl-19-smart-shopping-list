@@ -137,7 +137,7 @@ const AddItemsToList = () => {
       />
       <header className="w-full fixed text-center text-gray-800">
         <h2 className="pt-8 pb-16 text-4xl font-thin">Add Items to List</h2>
-        <span className="absolute top-0 right-0 md:hidden">
+        <span className="absolute top-0 right-0 hidden">
           <HomeIcon />
         </span>
       </header>

@@ -23,7 +23,7 @@ function ItemListButton(props) {
           </span>
           Go to list
         </button>
-        <button type="submit" className="nav-btn">
+        <button type="submit" className="nav-btn hidden" >
           Back to Home
           <span className="ml-2">
             <ArrowRight />

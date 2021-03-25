@@ -15,7 +15,7 @@ function AddItemButton(props) {
         <button
           type="submit"
           onClick={handleRedirectToAddItem}
-          className="nav-btn"
+          className="nav-btn hidden"
           tabIndex={props.showDeleteModal ? -1 : 0}
         >
           <span className="mr-2">
