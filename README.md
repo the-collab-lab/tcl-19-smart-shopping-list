@@ -10,8 +10,13 @@ As a user, you will need to create a new shopping list or join an existing list.
 
 ## Video demo of the app:
 
-[![]()](https://www.youtube.com/watch?v=mwj74mE9s64&t)
-[![]()
+Option 1 (like Before): A picture with a link that sends you to a youtube video of a demo.
+
+![](https://github.com/the-collab-lab/tcl-19-smart-shopping-list/blob/read-me/public/Thumbnail.png)
+
+Option 2: The demo as a gif (with lower quality.. could not find a way to have the same quality as the video I made.)
+
+![](https://github.com/the-collab-lab/tcl-19-smart-shopping-list/blob/read-me/public/smart-shopping-app.gif)
 
 
 ## Live project
