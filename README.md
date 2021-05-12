@@ -23,6 +23,15 @@ Option 2: The demo as a gif (with lower quality.. could not find a way to have t
 
 The live project can be viewed [here](https://tcl-19-smart-shopping-list-2.web.app/).
 
+## Setting up the project
+
+- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+- [Google Firebase](https://firebase.google.com/) is used to store the data
+- To make integration with Firebase even more straightforward [react-firebase-hooks](https://firebaseopensource.com/projects/csfrequency/react-firebase-hooks/) were installed
+- To navigate between the different views [react-router-dom](https://reactrouter.com/web/guides/quick-start) was installed
+- For styling [TailwindCSS](https://tailwindcss.com/docs/guides/create-react-app) was chosen
+
+
 
 # Setting up the project locally
 
