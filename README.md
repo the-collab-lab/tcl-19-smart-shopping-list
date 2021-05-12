@@ -10,8 +10,8 @@ As a user, you will need to create a new shopping list or join an existing list.
 
 ## Video demo of the app:
 
-[![](/Thumbnail.png)](https://www.youtube.com/watch?v=mwj74mE9s64&t)
-[![](/shoppingapp.gif)
+[![]()](https://www.youtube.com/watch?v=mwj74mE9s64&t)
+[![]()
 
 
 ## Live project
