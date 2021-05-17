@@ -23,10 +23,9 @@ The live project can be viewed [here](https://smart-shopping-list.netlify.app/).
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 - [Google Firebase](https://firebase.google.com/) is used to store the data
-- To make integration with Firebase even more straightforward [react-firebase-hooks](https://firebaseopensource.com/projects/csfrequency/react-firebase-hooks/) were installed
-- To navigate between the different views [react-router-dom](https://reactrouter.com/web/guides/quick-start) was installed
-- For styling [TailwindCSS](https://tailwindcss.com/docs/guides/create-react-app) was chosen
-
+- To make integration with Firebase even more straightforward [react-firebase-hooks](https://firebaseopensource.com/projects/csfrequency/react-firebase-hooks/) was installed
+- [react-router-dom](https://reactrouter.com/web/guides/quick-start) is used for navigating between the different views
+- The app was styled using the utility-first CSS framework [TailwindCSS](https://tailwindcss.com/docs/guides/create-react-app)
 
 
 # Setting up the project locally
