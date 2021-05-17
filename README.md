@@ -17,7 +17,7 @@ As a user, you will need to create a new shopping list or join an existing list.
 
 ## Live project
 
-The live project can be viewed [here](https://tcl-19-smart-shopping-list-2.web.app/).
+The live project can be viewed [here](https://smart-shopping-list.netlify.app/).
 
 ## Setting up the project
 
