@@ -48,6 +48,8 @@ To set up the project locally, follow the steps below.
 
 # Contributors
 
+## Developers
+
 [//]: contributor-faces
 
 <a href="https://github.com/rb50"><img src="https://avatars.githubusercontent.com/u/24212625?v=4" title="Becky Botha" width="80" height="80"></a>
