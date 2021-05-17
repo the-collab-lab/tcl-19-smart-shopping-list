@@ -9,7 +9,7 @@ This is a smart shopping app which was developed by a group of four developers u
 As a user, you will need to create a new shopping list or join an existing list. You can then add items to your list. Each time you buy the item, you mark it as purchased in the list. Over time, the app comes to understand the intervals at which you buy different items. If an item is likely to be bought soon, it rises to the top of the shopping list.
 
 ## Video demo of the app:
-
+![](https://github.com/the-collab-lab/tcl-19-smart-shopping-list/blob/read-me/public/Thumbnail.png)
 ![](https://github.com/the-collab-lab/tcl-19-smart-shopping-list/blob/read-me/public/smart-shopping-app.gif)
 
 
