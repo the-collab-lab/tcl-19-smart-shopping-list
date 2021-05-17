@@ -1,6 +1,6 @@
 # Overview
 
-![](https://github.com/the-collab-lab/tcl-19-smart-shopping-list/blob/read-me/public/Thumbnail.png)
+![](https://github.com/the-collab-lab/tcl-19-smart-shopping-list/blob/main/public/Thumbnail.png)
 
 ## What is this project?
 
@@ -12,7 +12,7 @@ As a user, you will need to create a new shopping list or join an existing list.
 
 ## Video demo of the app:
 
-![](https://github.com/the-collab-lab/tcl-19-smart-shopping-list/blob/read-me/public/smart-shopping-app.gif)
+![](https://github.com/the-collab-lab/tcl-19-smart-shopping-list/blob/main/public/smart-shopping-app.gif)
 
 
 ## Live project
