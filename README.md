@@ -48,14 +48,9 @@ To set up the project locally, follow the steps below.
 
 # Contributors
 
-
 [//]: contributor-faces
-
-<a href="https://github.com/YuriDevAT"><img src="https://avatars.githubusercontent.com/u/54622834?s=400&u=b2bd71914ea725d5861e6254d731c3d7ca270741&v=4" title="julia undeutsch" width="80" height="80"></a>
-
+<a href="https://github.com/rb50"><img src="https://avatars.githubusercontent.com/u/24212625?v=4" title="Becky Botha" width="80" height="80"></a>
+<a href="https://github.com/nibble0101"><img src="https://avatars.githubusercontent.com/u/52580190?v=4" title="Joseph Mawa" width="80" height="80"></a>
+<a href="https://github.com/Amaka202"><img src="https://avatars.githubusercontent.com/u/57858821?v=4" title="Chiamaka Umeh" width="80" height="80"></a>
+<a href="https://github.com/YuriDevAT"><img src="https://avatars.githubusercontent.com/u/54622834?v=4" title="Julia Undeutsch" width="80" height="80"></a>
 [//]: contributor-faces
-
-- [Becky Botha](https://github.com/rb50)
-- [Joseph Mawa](https://github.com/nibble0101)
-- [Chiamaka Umeh](https://github.com/Amaka202)
-- [Julia Undeutsch](https://github.com/YuriDevAT) 
