@@ -56,3 +56,14 @@ To set up the project locally, follow the steps below.
 <a href="https://github.com/YuriDevAT"><img src="https://avatars.githubusercontent.com/u/54622834?v=4" title="Julia Undeutsch" width="80" height="80"></a>
 
 [//]: contributor-faces
+
+## Mentors
+
+[//]: contributor-faces
+
+<a href="https://github.com/lukabaramishvili"><img src="https://avatars.githubusercontent.com/u/45564632?v=4" title="Luka Baramishvili" width="80" height="80"></a>
+<a href="http://github.com/alexlsalt"><img src="https://avatars.githubusercontent.com/u/45923677?v=4" title="Alex Morton" width="80" height="80"></a>
+<a href="https://github.com/salmanmanekia"><img src="https://avatars.githubusercontent.com/u/841955?v=4" title="Muhammad Salman" width="80" height="80"></a>
+<a href="https://github.com/faysvas"><img src="https://avatars.githubusercontent.com/u/11340303?v=4" title="Golfo Vasiliou" width="80" height="80"></a>
+
+[//]: contributor-faces
