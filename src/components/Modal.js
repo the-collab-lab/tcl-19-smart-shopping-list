@@ -18,7 +18,6 @@ export default function Modal({ message, showModal, setShowModal }) {
                     className="p-1 ml-auto border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => {
                       setShowModal(false);
-                      document.getElementById('addItemButton').focus();
                     }}
                   >
                     <span className=" text-red h-6 w-6 text-2xl block outline-none focus:outline-none">
@@ -41,7 +40,6 @@ export default function Modal({ message, showModal, setShowModal }) {
                     style={{ transition: 'all .15s ease' }}
                     onClick={() => {
                       setShowModal(false);
-                      document.getElementById('addItemButton').focus();
                     }}
                     autoFocus
                   >
