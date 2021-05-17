@@ -51,6 +51,4 @@ To set up the project locally, follow the steps below.
 - [Becky Botha](https://github.com/rb50)
 - [Joseph Mawa](https://github.com/nibble0101)
 - [Chiamaka Umeh](https://github.com/Amaka202)
-
-
-![](https://avatars.githubusercontent.com/u/54622834?s=60&v=4)[Julia Undeutsch](https://github.com/saliainred) 
+- [Julia Undeutsch](https://github.com/saliainred) 
