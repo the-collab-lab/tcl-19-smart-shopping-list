@@ -67,3 +67,12 @@ To set up the project locally, follow the steps below.
 <a href="https://github.com/faysvas"><img src="https://avatars.githubusercontent.com/u/11340303?v=4" title="Golfo Vasiliou" width="80" height="80"></a>
 
 [//]: contributor-faces
+
+## Founder & Co-Founder of [The Collab Lab](https://the-collab-lab.codes/)
+
+[//]: contributor-faces
+
+<a href="https://github.com/segdeha"><img src="https://avatars.githubusercontent.com/u/4306?v=4" title="Andrew Hedges" width="80" height="80"></a>
+<a href="https://github.com/stacietaylorcima"><img src="https://avatars.githubusercontent.com/u/25017973?v=4" title="Stacie Taylor" width="80" height="80"></a>
+
+[//]: contributor-faces
