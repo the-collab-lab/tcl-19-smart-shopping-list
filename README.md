@@ -44,3 +44,11 @@ To set up the project locally, follow the steps below.
     - create `.env` file and then copy and paste the contents of [example.env](./example.env) in it. The corresponding  value of each environment variable in the `.env` file should correspond with the configuration key for the firebase project  you  created.
     - run `npm update` to install and update the project dependencies
     - run `npm start` to start a live version of the app on local host. The app will be on `localhost:3000`.
+
+
+# Contributors
+
+- [Becky Botha](https://github.com/rb50)
+- [Joseph Mawa](https://github.com/nibble0101)
+- [Chiamaka Umeh](https://github.com/Amaka202)
+- [Julia Undeutsch](https://github.com/saliainred)
