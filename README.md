@@ -70,7 +70,7 @@ To set up the project locally, follow the steps below.
 
 [//]: contributor-faces
 
-## Founder & Co-Founder of [The Collab Lab](https://the-collab-lab.codes/)
+## Founders of [The Collab Lab](https://the-collab-lab.codes/)
 
 [//]: contributor-faces
 
