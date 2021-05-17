@@ -48,7 +48,14 @@ To set up the project locally, follow the steps below.
 
 # Contributors
 
+
+[//]: contributor-faces
+
+<a href="https://github.com/YuriDevAT"><img src="https://avatars.githubusercontent.com/u/54622834?s=400&u=b2bd71914ea725d5861e6254d731c3d7ca270741&v=4" title="julia undeutsch" width="80" height="80"></a>
+
+[//]: contributor-faces
+
 - [Becky Botha](https://github.com/rb50)
 - [Joseph Mawa](https://github.com/nibble0101)
 - [Chiamaka Umeh](https://github.com/Amaka202)
-- [Julia Undeutsch](https://github.com/saliainred) 
+- [Julia Undeutsch](https://github.com/YuriDevAT) 
