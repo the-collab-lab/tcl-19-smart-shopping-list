@@ -19,7 +19,7 @@ As a user, you will need to create a new shopping list or join an existing list.
 
 The live project can be viewed [here](https://smart-shopping-list.netlify.app/).
 
-## Setting up the project
+## Dependencies Used
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 - [Google Firebase](https://firebase.google.com/) is used to store the data
