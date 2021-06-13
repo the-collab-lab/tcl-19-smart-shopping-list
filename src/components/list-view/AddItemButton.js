@@ -1,6 +1,7 @@
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { ReactComponent as ArrowRight } from '../img/arrow-right.svg';
-import { ReactComponent as ArrowLeft } from '../img/arrow-left.svg';
+import { ReactComponent as ArrowRight } from '../../img/arrow-right.svg';
+import { ReactComponent as ArrowLeft } from '../../img/arrow-left.svg';
 
 function AddItemButton(props) {
   const history = useHistory();

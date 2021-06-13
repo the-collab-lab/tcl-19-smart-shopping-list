@@ -1,10 +1,13 @@
+import React from 'react';
+
 export default function Modal({ message, showModal, setShowModal }) {
   return (
     <>
       {showModal ? (
         <>
           <div
-            role="alertdialog"
+            role="dialog"
+            aria-label="alertdialog"
             aria-modal="true"
             aria-describedby="dialog-message"
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"

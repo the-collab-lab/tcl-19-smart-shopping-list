@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { shoppingListCollection } from '../../lib/firebase';
 import Nav from '../Nav';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -14,11 +14,11 @@ import {
   getDaysBetweenCurrentAndPreviousPurchase,
 } from '../../utils/utility-functions';
 import AddItemButton from './AddItemButton';
-import { ReactComponent as TrashBin } from '../img/trash-alt-regular.svg';
-import { ReactComponent as HomeIcon } from '../img/home-solid.svg';
-import spinner from '../img/spinner-3.gif';
+import { ReactComponent as TrashBin } from '../../img/trash-alt-regular.svg';
+import { ReactComponent as HomeIcon } from '../../img/home-solid.svg';
+import spinner from '../../img/spinner-3.gif';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
-import '../index.css';
+import '../../index.css';
 
 const ItemsList = () => {
   const userToken = localStorage.getItem('token');
