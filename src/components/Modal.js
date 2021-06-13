@@ -1,12 +1,10 @@
-import React from 'react';
-
 export default function Modal({ message, showModal, setShowModal }) {
   return (
     <>
       {showModal ? (
         <>
           <div
-            role="dialog"
+            role="alertdialog"
             aria-modal="true"
             aria-describedby="dialog-message"
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
@@ -41,7 +39,6 @@ export default function Modal({ message, showModal, setShowModal }) {
                     onClick={() => {
                       setShowModal(false);
                     }}
-                    autoFocus
                   >
                     OK
                   </button>
