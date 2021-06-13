@@ -11,15 +11,15 @@
 @tailwind components;
 
 .home-btn {
-  @apply bg-white  text-gray-900 w-40 py-2 font-light shadow-hover hover:text-gray-100 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50;
+  @apply bg-white text-gray-900 w-40 py-2 font-light shadow-hover hover:text-gray-100 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50;
 }
 
 .nav-btn {
-  @apply bg-green-600 text-gray-100 w-40 py-3 my-3 flex items-center rounded-lg justify-center shadow-bottom font-light hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50;
+  @apply bg-green-700 text-gray-100 w-40 py-3 my-3 flex items-center rounded-lg justify-center shadow-bottom font-light hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50;
 }
 
 .add-btn {
-  @apply bg-green-600 text-gray-100 w-40 py-3 mt-8 hover:shadow-hover text-center rounded-lg shadow-bottom font-light hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50;
+  @apply bg-green-700 text-gray-100 w-40 py-3 mt-8 hover:shadow-hover text-center rounded-lg shadow-bottom font-light hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50;
 }
 
 .input {
