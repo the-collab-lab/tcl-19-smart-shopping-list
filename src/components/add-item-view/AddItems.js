@@ -7,7 +7,7 @@ import ItemListButton from './ItemListButton';
 import { ReactComponent as HomeIcon } from '../../img/home-solid.svg';
 import Modal from '../Modal';
 import { normalizeString } from '../../utils/utility-functions';
-import spinner from '../../img/spinner-3.gif';
+import spinner from '../../img/loader.gif';
 
 const AddItemsToList = () => {
   const userToken = localStorage.getItem('token');
@@ -44,9 +44,7 @@ const AddItemsToList = () => {
 
     if (shoppingListItemName === '') {
       setShowModal(true);
-      setModalMessage(
-        'Please enter item name before adding to your shopping list',
-      );
+      setModalMessage('Please enter an item!');
       return;
     }
     const item = {
@@ -77,7 +75,7 @@ const AddItemsToList = () => {
         .then(() => {
           setShowModal(true);
           setModalMessage(
-            `Added ${shoppingListItemName} successfully to your shopping list.`,
+            `Added ${shoppingListItemName} successfully to shopping list.`,
           );
         })
         .catch((e) => {
@@ -95,7 +93,7 @@ const AddItemsToList = () => {
         .then(() => {
           setShowModal(true);
           setModalMessage(
-            `Added ${shoppingListItemName} successfully to your shopping list.`,
+            `Added ${shoppingListItemName} successfully to shopping list.`,
           );
         })
         .catch((e) => {
@@ -112,13 +110,7 @@ const AddItemsToList = () => {
   if (loading) {
     return (
       <img
-        className="m-auto w-20"
-        style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
+        className="w-36 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         src={spinner}
         alt="Loading..."
       />
@@ -152,10 +144,10 @@ const AddItemsToList = () => {
             onSubmit={submitShoppingListItemHandler}
           >
             {shoppingListItemNameExists ? (
-              <p>
+              <p style={{ color: 'red' }}>
                 {`You have ${normalizeString(
                   shoppingListItemName,
-                )} in your shopping list already`}
+                )} in your shopping list already!`}
               </p>
             ) : null}
             <input

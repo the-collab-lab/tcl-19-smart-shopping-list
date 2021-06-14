@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { shoppingListCollection } from '../../lib/firebase';
 import getToken from '../../lib/tokens';
 
-import spinner from '../../img/spinner-3.gif';
+import spinner from '../../img/loader.gif';
 import Modal from '../Modal';
 
 import welcome from '../../img/welcome.png';
@@ -73,13 +73,7 @@ const Home = () => {
   if (loading) {
     return (
       <img
-        className="m-auto w-20"
-        style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
+        className="w-36 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         src={spinner}
         alt="Loading..."
       />
@@ -98,7 +92,7 @@ const Home = () => {
           Welcome to <br />
           Smart Shopping App
         </h1>
-        <img className="m-auto w-40 sm:w-56 mt-6" src={welcome} alt="symbol" />
+        <img className="m-auto w-40 sm:w-56 mt-6" src={welcome} alt="" />
       </div>
       <button
         type="submit"

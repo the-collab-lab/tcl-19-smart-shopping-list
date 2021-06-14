@@ -16,7 +16,7 @@ import {
 import AddItemButton from './AddItemButton';
 import { ReactComponent as TrashBin } from '../../img/trash-alt-regular.svg';
 import { ReactComponent as HomeIcon } from '../../img/home-solid.svg';
-import spinner from '../../img/spinner-3.gif';
+import spinner from '../../img/loader.gif';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 import '../../index.css';
 
@@ -105,13 +105,7 @@ const ItemsList = () => {
   if (loading) {
     return (
       <img
-        className="m-auto w-20"
-        style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
+        className="w-36 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         src={spinner}
         alt="Loading..."
       />
