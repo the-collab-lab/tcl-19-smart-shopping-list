@@ -5,13 +5,12 @@ import 'firebase/firestore';
 
 // Initalize Firebase.
 var firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APPID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+  apiKey: 'AIzaSyDkkI5lYPGdkqxNh4oJqy31vnh71-24Kjg',
+  authDomain: 'tcl-19-shopping-list.firebaseapp.com',
+  projectId: 'tcl-19-shopping-list',
+  storageBucket: 'tcl-19-shopping-list.appspot.com',
+  messagingSenderId: '87812804490',
+  appId: '1:87812804490:web:5768b2db06dd2c29bf0273',
 };
 
 firebase.initializeApp(firebaseConfig);

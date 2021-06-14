@@ -44,7 +44,7 @@ const AddItemsToList = () => {
 
     if (shoppingListItemName === '') {
       setShowModal(true);
-      setModalMessage('Please enter an item!');
+      setModalMessage('Please enter item name before adding to shopping list!');
       return;
     }
     const item = {
@@ -118,7 +118,8 @@ const AddItemsToList = () => {
   }
 
   if (error) {
-    return <p>An error has occured</p>;
+    setShowModal(true);
+    setModalMessage(`An error has occured`);
   }
 
   return (

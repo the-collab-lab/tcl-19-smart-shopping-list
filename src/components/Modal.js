@@ -21,10 +21,10 @@ export default function Modal({ message, showModal, setShowModal }) {
                       setShowModal(false);
                     }}
                   >
-                    <span className=" text-red h-6 w-6 text-2xl block">×</span>
+                    <span className="text-red h-6 w-6 text-2xl block">×</span>
                   </button>
                 </div>
-                <div className="relative p-6 flex-auto w-72">
+                <div className="relative p-6 flex-auto">
                   <p
                     className="my-4 text-gray-600 text-lg leading-relaxed"
                     id="dialog-message"
