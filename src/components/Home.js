@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { shoppingListCollection } from '../../lib/firebase';
-import getToken from '../../lib/tokens';
+import { shoppingListCollection } from '../lib/firebase';
+import getToken from '../lib/tokens';
 
-import spinner from '../../img/loader.gif';
-import Modal from '../Modal';
+import spinner from '../img/loader.gif';
+import Modal from './Modal';
 
-import welcome from '../../img/welcome.png';
+import welcome from '../img/welcome.png';
 
 const Home = () => {
   const [existingToken, setExistingToken] = useState('');

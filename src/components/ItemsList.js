@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { shoppingListCollection } from '../../lib/firebase';
-import Nav from '../Nav';
+import { shoppingListCollection } from '../lib/firebase';
+import Nav from './Nav';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router-dom';
-import calculateEstimate from '../../lib/estimates';
+import calculateEstimate from '../lib/estimates';
 import SearchBar from './SearchBar';
 import {
   sortShoppingList,
@@ -12,13 +12,13 @@ import {
   getShoppingItemBackgroundStyles,
   wasItemPurchasedWithinLastOneDay,
   getDaysBetweenCurrentAndPreviousPurchase,
-} from '../../utils/utility-functions';
+} from '../utils/utility-functions';
 import AddItemButton from './AddItemButton';
-import { ReactComponent as TrashBin } from '../../img/trash-alt-regular.svg';
-import { ReactComponent as HomeIcon } from '../../img/home-solid.svg';
-import spinner from '../../img/loader.gif';
+import { ReactComponent as TrashBin } from '../img/trash-alt-regular.svg';
+import { ReactComponent as HomeIcon } from '../img/home-solid.svg';
+import spinner from '../img/loader.gif';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
-import '../../index.css';
+import '../index.css';
 
 const ItemsList = () => {
   const userToken = localStorage.getItem('token');
@@ -126,7 +126,7 @@ const ItemsList = () => {
         </span>
       </header>
       <main className="bg-white relative w-full h-screen mt-28 pb-24 md:pb-0 rounded-t-3xl shadow-top overflow-auto">
-        {error && <p>An error has occured...</p>}
+        {error && <p className="text-center pt-8">An error has occured...</p>}
         {listHasNoItems && (
           <div className="h-64 flex flex-col w-screen justify-center items-center text-gray-900">
             <p className="">You haven't created a shopping list yet...</p>

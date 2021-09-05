@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ItemsList from './components/list-view/ItemsList';
-import AddItems from './components/add-item-view/AddItems';
-import Home from './components/home-view/Home';
+import ItemsList from './components/ItemsList';
+import AddItems from './components/AddItems';
+import Home from './components/Home';
 
 function App() {
   return (

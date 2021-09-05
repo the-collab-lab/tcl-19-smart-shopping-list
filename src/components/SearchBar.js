@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as ResetIcon } from '../../img/reset.svg';
+import { ReactComponent as ResetIcon } from '../img/reset.svg';
 
 const SearchBar = ({ value, setValue, showDeleteModal }) => {
   const handleChange = (event) => {

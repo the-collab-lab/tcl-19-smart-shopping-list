@@ -1,13 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { shoppingListCollection, arrayUnion } from '../../lib/firebase';
-import Nav from '../Nav';
+import { shoppingListCollection, arrayUnion } from '../lib/firebase';
+import Nav from './Nav';
 import ItemListButton from './ItemListButton';
-import { ReactComponent as HomeIcon } from '../../img/home-solid.svg';
-import Modal from '../Modal';
-import { normalizeString } from '../../utils/utility-functions';
-import spinner from '../../img/loader.gif';
+import { ReactComponent as HomeIcon } from '../img/home-solid.svg';
+import Modal from './Modal';
+import { normalizeString } from '../utils/utility-functions';
+import spinner from '../img/loader.gif';
 
 const AddItemsToList = () => {
   const userToken = localStorage.getItem('token');
