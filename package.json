@@ -5,6 +5,7 @@
   "dependencies": {
     "@craco/craco": "^5.8.0",
     "@tailwindcss/forms": "^0.2.1",
+    "cross-env": "^7.0.3",
     "firebase": "^8.2.1",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
@@ -18,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "CI= craco build",
+    "build": "cross-env CI=false craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
