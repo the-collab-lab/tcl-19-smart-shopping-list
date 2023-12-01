@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "tcl-19-smart-shopping-list-2"
-  }
+    "default": "tcl-19-shopping-list"
+  },
+  "targets": {},
+  "etags": {}
 }
