@@ -4,18 +4,18 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^5.8.0",
-    "@tailwindcss/forms": "^0.2.1",
+    "@tailwindcss/forms": "^0.5.2",
+    "@the-collab-lab/shopping-list-utils": "^2.2.0",
     "cross-env": "^7.0.3",
     "firebase": "^8.2.1",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
     "postcss-flexbugs-fixes": "^5.0.2",
     "prettier": "^2.2.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-firebase-hooks": "^2.2.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^5.0.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-firebase-hooks": "^3.0.5",
+    "react-router-dom": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
@@ -54,8 +54,9 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.31",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2"
+    "postcss": "^8.4.7",
+    "tailwindcss": "^3.0.23",
+    "react-scripts": "^5.0.1"
   },
   "overrides": {
     "@svgr/webpack": "^6.2.1"

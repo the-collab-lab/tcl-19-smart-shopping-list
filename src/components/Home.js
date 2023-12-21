@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { shoppingListCollection } from '../lib/firebase';
-import getToken from '../lib/tokens';
 
 import spinner from '../img/spinner-3.gif';
 import Modal from './Modal';
 
 import welcome from '../img/welcome.png';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 
 const Home = () => {
   const [existingToken, setExistingToken] = useState('');
@@ -16,9 +16,10 @@ const Home = () => {
   const history = useHistory();
 
   const newList = () => {
-    const token = getToken();
-    localStorage.setItem('token', token);
-    history.push('/list');
+    // const token = getToken();
+    // localStorage.setItem('token', token);
+    // history.push('/list');
+    console.log('Creating new lists is no longer supported');
   };
 
   const tokenHandler = (event) => {
@@ -129,6 +130,7 @@ const Home = () => {
           Join list
         </button>
       </form>
+      <ArchivalNoticeModal />
     </div>
   );
 };
